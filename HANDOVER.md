@@ -47,6 +47,7 @@ Dự án đang ở **Giai Đoạn 0: Pre-Production**.
 - Viết rule performance/code architecture.
 - Viết product vision one-page.
 - Viết checklist chọn asset.
+- Viết shortlist asset pack đầu tiên.
 - Viết scope prototype core.
 
 Chưa làm:
@@ -118,12 +119,14 @@ Mục đích:
 
 - [Tooling_And_Asset_Strategy.md](D:/soflware/Unity/Source/App/docs/Tooling_And_Asset_Strategy.md)
 - [Asset_Selection_Checklist.md](D:/soflware/Unity/Source/App/docs/Asset_Selection_Checklist.md)
+- [Asset_Pack_Shortlist.md](D:/soflware/Unity/Source/App/docs/Asset_Pack_Shortlist.md)
 
 Mục đích:
 
 - Hiểu vì sao asset strategy là rủi ro lớn khi chưa có artist.
 - Biết tiêu chí chọn asset pack.
 - Biết cách đánh giá license, style, modularity, URP compatibility, mobile performance.
+- Biết 1-2 asset pack nào đang được đề xuất test import đầu tiên.
 
 ### 6. Hiểu Rule Code Và Kiến Trúc
 
@@ -208,20 +211,23 @@ Mục đích:
 
 Việc tiếp theo theo roadmap:
 
-1. Shortlist 5-10 asset packs tiềm năng.
-2. Đánh giá từng asset bằng [Asset_Selection_Checklist.md](D:/soflware/Unity/Source/App/docs/Asset_Selection_Checklist.md).
-3. Chọn 2-3 pack tốt nhất để test import.
-4. Setup Unity project với URP.
-5. Import VContainer và UniTask.
-6. Tạo scene test asset:
+1. Setup Unity project với URP.
+2. Import VContainer và UniTask.
+3. Test import asset theo [Asset_Pack_Shortlist.md](D:/soflware/Unity/Source/App/docs/Asset_Pack_Shortlist.md):
+   - KayKit Medieval Builder Pack 1.0.
+   - Pandazole - City Town Lowpoly Pack để test hướng cartoon/cute miễn phí.
+   - Simple Town - Cartoon Assets hoặc Simple Buildings - Cartoon City nếu muốn test cute/cartoon rõ hơn.
+   - Terrific Modular Fantasy Village nếu ngân sách cho phép.
+   - Medieval house modular v2.0 - lite - URP làm backup miễn phí.
+4. Tạo scene test asset:
    - scale
    - material
    - URP compatibility
    - mobile FPS
    - modularity
    - procedural compatibility
-7. Chọn asset foundation.
-8. Bắt đầu Prototype Core theo [Prototype_Core_Scope.md](D:/soflware/Unity/Source/App/docs/Prototype_Core_Scope.md).
+5. Chọn asset foundation.
+6. Bắt đầu Prototype Core theo [Prototype_Core_Scope.md](D:/soflware/Unity/Source/App/docs/Prototype_Core_Scope.md).
 
 ## Prototype Core Cần Làm Gì
 
@@ -267,3 +273,40 @@ Prototype không cần:
 - Không dùng VContainer, UniTask, struct như "trend"; chỉ dùng đúng phạm vi đã chốt.
 - Mọi quyết định mới nên cập nhật lại tài liệu tương ứng.
 
+## Session Update - 2026-05-21
+
+This section is the latest handover status and overrides older "not yet setup" notes above.
+
+Current project setup:
+
+- Unity project has been created at `D:/soflware/Unity/Source/App/Cozy_Builder`.
+- Unity version: `6000.3.11f1`.
+- Render pipeline: URP is installed and configured.
+- KayKit Medieval Builder Pack 1.0 has been imported at `Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0`.
+- KayKit license checked: CC0, usable for commercial work.
+- KayKit source format decision: use `fbx` only for prototype and production experiments.
+- KayKit `dae` models show shader/material issues in URP and should be ignored for now.
+- KayKit `obj` models render correctly, but are not the preferred Unity workflow for this project.
+- UniTask is installed through Unity Package Manager. Resolved version: `2.5.11`.
+- VContainer is installed through Unity Package Manager. Resolved version: `1.18.0`.
+
+Asset workflow decision for KayKit:
+
+- Use:
+  - `Models/objects/fbx`
+  - `Models/tiles/hex/fbx`
+  - `Models/tiles/square/fbx`
+- Avoid for the current prototype:
+  - `Models/**/dae`
+  - `Models/**/obj`
+  - `Models/**/gltf`
+  - `Models/**/glb`
+
+Next recommended work:
+
+1. Commit and push the current setup state.
+2. Add Unity `.gitignore` before committing large/generated folders.
+3. Create initial project code structure.
+4. Add `GameLifetimeScope` using VContainer.
+5. Create a KayKit FBX test scene for scale, material, URP compatibility, modularity, and procedural suitability.
+6. Start prototype core only after the asset test scene is stable.

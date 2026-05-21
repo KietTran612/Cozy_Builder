@@ -1,0 +1,50 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.pdb.meta
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity crash reports
+sysinfo.txt
+
+# Asset Store / exported package artifacts
+*.unitypackage
+Cozy_Builder/Assets/Packages/*.zip
+Cozy_Builder/Assets/Packages/*.zip.meta
+
+# KayKit duplicate source formats not used by this project
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/dae/
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/gltf/
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/obj/
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/dae.meta
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/gltf.meta
+Cozy_Builder/Assets/Packages/kaykit_medieval_builder_pack_1.0/Models/**/obj.meta
+
+# Misplaced generated Unity package source files at project root
+Cozy_Builder/*.cs
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vs/
+.vscode/
