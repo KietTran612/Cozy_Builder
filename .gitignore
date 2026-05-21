@@ -48,3 +48,8 @@ Thumbs.db
 .idea/
 .vs/
 .vscode/
+
+# Graphify local-only files
+graphify-out/manifest.json
+graphify-out/cost.json
+graphify-out/cache/

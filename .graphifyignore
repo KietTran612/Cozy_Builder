@@ -1,0 +1,48 @@
+# Unity generated folders
+Cozy_Builder/Library/
+Cozy_Builder/Temp/
+Cozy_Builder/Obj/
+Cozy_Builder/Build/
+Cozy_Builder/Builds/
+Cozy_Builder/Logs/
+Cozy_Builder/UserSettings/
+
+# Unity generated project files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+Cozy_Builder/ComputeCommandBuffer.cs
+Cozy_Builder/IBaseCommandBuffer.cs
+Cozy_Builder/IComputeCommandBuffer.cs
+Cozy_Builder/IUnsafeCommandBuffer.cs
+Cozy_Builder/IRasterCommandBuffer.cs
+Cozy_Builder/RasterCommandBuffer.cs
+Cozy_Builder/UnsafeCommandBuffer.cs
+ComputeCommandBuffer.cs
+IBaseCommandBuffer.cs
+IComputeCommandBuffer.cs
+IUnsafeCommandBuffer.cs
+IRasterCommandBuffer.cs
+RasterCommandBuffer.cs
+UnsafeCommandBuffer.cs
+Cozy_Builder/Assets/TutorialInfo/
+Cozy_Builder/Assets/MobileDependencyResolver/
+Cozy_Builder/Assets/Packages/
+
+# Binary and large asset payloads
+Cozy_Builder/Assets/Packages/**/*.fbx
+Cozy_Builder/Assets/Packages/**/*.png
+Cozy_Builder/Assets/Packages/**/*.zip
+Cozy_Builder/Assets/Packages/**/*.dae
+Cozy_Builder/Assets/Packages/**/*.obj
+Cozy_Builder/Assets/Packages/**/*.gltf
+Cozy_Builder/Assets/Packages/**/*.glb
+Cozy_Builder/Assets/Packages/**/*.dll
+Cozy_Builder/Assets/Packages/**/*.pdb
+
+# Graphify local-only files
+graphify-out/manifest.json
+graphify-out/cost.json
+graphify-out/cache/

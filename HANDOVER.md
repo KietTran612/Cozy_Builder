@@ -369,3 +369,71 @@ Verification note:
 
 - Unity executable was not available from the current shell PATH or the default Unity Hub install path, so Unity batchmode compile/import was not run in this session.
 - Open `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity` in Unity and check the Console after import before building further gameplay on this foundation.
+
+## Session Update - 2026-05-21 - Graphify Setup
+
+Graphify has been set up for codebase navigation.
+
+Added:
+
+- `AGENTS.md` Graphify instructions for Codex.
+- `.codex/hooks.json` with the Graphify pre-tool hook.
+- `.graphifyignore` to keep Unity generated folders, imported packages, and large asset formats out of the graph.
+- `graphify-out/graph.json`
+- `graphify-out/graph.html`
+- `graphify-out/GRAPH_REPORT.md`
+- `graphify-out/.graphify_root`
+
+Ignored local-only Graphify files:
+
+- `graphify-out/manifest.json`
+- `graphify-out/cache/`
+- `graphify-out/cost.json`
+
+Current graph state:
+
+- Built with `graphify update .`.
+- AST-only, no LLM API key required.
+- Current graph summary after filtering Unity/package noise: 41 nodes, 31 edges, 10 communities.
+
+Useful commands:
+
+- Rebuild after code changes: `graphify update .`
+- Explain a node: `graphify explain "PlacementService"`
+- Query the graph: `graphify query "How does GameLifetimeScope relate to placement?"`
+- Check freshness: `graphify check-update .`
+
+Notes:
+
+- `graphify extract . --no-cluster` currently fails without `MOONSHOT_API_KEY` or `ANTHROPIC_API_KEY`; use `graphify update .` for the no-cost AST graph.
+- A broad `.graphifyignore` pattern such as `Cozy_Builder/*.cs` caused Graphify to find no code files on Windows, so root generated Unity `.cs` files are ignored by exact filename instead.
+
+Doc workflow decision:
+
+- Do not use paid `MOONSHOT_API_KEY` or `ANTHROPIC_API_KEY` semantic extraction for now.
+- Use Graphify for code-symbol navigation and module orientation.
+- Use rule-based direct doc reading for project decisions and constraints.
+- `AGENTS.md` now maps common task types to the docs that should be read before coding or answering.
+- Graphify may track docs in `manifest.json`, but AST-only graph output should not be treated as deep semantic understanding of Markdown docs.
+- `HANDOVER.md` should be treated as current status and an index, not as an instruction to read every linked document.
+- To control context size, read only the docs relevant to the current task; if unsure, search headings or targeted terms before opening full docs.
+- Graphify is not fully automatic; the agent should invoke it when code graph context is useful.
+- After changing code files, run `graphify update .` before the final response and report whether it succeeded.
+
+## Session Update - 2026-05-21 - Current Status Shortcut
+
+To reduce context use, a short startup file has been added:
+
+- `CURRENT_STATUS.md`
+
+Purpose:
+
+- Give agents a compact summary of current project state.
+- Preserve product direction, prototype scope, architecture rules, next work, and Graphify workflow without requiring the full `HANDOVER.md` on every session.
+- Keep `HANDOVER.md` as the deeper history/index document.
+
+Startup rule:
+
+- Read `CURRENT_STATUS.md` first.
+- Read `HANDOVER.md` only when deeper history is needed or when `CURRENT_STATUS.md` is unclear.
+- Continue to read task-specific docs selectively, not all linked docs.

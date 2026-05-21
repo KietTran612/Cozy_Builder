@@ -1,0 +1,695 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "GameLifetimeScope.cs",
+      "file_type": "code",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L1",
+      "id": "bootstrap_gamelifetimescope_cs",
+      "community": 2,
+      "norm_label": "gamelifetimescope.cs"
+    },
+    {
+      "label": "CozyBuilder.Bootstrap",
+      "file_type": "code",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L9",
+      "id": "bootstrap_gamelifetimescope_cozybuilder_bootstrap",
+      "community": 2,
+      "norm_label": "cozybuilder.bootstrap"
+    },
+    {
+      "label": "GameLifetimeScope",
+      "file_type": "code",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L11",
+      "id": "bootstrap_gamelifetimescope_gamelifetimescope",
+      "community": 2,
+      "norm_label": "gamelifetimescope"
+    },
+    {
+      "label": "LifetimeScope",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "lifetimescope",
+      "community": 2,
+      "norm_label": "lifetimescope"
+    },
+    {
+      "label": ".Configure()",
+      "file_type": "code",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L13",
+      "id": "bootstrap_gamelifetimescope_gamelifetimescope_configure",
+      "community": 2,
+      "norm_label": ".configure()"
+    },
+    {
+      "label": "CameraService.cs",
+      "file_type": "code",
+      "source_file": "Camera/CameraService.cs",
+      "source_location": "L1",
+      "id": "camera_cameraservice_cs",
+      "community": 6,
+      "norm_label": "cameraservice.cs"
+    },
+    {
+      "label": "CozyBuilder.Camera",
+      "file_type": "code",
+      "source_file": "Camera/CameraService.cs",
+      "source_location": "L1",
+      "id": "camera_cameraservice_cozybuilder_camera",
+      "community": 6,
+      "norm_label": "cozybuilder.camera"
+    },
+    {
+      "label": "CameraService",
+      "file_type": "code",
+      "source_file": "Camera/CameraService.cs",
+      "source_location": "L3",
+      "id": "camera_cameraservice_cameraservice",
+      "community": 6,
+      "norm_label": "cameraservice"
+    },
+    {
+      "label": "CellData.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/CellData.cs",
+      "source_location": "L1",
+      "id": "town_data_celldata_cs",
+      "community": 7,
+      "norm_label": "celldata.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/CellData.cs",
+      "source_location": "L1",
+      "id": "data_celldata_cozybuilder_town_data",
+      "community": 7,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "CellFlags.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/CellFlags.cs",
+      "source_location": "L1",
+      "id": "town_data_cellflags_cs",
+      "community": 8,
+      "norm_label": "cellflags.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/CellFlags.cs",
+      "source_location": "L3",
+      "id": "data_cellflags_cozybuilder_town_data",
+      "community": 8,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "GridCoord.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L1",
+      "id": "town_data_gridcoord_cs",
+      "community": 3,
+      "norm_label": "gridcoord.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L3",
+      "id": "data_gridcoord_cozybuilder_town_data",
+      "community": 3,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "Equals()",
+      "file_type": "code",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L16",
+      "id": "data_gridcoord_equals",
+      "community": 3,
+      "norm_label": "equals()"
+    },
+    {
+      "label": "GetHashCode()",
+      "file_type": "code",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L26",
+      "id": "data_gridcoord_gethashcode",
+      "community": 3,
+      "norm_label": "gethashcode()"
+    },
+    {
+      "label": "RuleResult.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/RuleResult.cs",
+      "source_location": "L1",
+      "id": "town_data_ruleresult_cs",
+      "community": 9,
+      "norm_label": "ruleresult.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/RuleResult.cs",
+      "source_location": "L1",
+      "id": "data_ruleresult_cozybuilder_town_data",
+      "community": 9,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "TownData.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L1",
+      "id": "town_data_towndata_cs",
+      "community": 1,
+      "norm_label": "towndata.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L1",
+      "id": "data_towndata_cozybuilder_town_data",
+      "community": 1,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "TownData",
+      "file_type": "code",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L3",
+      "id": "data_towndata_towndata",
+      "community": 1,
+      "norm_label": "towndata"
+    },
+    {
+      "label": "int",
+      "file_type": "code",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L5",
+      "id": "int",
+      "community": 1,
+      "norm_label": "int"
+    },
+    {
+      "label": "TownDataStore.cs",
+      "file_type": "code",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L1",
+      "id": "town_data_towndatastore_cs",
+      "community": 1,
+      "norm_label": "towndatastore.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Data",
+      "file_type": "code",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L1",
+      "id": "data_towndatastore_cozybuilder_town_data",
+      "community": 1,
+      "norm_label": "cozybuilder.town.data"
+    },
+    {
+      "label": "TownDataStore",
+      "file_type": "code",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L3",
+      "id": "data_towndatastore_towndatastore",
+      "community": 1,
+      "norm_label": "towndatastore"
+    },
+    {
+      "label": "PlacementService.cs",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L1",
+      "id": "town_placement_placementservice_cs",
+      "community": 0,
+      "norm_label": "placementservice.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Placement",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L5",
+      "id": "placement_placementservice_cozybuilder_town_placement",
+      "community": 0,
+      "norm_label": "cozybuilder.town.placement"
+    },
+    {
+      "label": "PlacementService",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L7",
+      "id": "placement_placementservice_placementservice",
+      "community": 0,
+      "norm_label": "placementservice"
+    },
+    {
+      "label": "TownDataStore",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L9",
+      "id": "towndatastore",
+      "community": 0,
+      "norm_label": "towndatastore"
+    },
+    {
+      "label": "RuleEvaluator",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L10",
+      "id": "ruleevaluator",
+      "community": 0,
+      "norm_label": "ruleevaluator"
+    },
+    {
+      "label": "TownVisualRebuilder",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L11",
+      "id": "townvisualrebuilder",
+      "community": 0,
+      "norm_label": "townvisualrebuilder"
+    },
+    {
+      "label": ".Preview()",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L25",
+      "id": "placement_placementservice_placementservice_preview",
+      "community": 0,
+      "norm_label": ".preview()"
+    },
+    {
+      "label": ".MarkDirty()",
+      "file_type": "code",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L30",
+      "id": "placement_placementservice_placementservice_markdirty",
+      "community": 0,
+      "norm_label": ".markdirty()"
+    },
+    {
+      "label": "TownVisualRebuilder.cs",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L1",
+      "id": "town_rendering_townvisualrebuilder_cs",
+      "community": 4,
+      "norm_label": "townvisualrebuilder.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Rendering",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L3",
+      "id": "rendering_townvisualrebuilder_cozybuilder_town_rendering",
+      "community": 4,
+      "norm_label": "cozybuilder.town.rendering"
+    },
+    {
+      "label": "TownVisualRebuilder",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L5",
+      "id": "rendering_townvisualrebuilder_townvisualrebuilder",
+      "community": 4,
+      "norm_label": "townvisualrebuilder"
+    },
+    {
+      "label": ".MarkDirty()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L7",
+      "id": "rendering_townvisualrebuilder_townvisualrebuilder_markdirty",
+      "community": 4,
+      "norm_label": ".markdirty()"
+    },
+    {
+      "label": "RuleEvaluator.cs",
+      "file_type": "code",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L1",
+      "id": "town_rules_ruleevaluator_cs",
+      "community": 5,
+      "norm_label": "ruleevaluator.cs"
+    },
+    {
+      "label": "CozyBuilder.Town.Rules",
+      "file_type": "code",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L3",
+      "id": "rules_ruleevaluator_cozybuilder_town_rules",
+      "community": 5,
+      "norm_label": "cozybuilder.town.rules"
+    },
+    {
+      "label": "RuleEvaluator",
+      "file_type": "code",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L5",
+      "id": "rules_ruleevaluator_ruleevaluator",
+      "community": 5,
+      "norm_label": "ruleevaluator"
+    },
+    {
+      "label": ".Evaluate()",
+      "file_type": "code",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L7",
+      "id": "rules_ruleevaluator_ruleevaluator_evaluate",
+      "community": 5,
+      "norm_label": ".evaluate()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "bootstrap_gamelifetimescope_cs",
+      "target": "bootstrap_gamelifetimescope_cozybuilder_bootstrap"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "bootstrap_gamelifetimescope_cs",
+      "target": "bootstrap_gamelifetimescope_gamelifetimescope"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "bootstrap_gamelifetimescope_gamelifetimescope",
+      "target": "lifetimescope"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Bootstrap/GameLifetimeScope.cs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "bootstrap_gamelifetimescope_gamelifetimescope",
+      "target": "bootstrap_gamelifetimescope_gamelifetimescope_configure"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Camera/CameraService.cs",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "camera_cameraservice_cs",
+      "target": "camera_cameraservice_cozybuilder_camera"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Camera/CameraService.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "camera_cameraservice_cs",
+      "target": "camera_cameraservice_cameraservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/CellData.cs",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_celldata_cs",
+      "target": "data_celldata_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/CellFlags.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_cellflags_cs",
+      "target": "data_cellflags_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_gridcoord_cs",
+      "target": "data_gridcoord_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_gridcoord_cs",
+      "target": "data_gridcoord_equals"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/GridCoord.cs",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_gridcoord_cs",
+      "target": "data_gridcoord_gethashcode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/RuleResult.cs",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_ruleresult_cs",
+      "target": "data_ruleresult_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_towndata_cs",
+      "target": "data_towndata_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_towndata_cs",
+      "target": "data_towndata_towndata"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownData.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "context": "field",
+      "confidence_score": 1.0,
+      "source": "data_towndata_towndata",
+      "target": "int"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "context": "field",
+      "confidence_score": 1.0,
+      "source": "data_towndatastore_towndatastore",
+      "target": "int"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_towndatastore_cs",
+      "target": "data_towndatastore_cozybuilder_town_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Data/TownDataStore.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_data_towndatastore_cs",
+      "target": "data_towndatastore_towndatastore"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_placement_placementservice_cs",
+      "target": "placement_placementservice_cozybuilder_town_placement"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_placement_placementservice_cs",
+      "target": "placement_placementservice_placementservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "context": "field",
+      "confidence_score": 1.0,
+      "source": "placement_placementservice_placementservice",
+      "target": "towndatastore"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "context": "field",
+      "confidence_score": 1.0,
+      "source": "placement_placementservice_placementservice",
+      "target": "ruleevaluator"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "context": "field",
+      "confidence_score": 1.0,
+      "source": "placement_placementservice_placementservice",
+      "target": "townvisualrebuilder"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "placement_placementservice_placementservice",
+      "target": "placement_placementservice_placementservice_preview"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Placement/PlacementService.cs",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "placement_placementservice_placementservice",
+      "target": "placement_placementservice_placementservice_markdirty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_rendering_townvisualrebuilder_cs",
+      "target": "rendering_townvisualrebuilder_cozybuilder_town_rendering"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_rendering_townvisualrebuilder_cs",
+      "target": "rendering_townvisualrebuilder_townvisualrebuilder"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownVisualRebuilder.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rendering_townvisualrebuilder_townvisualrebuilder",
+      "target": "rendering_townvisualrebuilder_townvisualrebuilder_markdirty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_rules_ruleevaluator_cs",
+      "target": "rules_ruleevaluator_cozybuilder_town_rules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "town_rules_ruleevaluator_cs",
+      "target": "rules_ruleevaluator_ruleevaluator"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rules/RuleEvaluator.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rules_ruleevaluator_ruleevaluator",
+      "target": "rules_ruleevaluator_ruleevaluator_evaluate"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "124772e38ce8e2b19baffe2291774ac0f3a0bc6d"
+}
