@@ -437,3 +437,33 @@ Startup rule:
 - Read `CURRENT_STATUS.md` first.
 - Read `HANDOVER.md` only when deeper history is needed or when `CURRENT_STATUS.md` is unclear.
 - Continue to read task-specific docs selectively, not all linked docs.
+
+## Session Update - 2026-05-21 - Unity MCP Local Setup
+
+Unity MCP was installed locally through the `io.realvirtual.mcp` package and the Unity toolbar shows the MCP server running.
+
+Important architecture:
+
+- Unity Editor side runs a WebSocket bridge, currently reported on port `18711`.
+- Codex should not connect directly to port `18711`.
+- Codex connects to the embedded Python MCP bridge over stdio.
+- The Python bridge then connects to Unity over WebSocket.
+
+Codex user-level config was updated:
+
+- File: `C:/Users/Hoang.H/.codex/config.toml`
+- Server: `[mcp_servers.unity]`
+- Command: `Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/python/python.exe`
+- Script: `Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/unity_mcp_server.py`
+- Mode: `stdio`
+- WebSocket port: `18711`
+- `PYTHONPATH`: `Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/Lib`
+
+Operational notes:
+
+- Restart the Codex session/app after config changes so Unity MCP tools are loaded.
+- Unity Editor must stay open with MCP server running.
+- Manual MCP client test succeeded: 76 tools were listed after discovery, including 73 Unity tools.
+- `Assets/.mcp_auth_token` is local/secret and should not be committed.
+- `Assets/StreamingAssets/realvirtual-MCP/` contains embedded Python/runtime files and should remain local unless we explicitly decide to version it.
+- `.gitignore` and `.graphifyignore` were updated to avoid committing/indexing these local MCP files.

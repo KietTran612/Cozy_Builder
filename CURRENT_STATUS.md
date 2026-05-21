@@ -44,6 +44,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `CameraService`
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - Graphify output exists at `graphify-out/` and is maintained with `graphify update .`.
+- Unity MCP package/server has been installed locally; Codex user config points to the embedded Python bridge.
 
 ## Current Intent
 
@@ -98,3 +99,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `graphify query "How does GameLifetimeScope relate to placement?"`
   - `graphify path "GameLifetimeScope" "PlacementService"`
 - After modifying code files, run `graphify update .` before the final response.
+
+## Unity MCP
+
+- Unity MCP is local editor tooling, not gameplay/runtime logic.
+- Codex MCP config is user-level at `C:/Users/Hoang.H/.codex/config.toml`.
+- Configured server name: `unity`.
+- It launches `Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/python/python.exe` with `unity_mcp_server.py --mode stdio --ws-port 18711`.
+- Manual MCP client test succeeded with 76 tools listed after Unity discovery, including 73 Unity tools.
+- Unity Editor must be open and the MCP toolbar must show the server running.
+- A new Codex session/restart is needed before Unity MCP tools appear in the tool list.
+- Do not commit `Assets/.mcp_auth_token` or the embedded `Assets/StreamingAssets/realvirtual-MCP/` Python runtime.

@@ -53,3 +53,11 @@ Thumbs.db
 graphify-out/manifest.json
 graphify-out/cost.json
 graphify-out/cache/
+
+# Unity MCP local/runtime files
+Cozy_Builder/Assets/.mcp_auth_token
+Cozy_Builder/Assets/.mcp_auth_token.meta
+Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/
+Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP.meta
+/Cozy_Builder/Assets/StreamingAssets.meta
+/Cozy_Builder/Assets/StreamingAssets

@@ -30,6 +30,8 @@ UnsafeCommandBuffer.cs
 Cozy_Builder/Assets/TutorialInfo/
 Cozy_Builder/Assets/MobileDependencyResolver/
 Cozy_Builder/Assets/Packages/
+Cozy_Builder/Packages/io.realvirtual.mcp/
+Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/
 
 # Binary and large asset payloads
 Cozy_Builder/Assets/Packages/**/*.fbx
