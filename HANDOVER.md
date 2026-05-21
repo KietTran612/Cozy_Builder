@@ -304,9 +304,68 @@ Asset workflow decision for KayKit:
 
 Next recommended work:
 
-1. Commit and push the current setup state.
-2. Add Unity `.gitignore` before committing large/generated folders.
-3. Create initial project code structure.
-4. Add `GameLifetimeScope` using VContainer.
-5. Create a KayKit FBX test scene for scale, material, URP compatibility, modularity, and procedural suitability.
-6. Start prototype core only after the asset test scene is stable.
+1. Push commit `3b09e7a` to `origin/main`.
+2. Create initial project code structure.
+3. Add `GameLifetimeScope` using VContainer.
+4. Create a KayKit FBX test scene for scale, material, URP compatibility, modularity, and procedural suitability.
+5. Start prototype core only after the asset test scene is stable.
+
+Git status and workflow notes:
+
+- Current setup commit has been created locally: `3b09e7a Setup Unity project packages and handover`.
+- Commit has not been pushed yet.
+- `.gitignore` has been added to exclude Unity generated folders and unused KayKit duplicate formats.
+- Any Git operation that writes to `.git` (`git add`, `git commit`, `git push`, config changes) should be run by the OS user that owns the repository checkout.
+- If Git reports `dubious ownership` or cannot create `.git/index.lock`, verify repository ownership and Git safe-directory settings for the current device.
+- After the commit, several existing docs may appear modified in `git status` due to line-ending warnings only. `git diff --stat` showed no real content diff for those docs.
+
+Committed setup contents:
+
+- Unity project files under `Cozy_Builder`.
+- URP project settings.
+- Package manifest and lockfile with UniTask and VContainer resolved.
+- KayKit Medieval Builder Pack 1.0 FBX assets only.
+- KayKit duplicate source formats ignored for current workflow: `dae`, `obj`, `gltf`, `glb`.
+- Root-level misplaced Unity generated `.cs` files ignored.
+- Asset shortlist document added at `docs/Asset_Pack_Shortlist.md`.
+
+## Session Update - 2026-05-21 - Code Foundation Started
+
+This section records the start of the next roadmap step: initial project/code structure, `GameLifetimeScope`, and a KayKit FBX test scene.
+
+Added:
+
+- Project-owned runtime folder: `Cozy_Builder/Assets/CozyBuilder/Runtime`.
+- Runtime assembly definition: `Cozy_Builder/Assets/CozyBuilder/Runtime/CozyBuilder.Runtime.asmdef`.
+- Assembly references:
+  - `VContainer`
+  - `UniTask`
+- Initial VContainer composition root:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+- Initial data/service shells aligned with `Prototype_Core_Scope.md`:
+  - `GridCoord`
+  - `CellFlags`
+  - `CellData`
+  - `RuleResult`
+  - `TownData`
+  - `TownDataStore`
+  - `PlacementService`
+  - `RuleEvaluator`
+  - `TownVisualRebuilder`
+  - `CameraService`
+- KayKit FBX test scene:
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - Scene contains `Game Lifetime Scope`, camera, directional light, and KayKit FBX prefab instances for quick visual import checks.
+
+Current intent:
+
+- The code is foundation only, not gameplay implementation.
+- No singleton static services were added.
+- Data structs remain separate from scene objects.
+- `GameLifetimeScope` registers only system-level prototype services.
+- The KayKit scene is for scale/material/URP/modularity inspection before prototype placement work.
+
+Verification note:
+
+- Unity executable was not available from the current shell PATH or the default Unity Hub install path, so Unity batchmode compile/import was not run in this session.
+- Open `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity` in Unity and check the Console after import before building further gameplay on this foundation.
