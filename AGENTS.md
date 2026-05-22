@@ -4,6 +4,19 @@ This project has a graphify knowledge graph at graphify-out/.
 
 Use Graphify for code navigation, not as the source of truth for project docs.
 
+## shared agent workflow
+
+This project may be worked on with Codex, Antigravity, or another agent app, but only one app should actively work on the project at a time.
+
+Project-level rules in this `AGENTS.md`, `CURRENT_STATUS.md`, `HANDOVER.md`, and the relevant `docs/*.md` files are the shared authority for all agent apps. App-specific profiles, plugins, and skills must defer to these project rules when they conflict.
+
+Shared planning rules:
+- Store implementation plans in `docs/plans/YYYY-MM-DD-<feature-name>.md`.
+- Store the live task tracker in `docs/plans/task.md`.
+- Do not create or use alternate project planning roots such as `docs/superpowers/plans/` unless the user explicitly requests it.
+- When using Codex Superpowers, Antigravity Superpowers, or any other planning skill, adapt the skill's default plan/task paths to the shared `docs/plans` convention above.
+- Treat `.agent/` as Antigravity-specific tooling and profile data, not as the canonical project planning root.
+
 Graphify rules:
 - Before answering code structure questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure.
 - For code-symbol questions, use `graphify explain "<symbol>"`, `graphify path "<A>" "<B>"`, or `graphify query "<question>"` before falling back to grep.

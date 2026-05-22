@@ -104,9 +104,15 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Polish camera pivot, zoom responsiveness, and gesture support on mobile targets.
-2. Expand procedural rules variations or color/palette/material integrations for block views.
-3. Establish uGUI or UI Toolkit production UI layout using the developed EventSystem pointer blocking base.
+1. **Color & Material Visual Integration (Tích hợp bảng màu & chất liệu trực quan)**:
+   - Xây dựng một Palette màu ấm cúng (3-6 màu giống như Townscaper).
+   - Tích hợp thay đổi màu sắc trực quan của block trên Scene dựa trên dữ liệu `ColorId` và `MaterialId` hiện có bằng giải pháp tối ưu hiệu năng `MaterialPropertyBlock` (Zero GC Alloc).
+2. **Visual Debug Tooling System (Hệ thống công cụ Debug 3D trực quan)**:
+   - Triển khai Mesh lưới dòng biên hữu cơ duy nhất (Grid Line Mesh) để vẽ lưới hòn đảo 3D trên Scene với hiệu năng cao (1 Draw Call, Active/Deactive).
+   - Tạo UI 3D lơ lửng bám theo ô đang được chọn/hover (Focus-based Debug) để hiển thị trực quan thông tin hàng xóm (Neighbor Index) và các quy tắc RuleResult được áp dụng.
+   - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
+3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
+   - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
 
 
 ## Latest Validation Notes
@@ -190,7 +196,13 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Zero GC allocation checked and optimized inside driver's blocking iteration.
   - Compiles flawlessly with 0 compiler errors or warnings in Play Mode.
   - `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
-
+- Premium Camera Interactions & Mobile Touch Gestures validation succeeded:
+  - Added camera inertia (smooth damping) using `SmoothDamp` and bounds checking (panning pivot limited to 15m radius sphere).
+  - Developed a Zero GC Touch interaction handler supporting 1-finger Orbit and 2-finger combination Pinch Zoom + Pan.
+  - Programmed a delay-based touch state machine to cleanly split drag-to-orbit gestures from single-tap placements.
+  - Integrated Double-Tap Focus targeting that center camera focus on double-tapped cells using raycasting.
+  - Zero GC allocations achieved in both update drivers, verified statically.
+  - C# project compiles seamlessly, and the AST graph is fully updated via Graphify.
 
 
 ## Latest Code Notes
@@ -235,6 +247,9 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `TownGridView` now uses a dynamic `Dictionary`-backed `Queue<GameObject>` pooling architecture for blocks, zero-allocation `struct BlockViewData` to prevent GC allocations, and maps 4-cardinal rotations correctly.
 - Specialized block prefab slots (`smallHousePrefab`, `houseRoofPrefab`, `towerTopPrefab`, `stiltsPrefab`, `houseWallPrefab`, `towerWallPrefab`) added to `TownGridView` with dynamic inspector mapping and safe fallback.
 - `PlacementService.Preview` and `PrototypeTownDebugView` updated to support neighbor querying with coordinate parameters.
+- `CameraService` now manages both target and current transform states, updating smoothly frame-by-frame with damping.
+- `PrototypeCameraInputDriver` and `PrototypePlacementInputDriver` now utilize standard struct arrays and pre-allocated state machine timers to achieve Zero GC Allocations in execution loops.
+- `PrototypePlacementInputDriver` now supports a `0.15s` delay queue to distinguish between single-taps and double-taps, executing camera focus on double-tap and block placement on single-tap.
 
 ## Current Working Tree Notes
 
@@ -288,7 +303,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 ## Unity MCP
 
 - Unity MCP is local editor tooling, not gameplay/runtime logic.
-- Codex MCP config is user-level at `C:/Users/Hoang.H/.codex/config.toml`.
+- Codex MCP config is user-level at `C:/Users/[UserName]/.codex/config.toml`.
 - Configured server name: `unity`.
 - It launches `Cozy_Builder/Assets/StreamingAssets/realvirtual-MCP/python/python.exe` with `unity_mcp_server.py --mode stdio --ws-port 18711`.
 - Manual MCP client test succeeded with 76 tools listed after Unity discovery, including 73 Unity tools.

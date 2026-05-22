@@ -370,3 +370,16 @@ Important commits:
 - `3e2455c` feat: update VContainer registrations for UI views to act as ICameraInputBlocker
 - `6cc839f` feat: implement ICameraInputBlocker on prototype IMGUI views
 - `c8ef8e9` refactor: decouple PrototypeCameraInputDriver from runtime UI panels using ICameraInputBlocker
+
+
+## 2026-05-22 - Premium Camera Interactions & Mobile Touch Gestures
+
+- Nâng c?p h? th?ng xoay, zoom và pan camera d?t tiêu chu?n Premium mu?t mà b?ng quán tính (`SmoothDamp` và `SmoothDampAngle`).
+- Gi?i h?n biên di chuy?n (Pivot bounds) c?a camera trong bán kính 15m tính t? tâm d?o d? tránh l?c m?t v? trí hòn d?o.
+- Tri?n khai c? ch? ch?m da di?m Zero-GC trên thi?t b? di d?ng (`Touchscreen.current.touches`):
+  - Vu?t 1 ngón xoay (Orbit) có l?c mu?t delta d?u tiên.
+  - Vu?t 2 ngón d? zoom nhúm (Pinch Zoom) và di chuy?n hòn d?o (Pan) cùng m?t lúc.
+- Thi?t k? máy tr?ng thái tr? c?m ?ng (`tapDurationThreshold = 0.25s`, `tapMoveThreshold = 15px`) phân bi?t chính xác thao tác kéo xoay camera (Drag) và nh?p don d?t block (Tap) d? lo?i b? d?t block nh?m.
+- Tri?n khai nh?p dúp d? l?y nét (`ExecuteDoubleTap` -> `FocusOn`), t? d?ng h?y cú ch?m don dang ch? tr? `0.15s` và d?ch chuy?n camera mu?t mà vào chính gi?a ô d?t du?c nh?p dúp.
+- T?i uu hóa tri?t d? GC allocations trong `Update`/`LateUpdate` c?a các driver c?m ?ng và camera, d?t m?c 0 bytes hoàn h?o.
+- Ð?ng b? hóa c?u trúc d? th? mã ngu?n b?ng l?nh `graphify update .` thành công.

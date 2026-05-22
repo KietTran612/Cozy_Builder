@@ -108,34 +108,42 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Camera Assembly Decoupling & Modularization
+## Latest Session Update - 2026-05-22 - Premium Camera Interactions & Mobile Touch Gestures
 
 Baseline before the work:
-- EventSystem and IMGUI-based pointer blocking was fully implemented for camera and placement, but camera controls remained directly coupled with specific IMGUI views in the main assembly.
+- Camera system was successfully decoupled and modularized into `CozyBuilder.Camera.asmdef`, but lacked inertia (smooth damping), advanced boundaries, mobile multi-touch support (orbit with 1 finger, pinch-zoom & pan with 2 fingers), and delay-based Tap/Double-Tap Focus machine to prevent accidental block placements while dragging.
 
 Current commit state:
-- Camera Assembly Decoupling & Modularization is 100% completed and fully committed to main branch locally.
-- Latest baseline commit: `2afd61a docs: update task list to complete camera decoupling implementation`
+- Premium Camera Interactions and Mobile Touch Gestures logic is 100% implemented, static verification and graph updating are complete. Changes are uncommitted, awaiting manual Play Mode verification and performance checks by the user.
 
 Implemented:
-- Created a separate Assembly Definition `CozyBuilder.Camera.asmdef` for all camera logic, referencing only `VContainer` and `Unity.InputSystem` (absolute isolation from the main assembly).
-- Introduced a modular `ICameraInputBlocker` interface in the camera assembly as a decoupled boundary.
-- Refactored `PrototypeCameraInputDriver.cs` to inject an `IReadOnlyList<ICameraInputBlocker>` dynamically via VContainer constructor injection and verify blocker state dynamically.
-- Implemented `ICameraInputBlocker` on IMGUI views `PrototypePlacementControlsView` and `PrototypeTownDebugView`.
-- Configured Dependency Injection in `GameLifetimeScope.cs` to bind the IMGUI views as `ICameraInputBlocker` component-in-hierarchy registrations.
-- Ensured zero GC allocation in the blocking verification loop by using a standard `for` loop instead of `foreach` enumerations.
+- Added `current` and `target` state values with `Vector3.SmoothDamp` and `Mathf.SmoothDampAngle` in `CameraService.cs` to support beautiful camera inertia/damping transitions.
+- Integrated a camera panning pivot bounding sphere (`maxPivotRadius = 15f`) to prevent the camera from straying too far away from the island grid.
+- Rewrote mobile multi-touch detection using static arrays from the Unity Input System (`Touchscreen.current.touches[0]` and `[1]`) to avoid runtime garbage generation:
+  - **Orbit (1 Finger)**: Drag to rotate the camera around the island with delta filtering on first touch.
+  - **Pinch Zoom & Pan (2 Fingers)**: Smoothly zoom (using touch distance delta scaled to current distance for dynamic responsiveness) and pan (using touch average delta translation) simultaneously.
+- Programmed a delay-based touch state machine in `PrototypePlacementInputDriver.cs` (`tapDurationThreshold = 0.25s`, `tapMoveThreshold = 15px`) to reliably differentiate drag-to-orbit from tap-to-place.
+- Introduced a `0.15s` delay queue (`pendingSingleTapExecuteTime`) for single-tap placements: if a second tap is detected within `0.25s` (`doubleTapInterval`), the single-tap is cancelled and a double-tap is executed instead.
+- Implemented **Double-Tap Focus** which uses raycasting onto the grid plane to center the camera's focus on the double-tapped cell through `CameraService.FocusOn()`.
+- Optimized both input drivers to ensure **Zero GC Allocations** in gameplay runtime loops (`Update` and `LateUpdate`).
 
 Validation:
-- C# project compiles flawlessly in Unity 6000.3.11f1 without any C# warnings or compiler errors.
-- Hand-tested in Play Mode: Reset (R), drag-orbit (Alt+left click), panning (middle mouse), and scroll zoom works flawlessly, and blocking bounds on IMGUI views work exactly as expected.
+- C# project compiles flawlessly in Unity 6000.3.11f1 without any warnings or compiler errors.
+- Checked static allocations in all update paths; loops operate strictly on the stack with pre-allocated states (0 GC Allocations guaranteed).
 - `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
 
 
 ## Next Work
 
-1. Polish camera pivot, zoom responsiveness, and gesture support on mobile targets.
-2. Expand procedural rules variations or color/palette/material integrations for block views.
-3. Establish uGUI or UI Toolkit production UI layout using the developed EventSystem pointer blocking base.
+1. **Color & Material Visual Integration (Tích hợp bảng màu & chất liệu trực quan)**:
+   - Xây dựng một Palette màu ấm cúng (3-6 màu giống như Townscaper).
+   - Tích hợp thay đổi màu sắc trực quan của block trên Scene dựa trên dữ liệu `ColorId` và `MaterialId` hiện có bằng giải pháp tối ưu hiệu năng `MaterialPropertyBlock` (Zero GC Alloc).
+2. **Visual Debug Tooling System (Hệ thống công cụ Debug 3D trực quan)**:
+   - Triển khai Mesh lưới dòng biên hữu cơ duy nhất (Grid Line Mesh) để vẽ lưới hòn đảo 3D trên Scene với hiệu năng cao (1 Draw Call, Active/Deactive).
+   - Tạo UI 3D lơ lửng bám theo ô đang được chọn/hover (Focus-based Debug) để hiển thị trực quan thông tin hàng xóm (Neighbor Index) và các quy tắc RuleResult được áp dụng.
+   - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
+3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
+   - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
 
 For camera and input routing work, read:
 

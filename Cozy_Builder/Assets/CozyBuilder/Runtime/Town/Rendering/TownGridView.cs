@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CozyBuilder.Town.Data;
+using CozyBuilder.Town.Rules;
 using UnityEngine;
 using VContainer;
 

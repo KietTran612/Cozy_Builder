@@ -96,26 +96,26 @@ namespace CozyBuilder.Camera
             var leftPressed = mouse.leftButton.isPressed;
             var middlePressed = mouse.middleButton.isPressed;
 
-            // When a press is first detected, check if it's over the UI
+            // Kiểm tra click UI khi bắt đầu press chuột
             if (mouse.leftButton.wasPressedThisFrame || mouse.middleButton.wasPressedThisFrame)
             {
                 wasDragStartedOverUI = IsPointerOverUI(screenPos);
             }
 
-            // If we are not pressing anything, reset the state
+            // Reset trạng thái chặn kéo khi thả chuột ra
             if (!leftPressed && !middlePressed)
             {
                 wasDragStartedOverUI = false;
             }
 
-            // Block zoom if pointer is currently over UI
+            // Chặn Zoom bằng chuột nếu trỏ chuột đang nằm trên UI
             var scroll = mouse.scroll.ReadValue().y;
             if (!Mathf.Approximately(scroll, 0f) && !IsPointerOverUI(screenPos))
             {
                 cameraService.Zoom(-scroll * mouseWheelZoomUnits);
             }
 
-            // Block dragging if it was started over the UI
+            // Bỏ qua kéo camera nếu click xuất phát từ UI
             if (wasDragStartedOverUI)
             {
                 return;
@@ -145,51 +145,74 @@ namespace CozyBuilder.Camera
             var first = touchscreen.touches[0];
             var second = touchscreen.touches[1];
             
-            // Check if both touches are pressed
             var firstPressed = first.press.isPressed;
             var secondPressed = second.press.isPressed;
 
-            if (!firstPressed || !secondPressed)
+            // 1. Quản lý trạng thái chặn cảm ứng bắt đầu từ UI (IMGUI hoặc uGUI)
+            if (first.press.wasPressedThisFrame)
+            {
+                wasTouchStartedOverUI = IsPointerOverUI(first.position.ReadValue());
+            }
+            if (second.press.wasPressedThisFrame && !wasTouchStartedOverUI)
+            {
+                wasTouchStartedOverUI = IsPointerOverUI(second.position.ReadValue());
+            }
+
+            if (!firstPressed)
             {
                 wasTouchStartedOverUI = false;
                 return;
             }
 
-            var firstPosition = first.position.ReadValue();
-            var secondPosition = second.position.ReadValue();
-
-            // When touch first starts, check if it's over the UI
-            if (first.press.wasPressedThisFrame || second.press.wasPressedThisFrame)
-            {
-                wasTouchStartedOverUI = IsPointerOverUI(firstPosition) || IsPointerOverUI(secondPosition);
-            }
-
+            // Bỏ qua toàn bộ cử chỉ vuốt nếu chạm xuất phát từ vùng UI
             if (wasTouchStartedOverUI)
             {
                 return;
             }
 
-            var firstDelta = first.delta.ReadValue();
-            var secondDelta = second.delta.ReadValue();
-            var panDelta = (firstDelta + secondDelta) * 0.5f;
-            cameraService.Pan(panDelta, GetPanUnitsPerPixel());
+            if (firstPressed && !secondPressed)
+            {
+                // CỬ CHỈ 1 NGÓN: Xoay camera (Orbit) xung quanh Pivot
+                // Bỏ qua delta khung hình đầu tiên để tránh giật camera khi vừa chạm
+                if (!first.press.wasPressedThisFrame)
+                {
+                    var delta = first.delta.ReadValue();
+                    cameraService.Orbit(delta.x * orbitDegreesPerPixel, -delta.y * orbitDegreesPerPixel);
+                }
+            }
+            else if (firstPressed && secondPressed)
+            {
+                // CỬ CHỈ 2 NGÓN: Pinch Zoom kết hợp Pan di chuyển hòn đảo
+                Vector2 firstPosition = first.position.ReadValue();
+                Vector2 secondPosition = second.position.ReadValue();
+                Vector2 firstDelta = first.delta.ReadValue();
+                Vector2 secondDelta = second.delta.ReadValue();
 
-            var previousFirst = firstPosition - firstDelta;
-            var previousSecond = secondPosition - secondDelta;
-            var currentDistance = Vector2.Distance(firstPosition, secondPosition);
-            var previousDistance = Vector2.Distance(previousFirst, previousSecond);
-            cameraService.Zoom(-(currentDistance - previousDistance) * touchPinchZoomUnits);
+                // 1. Pan: Dịch chuyển trung điểm 2 ngón tay
+                Vector2 panDelta = (firstDelta + secondDelta) * 0.5f;
+                cameraService.Pan(panDelta, GetPanUnitsPerPixel());
+
+                // 2. Pinch Zoom: Tính tỉ lệ thay đổi khoảng cách
+                Vector2 previousFirst = firstPosition - firstDelta;
+                Vector2 previousSecond = secondPosition - secondDelta;
+                float currentDistance = Vector2.Distance(firstPosition, secondPosition);
+                float previousDistance = Vector2.Distance(previousFirst, previousSecond);
+
+                // Độ giãn nở tỉ lệ theo khoảng cách Zoom thực tế
+                float zoomDelta = (currentDistance - previousDistance) * touchPinchZoomUnits;
+                cameraService.Zoom(-zoomDelta);
+            }
         }
 
         private bool IsPointerOverUI(Vector2 screenPosition)
         {
-            // 1. Check EventSystem for uGUI / UI Toolkit / Canvas elements
+            // 1. Kiểm tra EventSystem của Unity (uGUI / UI Toolkit Canvas)
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
                 return true;
             }
 
-            // 2. Check injected blockers (like IMGUI panels)
+            // 2. Kiểm tra bộ chặn động đã đăng ký (IMGUI panels)
             if (inputBlockers != null)
             {
                 int count = inputBlockers.Count;

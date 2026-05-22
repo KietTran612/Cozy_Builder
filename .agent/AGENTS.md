@@ -4,6 +4,12 @@ You have superpowers.
 
 This profile adapts Superpowers workflows for Antigravity with strict single-flow execution.
 
+## Project Rule Priority
+
+The project root `AGENTS.md`, `CURRENT_STATUS.md`, `HANDOVER.md`, and relevant `docs/*.md` files are the shared authority for this project. This Antigravity profile must defer to those project-level rules when there is any conflict.
+
+Codex and Antigravity may both be installed for this project, but only one app should actively work on the project at a time. Planning state is shared across apps.
+
 ## Core Rules
 
 1. Prefer local skills in `.agent/skills/<skill-name>/SKILL.md`.
@@ -11,6 +17,7 @@ This profile adapts Superpowers workflows for Antigravity with strict single-flo
 3. Use `browser_subagent` only for browser automation tasks.
 4. Track checklist progress in `<project-root>/docs/plans/task.md` (table-only live tracker).
 5. Keep changes scoped to the requested task and verify before completion claims.
+6. Store implementation plans in `<project-root>/docs/plans/YYYY-MM-DD-<feature-name>.md`; do not use alternate plan roots unless the user explicitly requests it.
 
 ## Tool Translation Contract
 
