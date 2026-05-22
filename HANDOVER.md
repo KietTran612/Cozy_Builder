@@ -705,3 +705,62 @@ Next recommended work:
 2. Replace placeholder height-offset tile visuals with a better pooled/chunk-friendly block visual path.
 3. Add palette support using `ColorId`/`MaterialId`.
 4. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.
+
+## Session Update - 2026-05-22 - Prototype Click/Tap Placement Input
+
+This section records the step after commit `4ff5d15 Add prototype town visual update loop`.
+
+Committed baseline before this step:
+
+- `4ff5d15 Add prototype town visual update loop`
+
+Implemented but not yet committed:
+
+- Added first input adapter:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
+  - converts mouse/touch screen position to a ray
+  - intersects the ray with the grid plane
+  - asks `TownGridView` to map world position to an existing `GridCoord`
+  - calls `PlacementService.TryPlaceBlock` or `TryDeleteBlock`
+- Updated `TownGridView`:
+  - added `TryGetCoordFromWorld(Vector3 worldPosition, out GridCoord coord)`
+- Updated `GameLifetimeScope`:
+  - registers `PrototypePlacementInputDriver`
+- Updated `KayKitFbxAssetTest.unity`:
+  - `Town Grid View` now has `TownGridView`, `PrototypePlacementDebugDriver`, and `PrototypePlacementInputDriver`
+- Refreshed Graphify output with `graphify update .`.
+
+Validation:
+
+- Unity compile/reload completed without C# compile errors after fixing `UnityEngine.Camera` aliasing.
+- Entered Play Mode in `KayKitFbxAssetTest`.
+- Invoked `PrototypePlacementInputDriver.PlaceScreenCenter` through Unity MCP:
+  - returned `True`
+  - screen center mapped to `Cell 0,1`
+  - `Cell 0,1` became `Cell 0,1 H1`
+- Invoked `PrototypePlacementInputDriver.DeleteScreenCenter` through Unity MCP:
+  - returned `True`
+  - searching for `H1` after delete returned zero objects
+- Exited Play Mode.
+- `Town Grid View` persisted with components:
+  - `Transform`
+  - `TownGridView`
+  - `PrototypePlacementDebugDriver`
+  - `PrototypePlacementInputDriver`
+- `graphify update .` succeeded:
+  - 108 nodes
+  - 125 edges
+  - 16 communities
+
+Known open issue:
+
+- Unity/editor still logs repeated assertion errors:
+  - `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`
+- No current stack trace links this to project gameplay code.
+
+Next recommended work:
+
+1. Replace placeholder height-offset tile visuals with a better pooled/chunk-friendly block visual path.
+2. Add a visible delete/place mode and palette control for `ColorId`/`MaterialId`.
+3. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.
+4. Add camera orbit/pan/zoom.

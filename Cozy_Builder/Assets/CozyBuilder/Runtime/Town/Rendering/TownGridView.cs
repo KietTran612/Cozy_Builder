@@ -85,6 +85,23 @@ namespace CozyBuilder.Town.Rendering
             return cellsByCoord.TryGetValue(coord, out cellView);
         }
 
+        public bool TryGetCoordFromWorld(Vector3 worldPosition, out GridCoord coord)
+        {
+            if (townDataStore == null)
+            {
+                coord = default;
+                return false;
+            }
+
+            var localPosition = generatedRoot != null
+                ? generatedRoot.InverseTransformPoint(worldPosition)
+                : transform.InverseTransformPoint(worldPosition);
+            var x = Mathf.RoundToInt(localPosition.x / cellSpacing);
+            var y = Mathf.RoundToInt(localPosition.z / cellSpacing);
+            coord = new GridCoord(x, y);
+            return townDataStore.Current.Contains(coord);
+        }
+
         public bool RefreshCell(GridCoord coord)
         {
             if (!townDataStore.Current.TryGetCell(coord, out var cell))

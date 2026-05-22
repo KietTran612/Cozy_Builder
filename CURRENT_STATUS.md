@@ -24,7 +24,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline observed in this session: `c45f758 Start prototype core data foundation`.
+- Latest committed baseline observed in this session: `4ff5d15 Add prototype town visual update loop`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
 - Current uncommitted work includes the first Prototype Core visual adapter, KayKit test scene wiring, Graphify output refresh, and local screenshot output.
@@ -59,6 +59,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Prototype debug driver:
   - `PrototypePlacementDebugDriver`
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation before input UI exists
+- Prototype input driver:
+  - `PrototypePlacementInputDriver`
+  - Converts mouse/touch screen input to a grid coordinate through `TownGridView`
+  - Calls `PlacementService` for place/delete
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -80,14 +84,13 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Add tap/click placement and delete mode against `PlacementService`.
-2. Replace placeholder height-offset visuals with a pool/chunk-friendly block visual path before repeated gameplay edits.
-3. Add a basic palette using `ColorId`/`MaterialId`, not runtime material instances.
-4. Add minimal procedural rule/debug views:
+1. Replace placeholder height-offset visuals with a pool/chunk-friendly block visual path before repeated gameplay edits.
+2. Add a visible mode/palette control for place/delete and `ColorId`/`MaterialId`.
+3. Add minimal procedural rule/debug views:
    - cell id/neighbor info
    - dirty cell queue
    - rule result preview
-5. Then add camera orbit/pan/zoom.
+4. Then add camera orbit/pan/zoom.
 
 ## Latest Validation Notes
 
@@ -110,6 +113,12 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypePlacementDebugDriver.DeleteDebugBlock` returned `True`
   - `Cell 0,0` changed back to `Cell 0,0 H0` and local Y `0`
   - After exiting Play Mode, generated runtime cells did not persist in the scene
+- Prototype screen input validation succeeded:
+  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
+  - screen center mapped to `Cell 0,1`, which changed to `Cell 0,1 H1`
+  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
+  - searching for `H1` after delete returned zero objects
+  - `Town Grid View` now has `TownGridView`, `PrototypePlacementDebugDriver`, and `PrototypePlacementInputDriver`
 - Screenshot output for this validation: `Cozy_Builder/.screenshots/scene_20260522_112322.png`.
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
@@ -125,10 +134,13 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Dirty visual updates refresh only affected cell views instead of rebuilding the whole island.
 - Placeholder block height currently appears by raising the cell view by `blockHeightStep` per height.
 - `PrototypePlacementDebugDriver` has been added for temporary MCP/manual place-delete validation before real input exists.
+- `PrototypePlacementInputDriver` has been added as the first mouse/touch input adapter.
+- `TownGridView.TryGetCoordFromWorld` maps world positions back to existing grid coordinates.
 - `GameLifetimeScope` now registers `TownGridView` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementDebugDriver` from the scene hierarchy with VContainer.
+- `GameLifetimeScope` now registers `PrototypePlacementInputDriver` from the scene hierarchy with VContainer.
 - Unity compile completed without C# errors after the visual adapter changes.
-- `graphify update .` succeeded after code changes and updated `graphify-out/` to 93 nodes, 101 edges, and 15 communities.
+- `graphify update .` succeeded after code changes and updated `graphify-out/` to 108 nodes, 125 edges, and 16 communities.
 
 ## Current Uncommitted State Notes
 
@@ -143,6 +155,8 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs.meta`
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs.meta`
 - Expected local/untracked files that should not be committed by default:
   - `Cozy_Builder/.screenshots/`
   - `Cozy_Builder/Packages/io.realvirtual.mcp/`
