@@ -22,9 +22,10 @@ namespace CozyBuilder.Town.Placement
 
         public TownData TownData => townDataStore.Current;
 
-        public RuleResult Preview(in CellData cell)
+        public RuleResult Preview(GridCoord coord, in CellData cell)
         {
-            return ruleEvaluator.Evaluate(cell);
+            int targetLayer = cell.Height > 0 ? cell.Height : 1;
+            return ruleEvaluator.Evaluate(coord, targetLayer, in cell, townDataStore.Current);
         }
 
         public bool TryPlaceBlock(GridCoord coord, ushort colorId = 0, ushort materialId = 0)

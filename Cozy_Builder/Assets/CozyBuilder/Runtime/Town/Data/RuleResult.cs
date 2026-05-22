@@ -4,11 +4,13 @@ namespace CozyBuilder.Town.Data
     {
         public readonly ushort VisualId;
         public readonly byte VariantId;
+        public readonly byte RotationId;
 
-        public RuleResult(ushort visualId, byte variantId)
+        public RuleResult(ushort visualId, byte variantId, byte rotationId = 0)
         {
             VisualId = visualId;
             VariantId = variantId;
+            RotationId = rotationId;
         }
     }
 }
