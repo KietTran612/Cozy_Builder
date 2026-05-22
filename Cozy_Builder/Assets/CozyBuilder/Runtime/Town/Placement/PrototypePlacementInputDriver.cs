@@ -1,3 +1,4 @@
+using CozyBuilder.Town.Debugging;
 using CozyBuilder.Town.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ namespace CozyBuilder.Town.Placement
 
         private PlacementService placementService;
         private PrototypePlacementState placementState;
+        private PrototypeTownDebugState debugState;
         private TownGridView townGridView;
         private Plane gridPlane;
 
@@ -19,10 +21,12 @@ namespace CozyBuilder.Town.Placement
         public void Construct(
             PlacementService placementService,
             PrototypePlacementState placementState,
+            PrototypeTownDebugState debugState,
             TownGridView townGridView)
         {
             this.placementService = placementService;
             this.placementState = placementState;
+            this.debugState = debugState;
             this.townGridView = townGridView;
         }
 
@@ -105,6 +109,7 @@ namespace CozyBuilder.Town.Placement
                 return false;
             }
 
+            debugState.Select(coord);
             return delete
                 ? placementService.TryDeleteBlock(coord)
                 : placementService.TryPlaceBlock(coord, placementState.CurrentColorId, placementState.CurrentMaterialId);

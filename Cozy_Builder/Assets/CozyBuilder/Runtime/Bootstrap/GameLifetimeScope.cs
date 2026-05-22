@@ -1,4 +1,5 @@
 using CozyBuilder.Camera;
+using CozyBuilder.Town.Debugging;
 using CozyBuilder.Town.Data;
 using CozyBuilder.Town.Placement;
 using CozyBuilder.Town.Rendering;
@@ -17,11 +18,13 @@ namespace CozyBuilder.Bootstrap
             builder.Register<TownVisualRebuilder>(Lifetime.Singleton);
             builder.Register<PlacementService>(Lifetime.Singleton);
             builder.Register<PrototypePlacementState>(Lifetime.Singleton);
+            builder.Register<PrototypeTownDebugState>(Lifetime.Singleton);
             builder.Register<CameraService>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<TownGridView>();
             builder.RegisterComponentInHierarchy<PrototypePlacementDebugDriver>();
             builder.RegisterComponentInHierarchy<PrototypePlacementInputDriver>();
             builder.RegisterComponentInHierarchy<PrototypePlacementControlsView>();
+            builder.RegisterComponentInHierarchy<PrototypeTownDebugView>();
         }
     }
 }

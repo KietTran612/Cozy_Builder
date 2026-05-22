@@ -1,16 +1,16 @@
 # Graph Report - App  (2026-05-22)
 
 ## Corpus Check
-- 20 files · ~30,103 words
+- 22 files · ~28,646 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 132 nodes · 159 edges · 20 communities (10 shown, 10 thin omitted)
+- 149 nodes · 189 edges · 20 communities (9 shown, 11 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `37f43e3e`
+- Built from commit: `9b141991`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,83 +38,81 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `TownGridView` - 28 edges
-2. `PrototypePlacementInputDriver` - 17 edges
-3. `PlacementService` - 9 edges
-4. `PrototypePlacementControlsView` - 9 edges
-5. `PrototypePlacementDebugDriver` - 8 edges
-6. `TownData` - 7 edges
-7. `OrganicIslandGridGenerator` - 5 edges
-8. `int` - 5 edges
-9. `TownVisualRebuilder` - 5 edges
-10. `PrototypePlacementState` - 4 edges
+2. `PrototypePlacementInputDriver` - 18 edges
+3. `PrototypeTownDebugView` - 16 edges
+4. `PlacementService` - 9 edges
+5. `PrototypePlacementControlsView` - 9 edges
+6. `PrototypePlacementDebugDriver` - 9 edges
+7. `TownData` - 7 edges
+8. `int` - 6 edges
+9. `TownVisualRebuilder` - 6 edges
+10. `OrganicIslandGridGenerator` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `PrototypePlacementInputDriver` --references--> `ushort`  [EXTRACTED]
-  Town/Placement/PrototypePlacementInputDriver.cs → Town/Placement/PrototypePlacementDebugDriver.cs
+- `PrototypeTownDebugView` --references--> `Rect`  [EXTRACTED]
+  Town/Debugging/PrototypeTownDebugView.cs → Town/Placement/PrototypePlacementControlsView.cs
+- `PrototypePlacementInputDriver` --references--> `bool`  [EXTRACTED]
+  Town/Placement/PrototypePlacementInputDriver.cs → Town/Rendering/TownGridView.cs
 - `TownData` --references--> `Dictionary`  [EXTRACTED]
   Town/Data/TownData.cs → Town/Rendering/TownGridView.cs
 - `TownDataStore` --references--> `int`  [EXTRACTED]
   Town/Data/TownDataStore.cs → Town/Rendering/TownGridView.cs
-- `PrototypePlacementControlsView` --references--> `int`  [EXTRACTED]
-  Town/Placement/PrototypePlacementControlsView.cs → Town/Rendering/TownGridView.cs
-- `PrototypePlacementDebugDriver` --references--> `int`  [EXTRACTED]
-  Town/Placement/PrototypePlacementDebugDriver.cs → Town/Rendering/TownGridView.cs
+- `PrototypeTownDebugView` --references--> `int`  [EXTRACTED]
+  Town/Debugging/PrototypeTownDebugView.cs → Town/Rendering/TownGridView.cs
 
-## Communities (20 total, 10 thin omitted)
+## Communities (20 total, 11 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.18
-Nodes (4): float, TownGridView, Transform, Vector3
+Cohesion: 0.12
+Nodes (10): MonoBehaviour, CozyBuilder.Town.Placement, PrototypePlacementDebugDriver, CozyBuilder.Town.Placement, PrototypePlacementInputDriver, PlacementService, Plane, TownGridView (+2 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.19
-Nodes (6): bool, CozyBuilder.Town.Placement, PrototypePlacementInputDriver, Plane, TownGridView, UnityCamera
+Cohesion: 0.17
+Nodes (5): bool, float, TownGridView, Transform, Vector3
 
 ### Community 2 - "Community 2"
 Cohesion: 0.17
-Nodes (6): CozyBuilder.Town.Data, TownData, CozyBuilder.Town.Data, TownDataStore, Dictionary, int
+Nodes (8): CozyBuilder.Town.Data, GridNeighborhood, CozyBuilder.Town.Debugging, PrototypeTownDebugView, GridCoord, PrototypeTownDebugState, StringBuilder, TownDataStore
 
 ### Community 3 - "Community 3"
-Cohesion: 0.24
-Nodes (5): CozyBuilder.Town.Placement, PlacementService, RuleEvaluator, TownDataStore, TownVisualRebuilder
+Cohesion: 0.17
+Nodes (6): CozyBuilder.Town.Data, TownData, CozyBuilder.Town.Data, TownDataStore, Dictionary, int
 
 ### Community 4 - "Community 4"
+Cohesion: 0.27
+Nodes (4): CozyBuilder.Town.Placement, PlacementService, RuleEvaluator, TownVisualRebuilder
+
+### Community 5 - "Community 5"
 Cohesion: 0.28
 Nodes (4): CozyBuilder.Town.Placement, PrototypePlacementControlsView, PrototypePlacementState, Rect
 
-### Community 5 - "Community 5"
-Cohesion: 0.22
-Nodes (5): MonoBehaviour, CozyBuilder.Town.Placement, PrototypePlacementDebugDriver, PlacementService, ushort
-
-### Community 7 - "Community 7"
-Cohesion: 0.29
+### Community 6 - "Community 6"
+Cohesion: 0.25
 Nodes (4): HashSet, Queue, CozyBuilder.Town.Rendering, TownVisualRebuilder
 
 ### Community 9 - "Community 9"
 Cohesion: 0.4
 Nodes (3): CozyBuilder.Bootstrap, GameLifetimeScope, LifetimeScope
 
-### Community 10 - "Community 10"
+### Community 11 - "Community 11"
 Cohesion: 0.4
 Nodes (4): GameObject, List, CellVisualState, CozyBuilder.Town.Rendering
 
-### Community 12 - "Community 12"
-Cohesion: 0.5
-Nodes (3): CozyBuilder.Town.Data, GridNeighborhood, GridCoord
-
 ## Knowledge Gaps
-- **32 isolated node(s):** `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService`, `CozyBuilder.Town.Data`, `CozyBuilder.Town.Data` (+27 more)
+- **33 isolated node(s):** `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService`, `CozyBuilder.Town.Data`, `CozyBuilder.Town.Data` (+28 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `TownGridView` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 5`, `Community 10`?**
-  _High betweenness centrality (0.266) - this node is a cross-community bridge._
-- **Why does `PrototypePlacementInputDriver` connect `Community 1` to `Community 4`, `Community 5`?**
-  _High betweenness centrality (0.121) - this node is a cross-community bridge._
-- **Why does `int` connect `Community 2` to `Community 0`, `Community 4`, `Community 5`?**
-  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+- **Why does `TownGridView` connect `Community 1` to `Community 0`, `Community 2`, `Community 3`, `Community 4`, `Community 11`?**
+  _High betweenness centrality (0.218) - this node is a cross-community bridge._
+- **Why does `PrototypeTownDebugView` connect `Community 2` to `Community 0`, `Community 3`, `Community 4`, `Community 5`?**
+  _High betweenness centrality (0.142) - this node is a cross-community bridge._
+- **Why does `PrototypePlacementInputDriver` connect `Community 0` to `Community 1`, `Community 2`, `Community 5`?**
+  _High betweenness centrality (0.114) - this node is a cross-community bridge._
 - **What connects `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService` to the rest of the system?**
-  _32 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _33 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Community 0` be split into smaller, more focused modules?**
+  _Cohesion score 0.12 - nodes in this community are weakly interconnected._

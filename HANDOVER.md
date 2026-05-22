@@ -4,6 +4,8 @@ This file is the compact handover for continuing project work. Read `CURRENT_STA
 
 Older session history has been moved to `docs/Development_Session_Log.md`. Do not read that log by default; use it only when investigating why an old decision was made, checking old validation details, or reconstructing prior work.
 
+When writing a new `Latest Session Update`, first append the previous latest session from this file to `docs/Development_Session_Log.md`. This is a routine archive step: do not read the whole log; use a targeted tail/search only if needed to avoid duplicating an entry.
+
 ## Product Summary
 
 - Unity mobile game in the cozy procedural town builder space.
@@ -22,7 +24,7 @@ Older session history has been moved to `docs/Development_Session_Log.md`. Do no
 - Async package: UniTask.
 - Input package: Unity Input System.
 - First imported/test asset pack: KayKit Medieval Builder Pack 1.0.
-- Latest committed baseline at this handover rewrite: `461c52e Add prototype placement controls`.
+- Latest committed baseline before current debug-view work: `9b14199 Restructure handover history`.
 
 Check the live state before editing:
 
@@ -78,6 +80,10 @@ Current Unity adapters:
   - temporary IMGUI prototype controls for mode, `ColorId`, and `MaterialId`
 - `PrototypePlacementState`
   - singleton state for Place/Delete mode and current palette ids
+- `PrototypeTownDebugState`
+  - singleton debug state for the currently selected cell
+- `PrototypeTownDebugView`
+  - temporary IMGUI debug panel for selected cell, neighbors, dirty queue, and rule preview
 
 ## Decisions That Must Not Drift
 
@@ -94,42 +100,47 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Prototype Mode And Palette Controls
+## Latest Session Update - 2026-05-22 - Minimal Procedural Debug Views
 
 Baseline before the work:
 
-- `37f43e3 Add pooled prototype block visuals`
+- `9b14199 Restructure handover history`
 
-Committed result:
+Current commit state:
 
-- `461c52e Add prototype placement controls`
+- Work is implemented and validated locally but not yet committed.
 
 Implemented:
 
-- Added `PrototypePlacementMode` and `PrototypePlacementState`.
-- Added `PrototypePlacementControlsView` as a temporary IMGUI panel.
-- Added Place/Delete controls plus Color and Material id buttons `0..3`.
-- Changed `PrototypePlacementInputDriver` to read `PrototypePlacementState` instead of serialized `deleteMode`, `colorId`, and `materialId`.
-- Switched `PrototypePlacementInputDriver` from legacy `UnityEngine.Input` to Unity Input System.
-- Added `Unity.InputSystem` to `CozyBuilder.Runtime.asmdef`.
+- Added `PrototypeTownDebugState` for selected-cell debug state.
+- Added `PrototypeTownDebugView` as a temporary IMGUI debug panel.
+- Debug panel displays:
+  - selected cell coordinate and cell data
+  - cardinal neighbor info
+  - dirty queue count and bounded preview
+  - `PlacementService.Preview` rule result
+- Added `TownVisualRebuilder.CopyDirtyCoords` to expose a bounded dirty queue snapshot without mutating the queue.
+- Updated `PrototypePlacementInputDriver` and `PrototypePlacementDebugDriver` to select the targeted coord in debug state.
 - Updated `GameLifetimeScope` to register:
-  - `PrototypePlacementState`
-  - `PrototypePlacementControlsView`
-- Updated `KayKitFbxAssetTest.unity` so `Town Grid View` has `PrototypePlacementControlsView`.
+  - `PrototypeTownDebugState`
+  - `PrototypeTownDebugView`
+- Updated `KayKitFbxAssetTest.unity` so `Town Grid View` has `PrototypeTownDebugView`.
 - Refreshed Graphify output with `graphify update .`.
 - Updated `CURRENT_STATUS.md` and this handover context.
 
 Validation:
 
 - Unity compile/reload completed without C# compile errors.
-- Initial Play Mode validation exposed a legacy input exception because active input handling is set to the Input System package.
-- After switching to Unity Input System:
+- Play Mode validation:
   - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
   - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
-- `git diff --check` passed before commit.
+  - `PrototypePlacementDebugDriver.PlaceDebugBlock` returned `True`
+  - `PrototypePlacementDebugDriver.DeleteDebugBlock` returned `True`
+  - `Town Grid View` has `PrototypeTownDebugView` wired in the scene
+- Console readback after Play Mode showed no project exceptions.
 - `graphify update .` succeeded:
-  - 132 nodes
-  - 159 edges
+  - 149 nodes
+  - 189 edges
   - 20 communities
 
 UI/EventSystem note:
@@ -145,14 +156,10 @@ Known issue:
 
 ## Next Work
 
-1. Add minimal procedural rule/debug views:
-   - selected cell id
-   - neighbor info
-   - dirty cell queue
-   - rule result preview
-2. Then add camera orbit/pan/zoom.
+1. Add camera orbit/pan/zoom.
+2. Then iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
 
-For debug view work, read:
+For camera work, read:
 
 - `docs/Architecture_And_Code_Rules.md`
 - `docs/Unity_URP_Performance_Code_Rules.md`
@@ -161,10 +168,9 @@ For debug view work, read:
 
 Use Graphify for code navigation before broad grep:
 
-- `graphify explain "TownVisualRebuilder"`
 - `graphify explain "TownGridView"`
-- `graphify explain "PlacementService"`
-- `graphify path "PrototypePlacementInputDriver" "PlacementService"`
+- `graphify explain "CameraService"`
+- `graphify path "CameraService" "TownGridView"`
 
 ## Docs Map
 

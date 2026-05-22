@@ -32,5 +32,28 @@ namespace CozyBuilder.Town.Rendering
             dirtySet.Remove(coord);
             return true;
         }
+
+        public int CopyDirtyCoords(GridCoord[] buffer, int maxCount)
+        {
+            if (buffer == null || maxCount <= 0)
+            {
+                return 0;
+            }
+
+            var copied = 0;
+            var limit = maxCount < buffer.Length ? maxCount : buffer.Length;
+            foreach (var coord in dirtyQueue)
+            {
+                if (copied >= limit)
+                {
+                    break;
+                }
+
+                buffer[copied] = coord;
+                copied++;
+            }
+
+            return copied;
+        }
     }
 }

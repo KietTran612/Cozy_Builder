@@ -1,4 +1,5 @@
 using CozyBuilder.Town.Data;
+using CozyBuilder.Town.Debugging;
 using UnityEngine;
 using VContainer;
 
@@ -12,11 +13,13 @@ namespace CozyBuilder.Town.Placement
         [SerializeField] private ushort materialId;
 
         private PlacementService placementService;
+        private PrototypeTownDebugState debugState;
 
         [Inject]
-        public void Construct(PlacementService placementService)
+        public void Construct(PlacementService placementService, PrototypeTownDebugState debugState)
         {
             this.placementService = placementService;
+            this.debugState = debugState;
         }
 
         public bool PlaceDebugBlock()
@@ -27,6 +30,7 @@ namespace CozyBuilder.Town.Placement
                 return false;
             }
 
+            debugState.Select(DebugCoord);
             return placementService.TryPlaceBlock(DebugCoord, colorId, materialId);
         }
 
@@ -38,6 +42,7 @@ namespace CozyBuilder.Town.Placement
                 return false;
             }
 
+            debugState.Select(DebugCoord);
             return placementService.TryDeleteBlock(DebugCoord);
         }
 

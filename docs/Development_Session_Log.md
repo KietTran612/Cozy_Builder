@@ -238,3 +238,17 @@ This is the latest detailed session as of the handover rewrite. It remains summa
 Important commit:
 
 - `461c52e Add prototype placement controls`
+
+## 2026-05-22 - Handover History Restructure
+
+- Moved older detailed session updates out of `HANDOVER.md` into this archive log.
+- Kept `HANDOVER.md` focused on compact project context plus the latest detailed session.
+- Clarified startup flow:
+  - read `CURRENT_STATUS.md` first
+  - read `HANDOVER.md` only when deeper current context is needed
+  - read this log only for old session history
+- Preserved the prototype controls session as the latest detailed handover at the time of the rewrite.
+
+Important commit:
+
+- `9b14199 Restructure handover history`

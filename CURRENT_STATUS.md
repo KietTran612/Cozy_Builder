@@ -20,14 +20,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Async package: UniTask.
 - First imported/test asset pack: KayKit Medieval Builder Pack 1.0.
 - KayKit validation is complete enough to use it as prototype terrain/grid placeholder content.
-- Prototype Core placement/visual/input foundation has started.
+- Prototype Core placement/visual/input/debug foundation has started.
 
 ## Current Commit Baseline
 
-- Latest committed baseline observed after prototype controls work: `461c52e Add prototype placement controls`.
+- Latest committed baseline before current debug-view work: `9b14199 Restructure handover history`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
-- After that commit, expected untracked local-only work may include screenshots, local MCP runtime files, and Unity-generated project settings noise.
+- Current uncommitted work includes minimal procedural debug views, selected-cell debug state, dirty queue snapshot support, scene wiring, Graphify output refresh, and local screenshot output.
 - Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
 - Do not commit `Cozy_Builder/Assets/Packages` asset pack contents unless the user explicitly changes that policy.
 
@@ -70,6 +70,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypePlacementMode`
   - `PrototypePlacementControlsView`
   - Provides minimal IMGUI controls for place/delete mode, `ColorId`, and `MaterialId`
+- Prototype debug views:
+  - `PrototypeTownDebugState`
+  - `PrototypeTownDebugView`
+  - Shows selected cell id/data, cardinal neighbor info, dirty queue count/preview, and rule result preview
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -82,20 +86,17 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Intent
 
-- Code is still prototype foundation only, but the first data, placement, visual, input, and mode/palette paths exist.
+- Code is still prototype foundation only, but the first data, placement, visual, input, mode/palette, and debug-view paths exist.
 - `GameLifetimeScope` should register system-level prototype services only.
 - Data must remain separate from scene GameObjects.
 - No static singleton gameplay services.
 - KayKit should be used as prototype terrain/grid placeholder content, not as the final procedural building foundation.
-- Current prototype direction is data-first island grid, dirty visual updates, simple input, and temporary debug controls before procedural rule/debug views and camera work.
+- Current prototype direction is data-first island grid, dirty visual updates, simple input, temporary controls, and debug visibility before camera work.
 
 ## Next Work
 
-1. Add minimal procedural rule/debug views:
-   - cell id/neighbor info
-   - dirty cell queue
-   - rule result preview
-2. Then add camera orbit/pan/zoom.
+1. Add camera orbit/pan/zoom.
+2. Then iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
 
 ## Latest Validation Notes
 
@@ -140,6 +141,15 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Legacy input exception was fixed by switching the input driver to Unity Input System
   - `EventSystem` is not required for the current IMGUI controls; it will be needed later for uGUI/UI Toolkit pointer routing
   - Editor screenshot output was written under `Cozy_Builder/Assets/.screenshots/`
+- Prototype debug view validation succeeded:
+  - Added `PrototypeTownDebugView` to `Town Grid View`
+  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
+  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
+  - `PrototypePlacementDebugDriver.PlaceDebugBlock` returned `True`
+  - `PrototypePlacementDebugDriver.DeleteDebugBlock` returned `True`
+  - `Town Grid View` has `PrototypeTownDebugView` with panel rect `(16, 208, 320, 300)`
+  - Console readback after Play Mode showed no project exceptions
+  - `graphify update .` succeeded after code changes with 149 nodes, 189 edges, and 20 communities
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
 ## Latest Code Notes
@@ -159,6 +169,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `PrototypePlacementInputDriver` now uses Unity Input System and the runtime asmdef references `Unity.InputSystem`.
 - `PrototypePlacementState` centralizes current prototype mode, `ColorId`, and `MaterialId`.
 - `PrototypePlacementControlsView` adds minimal IMGUI buttons for mode and palette selection.
+- `PrototypeTownDebugState` stores the currently selected grid coordinate for debug UI.
+- `PrototypePlacementInputDriver` and `PrototypePlacementDebugDriver` update `PrototypeTownDebugState` when a cell is targeted.
+- `PrototypeTownDebugView` displays selected cell data, neighbors, dirty queue preview, and `PlacementService.Preview` rule result.
+- `TownVisualRebuilder.CopyDirtyCoords` exposes a bounded dirty queue snapshot for debug display without mutating the queue.
 - `TownGridView.TryGetCoordFromWorld` maps world positions back to existing grid coordinates.
 - `TownGridView` now keeps terrain visuals and block visuals separate.
 - Block visuals are pooled per cell: delete disables existing block instances instead of destroying them.
@@ -167,13 +181,30 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `GameLifetimeScope` now registers `PrototypePlacementDebugDriver` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementInputDriver` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementState` as a singleton and `PrototypePlacementControlsView` from the scene hierarchy.
+- `GameLifetimeScope` now registers `PrototypeTownDebugState` as a singleton and `PrototypeTownDebugView` from the scene hierarchy.
 - Unity compile completed without C# errors after the prototype controls and Input System changes.
-- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 132 nodes, 159 edges, and 20 communities.
+- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 149 nodes, 189 edges, and 20 communities.
 
 ## Current Working Tree Notes
 
 - Always check `git status --short` before editing or committing.
-- After commit `461c52e`, the prototype controls code and Graphify refresh should already be committed.
+- After commit `9b14199`, the prototype controls code, handover restructure, and Graphify refresh should already be committed.
+- Current debug-view work is not yet committed unless a later commit is present in `git log`.
+- Expected modified files for the debug-view work:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownVisualRebuilder.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - `graphify-out/GRAPH_REPORT.md`
+  - `graphify-out/graph.html`
+  - `graphify-out/graph.json`
+- Expected new files for the debug-view work:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugState.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugState.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugView.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugView.cs.meta`
 - Expected local/untracked files that should not be committed by default:
   - `Cozy_Builder/.screenshots/`
   - `Cozy_Builder/Assets/.screenshots/`
@@ -198,6 +229,8 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Read `HANDOVER.md` only for deeper current project context or when current status is unclear.
 - Read `docs/Development_Session_Log.md` only when old session history is needed.
 - Do not read every doc linked from `HANDOVER.md`.
+- When writing a new `Latest Session Update` in `HANDOVER.md`, first append the previous latest session to `docs/Development_Session_Log.md`.
+- For that routine archive step, do not read the whole session log; use a targeted tail/search only if needed to avoid duplicating an entry.
 - Read docs by task:
   - architecture/code foundation: `docs/Architecture_And_Code_Rules.md`, `docs/Unity_URP_Performance_Code_Rules.md`, `docs/Prototype_Core_Scope.md`
   - asset/KayKit/URP test: `docs/Tooling_And_Asset_Strategy.md`, `docs/Asset_Selection_Checklist.md`, `docs/Asset_Pack_Shortlist.md`
