@@ -13,8 +13,9 @@ Graphify rules:
 
 Docs reading rules:
 - Always read CURRENT_STATUS.md first when resuming project work or checking current status.
-- Read HANDOVER.md only when deeper history is needed or when CURRENT_STATUS.md is unclear.
-- Treat HANDOVER.md as a status/index document. Do not automatically read every linked doc from it.
+- Read HANDOVER.md only when deeper current project context is needed or when CURRENT_STATUS.md is unclear.
+- Treat HANDOVER.md as the current handover/status map. Do not automatically read every linked doc from it.
+- Read docs/Development_Session_Log.md only when historical session context is explicitly needed.
 - Read additional docs only when they are relevant to the current task or when a rule below says they are needed.
 - If the task is ambiguous, inspect headings or search within docs first, then open only the smallest relevant doc set.
 - For architecture, DI, data model, async, or service structure work, read:
@@ -36,5 +37,6 @@ Docs reading rules:
 Workflow:
 - Use Graphify to orient around code symbols and module relationships.
 - Use CURRENT_STATUS.md for current status, then use HANDOVER.md and the docs above selectively for decisions, constraints, and project intent.
+- Use docs/Development_Session_Log.md only for old session archaeology, not startup context.
 - If any `.cs`, `.asmdef`, or other code-structure files changed, run `graphify update .` after edits and mention whether it succeeded.
 - Do not rely on Graphify query output alone for Markdown documentation decisions unless semantic extraction has been explicitly run with an API key.
