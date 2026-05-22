@@ -3,7 +3,8 @@
     "rootNamespace": "CozyBuilder",
     "references": [
         "VContainer",
-        "UniTask"
+        "UniTask",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

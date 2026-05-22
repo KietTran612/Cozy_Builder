@@ -16,10 +16,12 @@ namespace CozyBuilder.Bootstrap
             builder.Register<RuleEvaluator>(Lifetime.Singleton);
             builder.Register<TownVisualRebuilder>(Lifetime.Singleton);
             builder.Register<PlacementService>(Lifetime.Singleton);
+            builder.Register<PrototypePlacementState>(Lifetime.Singleton);
             builder.Register<CameraService>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<TownGridView>();
             builder.RegisterComponentInHierarchy<PrototypePlacementDebugDriver>();
             builder.RegisterComponentInHierarchy<PrototypePlacementInputDriver>();
+            builder.RegisterComponentInHierarchy<PrototypePlacementControlsView>();
         }
     }
 }

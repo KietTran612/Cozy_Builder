@@ -1,16 +1,16 @@
 # Graph Report - App  (2026-05-22)
 
 ## Corpus Check
-- 17 files · ~29,382 words
+- 20 files · ~30,103 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 115 nodes · 140 edges · 17 communities (9 shown, 8 thin omitted)
+- 132 nodes · 159 edges · 20 communities (10 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1efc7c3f`
+- Built from commit: `37f43e3e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,32 +32,35 @@
 - [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
 - [[_COMMUNITY_Community 16|Community 16]]
+- [[_COMMUNITY_Community 17|Community 17]]
+- [[_COMMUNITY_Community 18|Community 18]]
+- [[_COMMUNITY_Community 19|Community 19]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `TownGridView` - 28 edges
-2. `PrototypePlacementInputDriver` - 16 edges
+2. `PrototypePlacementInputDriver` - 17 edges
 3. `PlacementService` - 9 edges
-4. `PrototypePlacementDebugDriver` - 8 edges
-5. `TownData` - 7 edges
-6. `OrganicIslandGridGenerator` - 5 edges
-7. `TownVisualRebuilder` - 5 edges
-8. `int` - 4 edges
-9. `GameLifetimeScope` - 3 edges
-10. `CellVisualState` - 3 edges
+4. `PrototypePlacementControlsView` - 9 edges
+5. `PrototypePlacementDebugDriver` - 8 edges
+6. `TownData` - 7 edges
+7. `OrganicIslandGridGenerator` - 5 edges
+8. `int` - 5 edges
+9. `TownVisualRebuilder` - 5 edges
+10. `PrototypePlacementState` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `PrototypePlacementInputDriver` --references--> `ushort`  [EXTRACTED]
+  Town/Placement/PrototypePlacementInputDriver.cs → Town/Placement/PrototypePlacementDebugDriver.cs
 - `TownData` --references--> `Dictionary`  [EXTRACTED]
   Town/Data/TownData.cs → Town/Rendering/TownGridView.cs
+- `TownDataStore` --references--> `int`  [EXTRACTED]
+  Town/Data/TownDataStore.cs → Town/Rendering/TownGridView.cs
+- `PrototypePlacementControlsView` --references--> `int`  [EXTRACTED]
+  Town/Placement/PrototypePlacementControlsView.cs → Town/Rendering/TownGridView.cs
 - `PrototypePlacementDebugDriver` --references--> `int`  [EXTRACTED]
   Town/Placement/PrototypePlacementDebugDriver.cs → Town/Rendering/TownGridView.cs
-- `PlacementService` --references--> `TownDataStore`  [EXTRACTED]
-  Town/Placement/PlacementService.cs → Town/Rendering/TownGridView.cs
-- `PlacementService` --references--> `TownVisualRebuilder`  [EXTRACTED]
-  Town/Placement/PlacementService.cs → Town/Rendering/TownGridView.cs
-- `PrototypePlacementDebugDriver` --references--> `ushort`  [EXTRACTED]
-  Town/Placement/PrototypePlacementDebugDriver.cs → Town/Placement/PrototypePlacementInputDriver.cs
 
-## Communities (17 total, 8 thin omitted)
+## Communities (20 total, 10 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.18
@@ -76,38 +79,42 @@ Cohesion: 0.24
 Nodes (5): CozyBuilder.Town.Placement, PlacementService, RuleEvaluator, TownDataStore, TownVisualRebuilder
 
 ### Community 4 - "Community 4"
+Cohesion: 0.28
+Nodes (4): CozyBuilder.Town.Placement, PrototypePlacementControlsView, PrototypePlacementState, Rect
+
+### Community 5 - "Community 5"
 Cohesion: 0.22
 Nodes (5): MonoBehaviour, CozyBuilder.Town.Placement, PrototypePlacementDebugDriver, PlacementService, ushort
 
-### Community 6 - "Community 6"
+### Community 7 - "Community 7"
 Cohesion: 0.29
 Nodes (4): HashSet, Queue, CozyBuilder.Town.Rendering, TownVisualRebuilder
 
-### Community 7 - "Community 7"
+### Community 9 - "Community 9"
 Cohesion: 0.4
 Nodes (3): CozyBuilder.Bootstrap, GameLifetimeScope, LifetimeScope
 
-### Community 8 - "Community 8"
+### Community 10 - "Community 10"
 Cohesion: 0.4
 Nodes (4): GameObject, List, CellVisualState, CozyBuilder.Town.Rendering
 
-### Community 10 - "Community 10"
+### Community 12 - "Community 12"
 Cohesion: 0.5
 Nodes (3): CozyBuilder.Town.Data, GridNeighborhood, GridCoord
 
 ## Knowledge Gaps
-- **28 isolated node(s):** `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService`, `CozyBuilder.Town.Data`, `CozyBuilder.Town.Data` (+23 more)
+- **32 isolated node(s):** `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService`, `CozyBuilder.Town.Data`, `CozyBuilder.Town.Data` (+27 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `TownGridView` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 8`?**
-  _High betweenness centrality (0.303) - this node is a cross-community bridge._
-- **Why does `PrototypePlacementInputDriver` connect `Community 1` to `Community 4`?**
-  _High betweenness centrality (0.136) - this node is a cross-community bridge._
-- **Why does `int` connect `Community 2` to `Community 0`, `Community 4`?**
-  _High betweenness centrality (0.094) - this node is a cross-community bridge._
+- **Why does `TownGridView` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 5`, `Community 10`?**
+  _High betweenness centrality (0.266) - this node is a cross-community bridge._
+- **Why does `PrototypePlacementInputDriver` connect `Community 1` to `Community 4`, `Community 5`?**
+  _High betweenness centrality (0.121) - this node is a cross-community bridge._
+- **Why does `int` connect `Community 2` to `Community 0`, `Community 4`, `Community 5`?**
+  _High betweenness centrality (0.105) - this node is a cross-community bridge._
 - **What connects `CozyBuilder.Bootstrap`, `CozyBuilder.Camera`, `CameraService` to the rest of the system?**
-  _28 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _32 weakly-connected nodes found - possible documentation gaps or missing edges._

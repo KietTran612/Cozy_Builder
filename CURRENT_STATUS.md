@@ -24,10 +24,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline observed in this session: `1efc7c3 Add prototype placement input`.
+- Latest committed baseline before current uncommitted work: `37f43e3 Add pooled prototype block visuals`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
-- Current uncommitted work includes the first Prototype Core visual adapter, KayKit test scene wiring, Graphify output refresh, and local screenshot output.
+- Current uncommitted work includes visible prototype place/delete controls, palette state, Input System conversion for placement input, KayKit test scene wiring, Graphify output refresh, and local screenshot output.
 - Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
 - Do not commit `Cozy_Builder/Assets/Packages` asset pack contents unless the user explicitly changes that policy.
 
@@ -64,6 +64,12 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypePlacementInputDriver`
   - Converts mouse/touch screen input to a grid coordinate through `TownGridView`
   - Calls `PlacementService` for place/delete
+  - Uses Unity Input System (`Mouse.current` / `Touchscreen.current`), not legacy `UnityEngine.Input`
+- Prototype placement controls:
+  - `PrototypePlacementState`
+  - `PrototypePlacementMode`
+  - `PrototypePlacementControlsView`
+  - Provides minimal IMGUI controls for place/delete mode, `ColorId`, and `MaterialId`
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -85,12 +91,11 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Add a visible mode/palette control for place/delete and `ColorId`/`MaterialId`.
-2. Add minimal procedural rule/debug views:
+1. Add minimal procedural rule/debug views:
    - cell id/neighbor info
    - dirty cell queue
    - rule result preview
-3. Then add camera orbit/pan/zoom.
+2. Then add camera orbit/pan/zoom.
 
 ## Latest Validation Notes
 
@@ -126,6 +131,15 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - deleting at screen center leaves `Block 0,1 L1` pooled but inactive
   - generated runtime terrain/block children do not persist after exiting Play Mode
 - Screenshot output for this validation: `Cozy_Builder/.screenshots/scene_20260522_112322.png`.
+- Prototype mode/palette controls validation succeeded:
+  - Added `PrototypePlacementControlsView` to `Town Grid View`
+  - IMGUI controls show current mode, `ColorId`, and `MaterialId`
+  - Buttons support Place/Delete plus Color and Material ids `0..3`
+  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
+  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
+  - Legacy input exception was fixed by switching the input driver to Unity Input System
+  - `EventSystem` is not required for the current IMGUI controls; it will be needed later for uGUI/UI Toolkit pointer routing
+  - Editor screenshot output was written under `Cozy_Builder/Assets/.screenshots/`
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
 ## Latest Code Notes
@@ -141,6 +155,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Placeholder block height currently appears by raising the cell view by `blockHeightStep` per height.
 - `PrototypePlacementDebugDriver` has been added for temporary MCP/manual place-delete validation before real input exists.
 - `PrototypePlacementInputDriver` has been added as the first mouse/touch input adapter.
+- `PrototypePlacementInputDriver` now reads `PrototypePlacementState` for place/delete mode and palette ids.
+- `PrototypePlacementInputDriver` now uses Unity Input System and the runtime asmdef references `Unity.InputSystem`.
+- `PrototypePlacementState` centralizes current prototype mode, `ColorId`, and `MaterialId`.
+- `PrototypePlacementControlsView` adds minimal IMGUI buttons for mode and palette selection.
 - `TownGridView.TryGetCoordFromWorld` maps world positions back to existing grid coordinates.
 - `TownGridView` now keeps terrain visuals and block visuals separate.
 - Block visuals are pooled per cell: delete disables existing block instances instead of destroying them.
@@ -148,26 +166,30 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `GameLifetimeScope` now registers `TownGridView` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementDebugDriver` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementInputDriver` from the scene hierarchy with VContainer.
+- `GameLifetimeScope` now registers `PrototypePlacementState` as a singleton and `PrototypePlacementControlsView` from the scene hierarchy.
 - Unity compile completed without C# errors after the visual adapter changes.
-- `graphify update .` succeeded after code changes and updated `graphify-out/` to 115 nodes, 140 edges, and 17 communities.
+- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 132 nodes, 159 edges, and 20 communities.
 
 ## Current Uncommitted State Notes
 
 - Expected modified files:
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/CozyBuilder.Runtime.asmdef`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
   - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
   - `graphify-out/GRAPH_REPORT.md`
   - `graphify-out/graph.html`
   - `graphify-out/graph.json`
 - Expected new files:
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs.meta`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs.meta`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementControlsView.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementControlsView.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementMode.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementMode.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementState.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementState.cs.meta`
 - Expected local/untracked files that should not be committed by default:
   - `Cozy_Builder/.screenshots/`
+  - `Cozy_Builder/Assets/.screenshots/`
   - `Cozy_Builder/Packages/io.realvirtual.mcp/`
 - `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json` appeared as untracked after Unity activity; inspect before deciding whether it belongs in version control.
 

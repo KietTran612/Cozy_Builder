@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70d60829d2f842ebaa2630ba7aa54808, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
@@ -1277,6 +1277,7 @@ GameObject:
   - component: {fileID: 1574559336}
   - component: {fileID: 1574559338}
   - component: {fileID: 1574559339}
+  - component: {fileID: 1574559340}
   m_Layer: 0
   m_Name: Town Grid View
   m_TagString: Untagged
@@ -1348,9 +1349,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Placement.PrototypePlacementInputDriver
   inputCamera: {fileID: 0}
-  deleteMode: 0
-  colorId: 0
-  materialId: 0
+--- !u!114 &1574559340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574559335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c4f017df724955ad5e5ac4b4d8658d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Placement.PrototypePlacementControlsView
+  panelRect:
+    serializedVersion: 2
+    x: 16
+    y: 16
+    width: 240
+    height: 180
+  colorCount: 4
+  materialCount: 4
 --- !u!1 &1987533966
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using CozyBuilder.Town.Rendering;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using VContainer;
 using UnityCamera = UnityEngine.Camera;
 
@@ -8,18 +9,20 @@ namespace CozyBuilder.Town.Placement
     public sealed class PrototypePlacementInputDriver : MonoBehaviour
     {
         [SerializeField] private UnityCamera inputCamera;
-        [SerializeField] private bool deleteMode;
-        [SerializeField] private ushort colorId;
-        [SerializeField] private ushort materialId;
 
         private PlacementService placementService;
+        private PrototypePlacementState placementState;
         private TownGridView townGridView;
         private Plane gridPlane;
 
         [Inject]
-        public void Construct(PlacementService placementService, TownGridView townGridView)
+        public void Construct(
+            PlacementService placementService,
+            PrototypePlacementState placementState,
+            TownGridView townGridView)
         {
             this.placementService = placementService;
+            this.placementState = placementState;
             this.townGridView = townGridView;
         }
 
@@ -35,23 +38,21 @@ namespace CozyBuilder.Town.Placement
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            var mouse = Mouse.current;
+            if (mouse != null && mouse.leftButton.wasPressedThisFrame)
             {
-                TryApplyPointer(Input.mousePosition, deleteMode);
+                TryApplyPointer(mouse.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (mouse != null && mouse.rightButton.wasPressedThisFrame)
             {
-                TryApplyPointer(Input.mousePosition, true);
+                TryApplyPointer(mouse.position.ReadValue(), true);
             }
 
-            if (Input.touchCount > 0)
+            var touchscreen = Touchscreen.current;
+            if (touchscreen != null && touchscreen.primaryTouch.press.wasPressedThisFrame)
             {
-                var touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    TryApplyPointer(touch.position, deleteMode);
-                }
+                TryApplyPointer(touchscreen.primaryTouch.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
             }
         }
 
@@ -87,7 +88,7 @@ namespace CozyBuilder.Town.Placement
 
         private bool TryApplyPointer(Vector2 screenPosition, bool delete)
         {
-            if (placementService == null || townGridView == null || inputCamera == null)
+            if (placementService == null || placementState == null || townGridView == null || inputCamera == null)
             {
                 return false;
             }
@@ -106,7 +107,7 @@ namespace CozyBuilder.Town.Placement
 
             return delete
                 ? placementService.TryDeleteBlock(coord)
-                : placementService.TryPlaceBlock(coord, colorId, materialId);
+                : placementService.TryPlaceBlock(coord, placementState.CurrentColorId, placementState.CurrentMaterialId);
         }
     }
 }

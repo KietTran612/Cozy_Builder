@@ -828,3 +828,87 @@ Next recommended work:
 1. Add visible place/delete mode controls and a basic palette using `ColorId`/`MaterialId`.
 2. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.
 3. Add camera orbit/pan/zoom.
+
+## Session Update - 2026-05-22 - Prototype Mode And Palette Controls
+
+This section records the step after commit `37f43e3 Add pooled prototype block visuals`.
+
+Committed baseline before this step:
+
+- `37f43e3 Add pooled prototype block visuals`
+
+Implemented but not yet committed:
+
+- Added prototype placement state:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementState.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementMode.cs`
+  - Tracks current Place/Delete mode, `CurrentColorId`, and `CurrentMaterialId`.
+- Added minimal prototype controls:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementControlsView.cs`
+  - Uses IMGUI/`OnGUI` for a temporary prototype panel.
+  - Shows current mode/color/material.
+  - Provides Place/Delete buttons and Color/Material id buttons `0..3`.
+- Updated `PrototypePlacementInputDriver`:
+  - reads `PrototypePlacementState` instead of serialized `deleteMode`, `colorId`, and `materialId`
+  - switched from legacy `UnityEngine.Input` to Unity Input System (`Mouse.current` and `Touchscreen.current`)
+- Updated runtime assembly:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/CozyBuilder.Runtime.asmdef`
+  - added `Unity.InputSystem` reference.
+- Updated `GameLifetimeScope`:
+  - registers `PrototypePlacementState` as a singleton
+  - registers `PrototypePlacementControlsView` from the scene hierarchy
+- Updated `KayKitFbxAssetTest.unity`:
+  - `Town Grid View` now has `PrototypePlacementControlsView`
+- Refreshed Graphify output with `graphify update .`.
+
+Validation:
+
+- Unity compile/reload completed without C# compile errors.
+- Initial Play Mode validation exposed a legacy input exception because active input handling is set to the Input System package.
+- After switching `PrototypePlacementInputDriver` to Unity Input System, Play Mode validation succeeded:
+  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
+  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
+- `git diff --check` passed.
+- `graphify update .` succeeded:
+  - 132 nodes
+  - 159 edges
+  - 20 communities
+
+UI/EventSystem note:
+
+- The current controls use IMGUI, so no `EventSystem` is required for the prototype panel.
+- A future uGUI/UI Toolkit control surface should add proper UI event routing and block world placement while the pointer is over UI.
+
+Current uncommitted state expected after this update:
+
+- Modified:
+  - `CURRENT_STATUS.md`
+  - `HANDOVER.md`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/CozyBuilder.Runtime.asmdef`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - `graphify-out/GRAPH_REPORT.md`
+  - `graphify-out/graph.html`
+  - `graphify-out/graph.json`
+- New:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementControlsView.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementControlsView.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementMode.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementMode.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementState.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementState.cs.meta`
+- Local/untracked, do not commit by default:
+  - `Cozy_Builder/.screenshots/`
+  - `Cozy_Builder/Assets/.screenshots/`
+  - `Cozy_Builder/Packages/io.realvirtual.mcp/`
+- Inspect before deciding:
+  - `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json`
+
+Next recommended work:
+
+1. Add minimal procedural rule/debug views:
+   - selected cell id and neighbor info
+   - dirty cell queue
+   - rule result preview
+2. Add camera orbit/pan/zoom after debug visibility is in place.
