@@ -1,10 +1,12 @@
-# Bảng Theo Dõi Tiến Độ (Task Tracker) - Brainstorming Camera Decoupling & Modularization
+# Bảng Theo Dõi Tiến Độ (Task Tracker) - Module Hóa & Tách Biệt Hệ Thống Camera
 
 | Trạng thái | Nhiệm vụ | File liên quan |
 | :---: | :--- | :--- |
-| `[/]` | **Nhiệm vụ 1**: Tìm hiểu cấu trúc hiện tại của camera và tệp tin liên quan | `CameraService.cs`, `PrototypeCameraInputDriver.cs`, `GameLifetimeScope.cs` |
-| `[ ]` | **Nhiệm vụ 2**: Đặt câu hỏi làm rõ (clarifying questions) từng phần với người dùng | Chat |
-| `[ ]` | **Nhiệm vụ 3**: Đề xuất 2-3 giải pháp thiết kế module hóa Camera độc lập kèm ưu nhược điểm | Chat |
-| `[ ]` | **Nhiệm vụ 4**: Trình bày thiết kế chi tiết (kiến trúc, API, luồng dữ liệu) và lấy phản hồi của người dùng | Chat |
-| `[ ]` | **Nhiệm vụ 5**: Ghi lại tài liệu thiết kế đã thống nhất vào thư mục `docs/plans/` và commit | `docs/plans/` |
-| `[ ]` | **Nhiệm vụ 6**: Chuyển giao sang giai đoạn lập kế hoạch chi tiết (gọi skill `writing-plans`) | `writing-plans` |
+| `[x]` | **Task 1**: Tạo interface `ICameraInputBlocker.cs` | `ICameraInputBlocker.cs` |
+| `[x]` | **Task 2**: Định nghĩa Assembly `CozyBuilder.Camera.asmdef` | `CozyBuilder.Camera.asmdef` |
+| `[x]` | **Task 3**: Cập nhật Assembly `CozyBuilder.Runtime.asmdef` để tham chiếu đến Camera | `CozyBuilder.Runtime.asmdef` |
+| `[x]` | **Task 4**: Cập nhật `PrototypeCameraInputDriver.cs` để nhận và dùng `ICameraInputBlocker` | `PrototypeCameraInputDriver.cs` |
+| `[x]` | **Task 5**: Triển khai `ICameraInputBlocker` trong 2 lớp View của Runtime | `PrototypePlacementControlsView.cs`, `PrototypeTownDebugView.cs` |
+| `[x]` | **Task 6**: Cấu hình Dependency Injection trong GameLifetimeScope | `GameLifetimeScope.cs` |
+| `[x]` | **Task 7**: Đồng bộ hóa Đồ thị Graphify và Kiểm thử biên dịch | Graphify, Unity Editor |
+| `[x]` | **Task 8**: Kiểm thử Play Mode thủ công trong Unity Editor | Unity Editor |
