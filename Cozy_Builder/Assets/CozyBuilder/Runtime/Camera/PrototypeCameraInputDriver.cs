@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using VContainer;
 using UnityCamera = UnityEngine.Camera;
+using CozyBuilder.Town.Placement;
+using CozyBuilder.Town.Debugging;
 
 namespace CozyBuilder.Camera
 {
@@ -22,11 +25,21 @@ namespace CozyBuilder.Camera
         [SerializeField] private float touchPinchZoomUnits = 0.018f;
 
         private CameraService cameraService;
+        private PrototypePlacementControlsView controlsView;
+        private PrototypeTownDebugView debugView;
+
+        private bool wasDragStartedOverUI = false;
+        private bool wasTouchStartedOverUI = false;
 
         [Inject]
-        public void Construct(CameraService cameraService)
+        public void Construct(
+            CameraService cameraService,
+            PrototypePlacementControlsView controlsView,
+            PrototypeTownDebugView debugView)
         {
             this.cameraService = cameraService;
+            this.controlsView = controlsView;
+            this.debugView = debugView;
         }
 
         private void Start()
@@ -83,22 +96,45 @@ namespace CozyBuilder.Camera
                 ResetCamera();
             }
 
+            var screenPos = mouse.position.ReadValue();
+            var leftPressed = mouse.leftButton.isPressed;
+            var middlePressed = mouse.middleButton.isPressed;
+
+            // When a press is first detected, check if it's over the UI
+            if (mouse.leftButton.wasPressedThisFrame || mouse.middleButton.wasPressedThisFrame)
+            {
+                wasDragStartedOverUI = IsPointerOverUI(screenPos);
+            }
+
+            // If we are not pressing anything, reset the state
+            if (!leftPressed && !middlePressed)
+            {
+                wasDragStartedOverUI = false;
+            }
+
+            // Block zoom if pointer is currently over UI
+            var scroll = mouse.scroll.ReadValue().y;
+            if (!Mathf.Approximately(scroll, 0f) && !IsPointerOverUI(screenPos))
+            {
+                cameraService.Zoom(-scroll * mouseWheelZoomUnits);
+            }
+
+            // Block dragging if it was started over the UI
+            if (wasDragStartedOverUI)
+            {
+                return;
+            }
+
             var delta = mouse.delta.ReadValue();
             var altHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
-            if (altHeld && mouse.leftButton.isPressed)
+            if (altHeld && leftPressed)
             {
                 cameraService.Orbit(delta.x * orbitDegreesPerPixel, -delta.y * orbitDegreesPerPixel);
             }
 
-            if (mouse.middleButton.isPressed)
+            if (middlePressed)
             {
                 cameraService.Pan(delta, GetPanUnitsPerPixel());
-            }
-
-            var scroll = mouse.scroll.ReadValue().y;
-            if (!Mathf.Approximately(scroll, 0f))
-            {
-                cameraService.Zoom(-scroll * mouseWheelZoomUnits);
             }
         }
 
@@ -112,13 +148,31 @@ namespace CozyBuilder.Camera
 
             var first = touchscreen.touches[0];
             var second = touchscreen.touches[1];
-            if (!first.press.isPressed || !second.press.isPressed)
+            
+            // Check if both touches are pressed
+            var firstPressed = first.press.isPressed;
+            var secondPressed = second.press.isPressed;
+
+            if (!firstPressed || !secondPressed)
             {
+                wasTouchStartedOverUI = false;
                 return;
             }
 
             var firstPosition = first.position.ReadValue();
             var secondPosition = second.position.ReadValue();
+
+            // When touch first starts, check if it's over the UI
+            if (first.press.wasPressedThisFrame || second.press.wasPressedThisFrame)
+            {
+                wasTouchStartedOverUI = IsPointerOverUI(firstPosition) || IsPointerOverUI(secondPosition);
+            }
+
+            if (wasTouchStartedOverUI)
+            {
+                return;
+            }
+
             var firstDelta = first.delta.ReadValue();
             var secondDelta = second.delta.ReadValue();
             var panDelta = (firstDelta + secondDelta) * 0.5f;
@@ -129,6 +183,35 @@ namespace CozyBuilder.Camera
             var currentDistance = Vector2.Distance(firstPosition, secondPosition);
             var previousDistance = Vector2.Distance(previousFirst, previousSecond);
             cameraService.Zoom(-(currentDistance - previousDistance) * touchPinchZoomUnits);
+        }
+
+        private bool IsPointerOverUI(Vector2 screenPosition)
+        {
+            // 1. Check EventSystem for uGUI / UI Toolkit / Canvas elements
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return true;
+            }
+
+            // 2. Check IMGUI panels
+            Vector2 guiPos = new Vector2(screenPosition.x, Screen.height - screenPosition.y);
+            if (controlsView != null && controlsView.enabled && controlsView.gameObject.activeInHierarchy)
+            {
+                if (controlsView.PanelRect.Contains(guiPos))
+                {
+                    return true;
+                }
+            }
+
+            if (debugView != null && debugView.enabled && debugView.gameObject.activeInHierarchy)
+            {
+                if (debugView.PanelRect.Contains(guiPos))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private float GetPanUnitsPerPixel()

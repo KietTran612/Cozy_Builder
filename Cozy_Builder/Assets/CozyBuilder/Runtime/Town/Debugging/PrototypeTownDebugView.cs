@@ -12,6 +12,8 @@ namespace CozyBuilder.Town.Debugging
         [SerializeField] private Rect panelRect = new Rect(16f, 208f, 320f, 300f);
         [SerializeField] private int maxDirtyPreview = 8;
 
+        public Rect PanelRect => panelRect;
+
         private readonly GridCoord[] dirtyPreviewBuffer = new GridCoord[16];
         private readonly StringBuilder labelBuilder = new StringBuilder(512);
         private PrototypeTownDebugState debugState;

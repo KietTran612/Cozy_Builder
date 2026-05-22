@@ -9,6 +9,8 @@ namespace CozyBuilder.Town.Placement
         [SerializeField] private int colorCount = 4;
         [SerializeField] private int materialCount = 4;
 
+        public Rect PanelRect => panelRect;
+
         private PrototypePlacementState placementState;
 
         [Inject]

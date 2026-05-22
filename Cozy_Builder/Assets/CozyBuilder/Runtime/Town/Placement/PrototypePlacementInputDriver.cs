@@ -1,6 +1,7 @@
 using CozyBuilder.Town.Debugging;
 using CozyBuilder.Town.Rendering;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using VContainer;
 using UnityCamera = UnityEngine.Camera;
@@ -15,6 +16,8 @@ namespace CozyBuilder.Town.Placement
         private PrototypePlacementState placementState;
         private PrototypeTownDebugState debugState;
         private TownGridView townGridView;
+        private PrototypePlacementControlsView controlsView;
+        private PrototypeTownDebugView debugView;
         private Plane gridPlane;
 
         [Inject]
@@ -22,12 +25,16 @@ namespace CozyBuilder.Town.Placement
             PlacementService placementService,
             PrototypePlacementState placementState,
             PrototypeTownDebugState debugState,
-            TownGridView townGridView)
+            TownGridView townGridView,
+            PrototypePlacementControlsView controlsView,
+            PrototypeTownDebugView debugView)
         {
             this.placementService = placementService;
             this.placementState = placementState;
             this.debugState = debugState;
             this.townGridView = townGridView;
+            this.controlsView = controlsView;
+            this.debugView = debugView;
         }
 
         private void Start()
@@ -43,26 +50,73 @@ namespace CozyBuilder.Town.Placement
         private void Update()
         {
             var mouse = Mouse.current;
-            if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+            if (mouse != null)
             {
-                var keyboard = Keyboard.current;
-                var cameraModifierHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
-                if (!cameraModifierHeld)
+                var screenPos = mouse.position.ReadValue();
+                if (IsPointerOverUI(screenPos))
                 {
-                    TryApplyPointer(mouse.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
+                    return;
+                }
+
+                if (mouse.leftButton.wasPressedThisFrame)
+                {
+                    var keyboard = Keyboard.current;
+                    var cameraModifierHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
+                    if (!cameraModifierHeld)
+                    {
+                        TryApplyPointer(screenPos, placementState != null && placementState.IsDeleteMode);
+                    }
+                }
+
+                if (mouse.rightButton.wasPressedThisFrame)
+                {
+                    TryApplyPointer(screenPos, true);
                 }
             }
 
-            if (mouse != null && mouse.rightButton.wasPressedThisFrame)
+            var touchscreen = Touchscreen.current;
+            if (touchscreen != null)
             {
-                TryApplyPointer(mouse.position.ReadValue(), true);
+                var screenPos = touchscreen.primaryTouch.position.ReadValue();
+                if (IsPointerOverUI(screenPos))
+                {
+                    return;
+                }
+
+                if (touchscreen.primaryTouch.press.wasPressedThisFrame)
+                {
+                    TryApplyPointer(screenPos, placementState != null && placementState.IsDeleteMode);
+                }
+            }
+        }
+
+        private bool IsPointerOverUI(Vector2 screenPosition)
+        {
+            // 1. Check EventSystem for uGUI / UI Toolkit / Canvas elements
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return true;
             }
 
-            var touchscreen = Touchscreen.current;
-            if (touchscreen != null && touchscreen.primaryTouch.press.wasPressedThisFrame)
+            // 2. Check IMGUI panels
+            Vector2 guiPos = new Vector2(screenPosition.x, Screen.height - screenPosition.y);
+            if (controlsView != null && controlsView.enabled && controlsView.gameObject.activeInHierarchy)
             {
-                TryApplyPointer(touchscreen.primaryTouch.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
+                if (controlsView.PanelRect.Contains(guiPos))
+                {
+                    return true;
+                }
             }
+
+            if (debugView != null && debugView.enabled && debugView.gameObject.activeInHierarchy)
+            {
+                if (debugView.PanelRect.Contains(guiPos))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool TryPlaceAtScreenPosition(Vector2 screenPosition)
