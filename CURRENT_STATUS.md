@@ -24,7 +24,8 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline after completing procedural rules: `ced9487 docs: finalize procedural rules system task tracker`.
+- Latest committed baseline after completing UI Pointer Blocking: `df2297a feat: implement UI pointer blocking and input routing for camera and placement drivers`.
+
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
 - Current uncommitted work includes updating status/handover documentation files.
@@ -66,22 +67,21 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation
 - Prototype input driver:
   - `PrototypePlacementInputDriver`
-  - Converts mouse/touch screen input to a grid coordinate through `TownGridView`
-  - Calls `PlacementService` for place/delete
-  - Uses Unity Input System (`Mouse.current` / `Touchscreen.current`), not legacy `UnityEngine.Input`
+  - Converts mouse/touch screen input to a grid coordinate through `TownGridView` and calls `PlacementService`
+  - Integrates pointer blocking via `IsPointerOverUI` (maps coordinate space and checks EventSystem plus IMGUI panel boundaries) to prevent placing or deleting blocks when interacting with UI elements
 - Prototype placement controls:
-  - `PrototypePlacementState`
-  - `PrototypePlacementMode`
-  - `PrototypePlacementControlsView`
+  - `PrototypePlacementState`, `PrototypePlacementMode`, and `PrototypePlacementControlsView`
   - Provides minimal IMGUI controls for place/delete mode, `ColorId`, and `MaterialId`
+  - Exposes IMGUI screen boundaries via public `PanelRect` property for pointer blocking checks
 - Prototype debug views:
-  - `PrototypeTownDebugState`
-  - `PrototypeTownDebugView`
+  - `PrototypeTownDebugState` and `PrototypeTownDebugView`
   - Shows selected cell id/data, cardinal neighbor info, dirty queue count/preview, and rule result preview
+  - Exposes IMGUI screen boundaries via public `PanelRect` property for pointer blocking checks
 - Prototype camera controls:
-  - `CameraService`
-  - `PrototypeCameraInputDriver`
+  - `CameraService` and `PrototypeCameraInputDriver`
   - Provides temporary orbit/pan/zoom/reset camera controls through Unity Input System
+  - Integrates robust pointer blocking via `IsPointerOverUI` to block orbit/pan dragging startup and scroll zoom over UI elements, while maintaining drag continuity if dragging started outside UI bounds
+
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -103,9 +103,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Iterate on UI/input routing (e.g. uGUI or UI Toolkit) to handle pointer blocking and separate placement gestures from camera orbit.
+1. Polish camera pivot, zoom responsiveness, and gesture support on mobile targets.
 2. Expand procedural rules variations or color/palette/material integrations for block views.
-3. Clean up and polish camera pivot and gesture responsiveness on mobile targets.
+3. Establish uGUI or UI Toolkit production UI layout using the developed EventSystem pointer blocking base.
+
 
 ## Latest Validation Notes
 
@@ -176,6 +177,13 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Dynamic `Dictionary<ushort, Queue<GameObject>>` recycling has zero runtime heap allocations in dirty update cycles.
   - Clean recycling in `RefreshCell` and `ClearGeneratedCells` successfully avoids visual artifacts and memory leaks.
   - Project compiles cleanly with no warnings or errors, and `graphify update .` successfully updated the codebase to 168 nodes, 225 edges, and 20 communities.
+- UI Pointer Blocking & Input Routing validation succeeded:
+  - Exposing public `PanelRect` getters on `PrototypePlacementControlsView` and `PrototypeTownDebugView` provides bounds query APIs.
+  - Switch coordinates and `IsPointerOverUI` checks in `PrototypePlacementInputDriver` block block placement/deletion cleanly when clicking UI buttons.
+  - `PrototypeCameraInputDriver` tracks `wasDragStartedOverUI`/`wasTouchStartedOverUI` to block starting zoom and orbit/pan dragging over UI, while drag continuity allows camera movements to traverse across UI panels smoothly if started outside.
+  - Real-time Play Mode execution compiles cleanly with zero warnings/errors.
+  - `graphify update .` successfully updated the codebase to 172 nodes, 235 edges, and 21 communities.
+
 
 ## Latest Code Notes
 

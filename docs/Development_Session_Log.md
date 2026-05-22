@@ -326,3 +326,25 @@ Important commits:
 - `b1c6948` refactor: adjust preview method invocation parameters in PrototypeTownDebugView
 - `3fcfea7` feat: implement height stack and neighbor-aware rules in RuleEvaluator
 - `28c535d` refactor: update Preview signature in PlacementService to pass town data and cell coordinate
+
+## 2026-05-22 - UI Pointer Blocking & Input Routing
+
+- Added public `PanelRect` property getter to `PrototypePlacementControlsView` and `PrototypeTownDebugView` to expose IMGUI bounds.
+- Implemented `IsPointerOverUI(Vector2 screenPosition)` inside `PrototypePlacementInputDriver` and `PrototypeCameraInputDriver`:
+  - Checked `EventSystem.current.IsPointerOverGameObject()` for future-proofing against uGUI/UI Toolkit.
+  - Checked if the cursor is within the bounds of the IMGUI panels by inverting the screen Y-axis (`guiPos = new Vector2(screenPos.x, Screen.height - screenPos.y)`) to match IMGUI's top-left origin.
+- Blocked block placement and deletion inside `PrototypePlacementInputDriver` when the cursor is over any active UI panels.
+- Blocked camera orbit, panning, and zoom inside `PrototypeCameraInputDriver` when pointer interaction starts over active UI panels:
+  - Tracked click/touch start state using `wasDragStartedOverUI` and `wasTouchStartedOverUI` on the first frame of interaction (`wasPressedThisFrame`).
+  - Allowed camera orbit/panning dragging to continue smoothly when the cursor crosses active UI panels, provided the interaction started outside the UI (Drag Continuity).
+  - Blocked scroll wheel zoom when the pointer is positioned over active UI panels.
+- Updated project plans, approved implementation plans, and unified task lists under `docs/plans/`.
+
+Validation:
+- C# project compiles cleanly without any errors or warnings.
+- Real-time interaction verified in Play Mode: buttons, placement, deletion, camera panning, camera orbit, zoom, and touch interactions perform cleanly with robust pointer blocking.
+- `graphify update .` successfully updated the AST graph to 172 nodes, 235 edges, and 21 communities.
+
+Important commits:
+- `df2297a` feat: implement UI pointer blocking and input routing for camera and placement drivers
+

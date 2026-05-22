@@ -24,7 +24,8 @@ When writing a new `Latest Session Update`, first append the previous latest ses
 - Async package: UniTask.
 - Input package: Unity Input System.
 - First imported/test asset pack: KayKit Medieval Builder Pack 1.0.
-- Latest committed baseline before current camera work: `2a7824d Add prototype town debug view`.
+- Latest committed baseline: `df2297a feat: implement UI pointer blocking and input routing for camera and placement drivers`.
+
 
 Check the live state before editing:
 
@@ -102,47 +103,44 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Procedural Rules System
+## Latest Session Update - 2026-05-22 - UI Pointer Blocking & Input Routing
 
 Baseline before the work:
-- Camera work is registered in local workspace and committed, starting implementation of Procedural Rules.
+- Procedural rules and object pooling completed. Input conflicts still existed where clicking IMGUI buttons placed/deleted blocks or rotated camera.
 
 Current commit state:
-- Procedural Rules System and dynamic zero-allocation pooling are 100% completed and fully committed.
-- Baseline commit: `ced9487 docs: finalize procedural rules system task tracker`
+- UI/Input Routing and Pointer Blocking are 100% completed and fully committed.
+- Baseline commit: `df2297a feat: implement UI pointer blocking and input routing for camera and placement drivers`
 
 Implemented:
-- Added `RotationId` byte property (values 0..3 for 0°, 90°, 180°, 270°) to `RuleResult` struct with full backward-compatibility.
-- Added height stack and neighbor-aware rules in `RuleEvaluator.cs` supporting:
-  - Waterfront Stilts (`VisualId = 4` at base level on water-adjacent grids)
-  - Small House (`VisualId = 1` for single-block grid stacks)
-  - Tower Top (`VisualId = 3` for stacks exceeding neighbors' heights)
-  - Row Houses Roof (`VisualId = 2` with auto-alignment along East-West/North-South axes)
-  - Walls (`VisualId = 5` and `6` depending on neighboring blocks' presence)
-- Refactored `PlacementService.Preview` and debug views to query neighborhoods based on cell coordinates.
-- Redesigned `TownGridView.cs`'s visual block updates to use dynamic `Dictionary<ushort, Queue<GameObject>>` object pooling.
-- Used zero-allocation `struct BlockViewData` in the visual state to completely eliminate heap allocation noise in the hot path.
-- Configured 6 specialized prefab fields in `TownGridView` with dynamic inspector binding and a safe fallback to `blockPrefab`.
-- Handled correct rotation calculations (`result.RotationId * 90f`) and safe clean-up on block deletion or state resets.
+- Added public `PanelRect` property getter to `PrototypePlacementControlsView` and `PrototypeTownDebugView` to expose IMGUI bounds.
+- Implemented robust `IsPointerOverUI` method inside `PrototypePlacementInputDriver` and `PrototypeCameraInputDriver`:
+  - Checked `EventSystem.current.IsPointerOverGameObject()` to seamlessly support future uGUI/UI Toolkit elements.
+  - Checked IMGUI panel rects by mapping coordinates from Input System's bottom-left origin to IMGUI's top-left origin using screen height.
+- Blocked block placement and deletion in `PrototypePlacementInputDriver` when the cursor is over any active UI panels.
+- Blocked camera orbit/panning dragging and scroll zoom in `PrototypeCameraInputDriver` when pointer interaction starts over active UI panels:
+  - Tracked click/touch start state using `wasDragStartedOverUI`/`wasTouchStartedOverUI` on the first frame of interaction.
+  - Allowed camera orbit/panning dragging to continue smoothly when the cursor crosses active UI panels, provided the interaction started outside the UI (Drag Continuity).
+  - Blocked scroll wheel zoom when the pointer is positioned over active UI panels.
 
 Validation:
-- C# structural code compiles cleanly without any errors or warnings.
-- Real-time cell morphing, connected roofs rotation, stilts foundation placement, and vertical walls stack work precisely as designed.
-- Object pooling behaves with zero GC allocation spikes during placement/deletion.
-- Graphify AST model successfully rebuilt: 168 nodes, 225 edges, and 20 communities.
+- C# project compiles cleanly without any errors or warnings.
+- Real-time interaction verified in Play Mode: buttons, placement, deletion, camera panning, camera orbit, zoom, and touch interactions perform cleanly with robust pointer blocking.
+- `graphify update .` successfully updated the AST graph to 172 nodes, 235 edges, and 21 communities.
 
 ## Next Work
 
-1. Iterate on UI/input routing (e.g. uGUI or UI Toolkit) to handle pointer blocking and separate placement gestures from camera orbit.
+1. Polish camera pivot, zoom responsiveness, and gesture support on mobile targets.
 2. Expand procedural rules variations or color/palette/material integrations for block views.
-3. Clean up and polish camera pivot and gesture responsiveness on mobile targets.
+3. Establish uGUI or UI Toolkit production UI layout using the developed EventSystem pointer blocking base.
 
-For procedural rule work, read:
+For camera and input routing work, read:
 
 - `docs/Architecture_And_Code_Rules.md`
 - `docs/Unity_URP_Performance_Code_Rules.md`
 - `docs/Prototype_Core_Scope.md`
 - `graphify-out/GRAPH_REPORT.md`
+
 
 Use Graphify for code navigation before broad grep:
 

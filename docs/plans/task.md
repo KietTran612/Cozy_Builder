@@ -1,12 +1,11 @@
-# Tiến độ Thực hiện Dự án (Task Tracker)
-
-Dưới đây là bảng theo dõi tiến độ thực hiện hệ thống Luật Thủ tục (Procedural Rules System) theo từng bước nhỏ cực kỳ kỷ luật của Superpower.
+# Bảng Theo Dõi Tiến Độ (Task Tracker) - UI/Input Routing & Pointer Blocking
 
 | Trạng thái | Nhiệm vụ | File liên quan |
 | :---: | :--- | :--- |
-| `[x]` | **Nhiệm vụ 1**: Tái cấu trúc cấu trúc dữ liệu RuleResult | `RuleResult.cs` |
-| `[x]` | **Nhiệm vụ 2**: Triển khai logic nâng cao trong RuleEvaluator.cs | `RuleEvaluator.cs` |
-| `[x]` | **Nhiệm vụ 3**: Tái cấu trúc chữ ký gọi hàm trong PlacementService.cs | `PlacementService.cs` |
-| `[x]` | **Nhiệm vụ 4**: Tái cấu trúc lời gọi hàm trong Debug UI | `PrototypeTownDebugView.cs` |
-| `[x]` | **Nhiệm vụ 5**: Cấu hình Prefab và Object Pooling trong TownGridView.cs | `TownGridView.cs` |
-| `[x]` | **Nhiệm vụ 6**: Xác minh Thủ công và Đồng bộ hóa Đồ thị Kiến thức | `TownGridView.cs`, Graphify |
+| `[x]` | **Nhiệm vụ 1**: Thêm PanelRect public getter trong PrototypePlacementControlsView.cs | `PrototypePlacementControlsView.cs` |
+| `[x]` | **Nhiệm vụ 2**: Thêm PanelRect public getter trong PrototypeTownDebugView.cs | `PrototypeTownDebugView.cs` |
+| `[x]` | **Nhiệm vụ 3**: Cập nhật logic chặn đặt/xóa khối trong PrototypePlacementInputDriver.cs | `PrototypePlacementInputDriver.cs` |
+| `[x]` | **Nhiệm vụ 4**: Cập nhật logic chặn xoay/pan/zoom camera trong PrototypeCameraInputDriver.cs | `PrototypeCameraInputDriver.cs` |
+| `[x]` | **Nhiệm vụ 5**: Kiểm thử tương tác nút bấm giao diện và điều khiển camera trong Unity Editor | Play Mode |
+| `[x]` | **Nhiệm vụ 6**: Đồng bộ đồ thị AST Graphify và hoàn tất các tài liệu bàn giao | Graphify, Git |
+
