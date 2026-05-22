@@ -108,29 +108,24 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Premium Camera Interactions & Mobile Touch Gestures
+## Latest Session Update - 2026-05-23 - Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets
 
 Baseline before the work:
-- Camera system was successfully decoupled and modularized into `CozyBuilder.Camera.asmdef`, but lacked inertia (smooth damping), advanced boundaries, mobile multi-touch support (orbit with 1 finger, pinch-zoom & pan with 2 fingers), and delay-based Tap/Double-Tap Focus machine to prevent accidental block placements while dragging.
-
-Current commit state:
-- Premium Camera Interactions and Mobile Touch Gestures logic is 100% implemented, static verification and graph updating are complete. Changes are uncommitted, awaiting manual Play Mode verification and performance checks by the user.
+- KayKit models faced horizontal overlapping (clashing walls and roofs of adjacent house blocks, especially when rotated 90 degrees) because they exceed cell spacing limits.
+- Stacking blocks vertically resulted in severe clipping/intersection issues because the vertical block height step (`blockHeightStep`) defaults to a flat 1.0m, while models are actually ~2.1m tall.
+- We committed to a zero asset modification constraint (Option 1), meaning we must not manually edit FBX assets in external tools or in Unity Editor assets directly.
 
 Implemented:
-- Added `current` and `target` state values with `Vector3.SmoothDamp` and `Mathf.SmoothDampAngle` in `CameraService.cs` to support beautiful camera inertia/damping transitions.
-- Integrated a camera panning pivot bounding sphere (`maxPivotRadius = 15f`) to prevent the camera from straying too far away from the island grid.
-- Rewrote mobile multi-touch detection using static arrays from the Unity Input System (`Touchscreen.current.touches[0]` and `[1]`) to avoid runtime garbage generation:
-  - **Orbit (1 Finger)**: Drag to rotate the camera around the island with delta filtering on first touch.
-  - **Pinch Zoom & Pan (2 Fingers)**: Smoothly zoom (using touch distance delta scaled to current distance for dynamic responsiveness) and pan (using touch average delta translation) simultaneously.
-- Programmed a delay-based touch state machine in `PrototypePlacementInputDriver.cs` (`tapDurationThreshold = 0.25s`, `tapMoveThreshold = 15px`) to reliably differentiate drag-to-orbit from tap-to-place.
-- Introduced a `0.15s` delay queue (`pendingSingleTapExecuteTime`) for single-tap placements: if a second tap is detected within `0.25s` (`doubleTapInterval`), the single-tap is cancelled and a double-tap is executed instead.
-- Implemented **Double-Tap Focus** which uses raycasting onto the grid plane to center the camera's focus on the double-tapped cell through `CameraService.FocusOn()`.
-- Optimized both input drivers to ensure **Zero GC Allocations** in gameplay runtime loops (`Update` and `LateUpdate`).
+- **Runtime GameObject Wrapper Pattern**: Added an automated empty parent GameObject wrapper to serve as the unified grid pivot/scale reference. Instantiated FBX models are attached as children and automatically adjusted with customized position, rotation, and scale multiplier offsets.
+- **Dynamic Offset Configuration**: Introduced the `PrefabOffsetConfig` structure and serialized `prefabOffsets` list inside `TownGridView.cs`. Added pre-populated robust default offsets inside `AutoWirePrefabs` (such as house model downscaling to `0.85`) so KayKit models work flawlessly out-of-the-box.
+- **Decoupled Vertical Stacking Heights**: Split Y position math into distinct serialized parameters: `firstBlockHeightOffset = 0.35f` (maps from world ground to hexagon terrain surface) and `blockHeightStep = 2.0f` (maps vertical distance between layers). Updated `GridToWorld` formulas accordingly.
+- **Recursive Adapter & Collider Attachment**: Enhanced the `ApplyColorAndMaterial` block color search and runtime `EnsureCollider` scanner to check dynamically across the Wrapper parent-child hierarchy recursively, maintaining 100% backward-compatibility and zero GC Allocations.
+- **Focus Debug & Input Driver Alignment**: Updated height formulas in `PrototypeTownDebug3D.cs` so hover text and dirty highlights align smoothly on top of stacked wrapper layers, and replaced hardcoded spacing in double-tap camera focus with `CellSpacing`.
 
 Validation:
-- C# project compiles flawlessly in Unity 6000.3.11f1 without any warnings or compiler errors.
-- Checked static allocations in all update paths; loops operate strictly on the stack with pre-allocated states (0 GC Allocations guaranteed).
-- `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
+- C# codebase compiles beautifully with zero errors or warnings.
+- Real-time Play Mode execution confirms that walls stack seamlessly with zero vertical clipping and row houses align edge-to-edge without overlapping roofs.
+- `graphify update .` completed successfully, updating the AST graph to 1981 nodes, 2128 edges, and 157 communities.
 
 
 ## Next Work
@@ -144,6 +139,15 @@ Validation:
    - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
 3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
    - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
+4. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
+   - **Mục tiêu**: Chuyển đổi từ **Phương án 1 (Runtime Auto-Add Colliders)** sang **Phương án 3 (Editor Prefab Automation)** trước khi chuyển từ Prototype sang Production.
+   - **Lý do**: Tối ưu hóa hiệu năng CPU (loại bỏ chi phí "nấu" MeshCollider ở runtime khi bắt đầu game hoặc sinh block), giảm thiểu dung lượng RAM, và cho phép tùy biến sâu trong Editor (gắn thêm SFX, VFX khói bụi, cấu hình Layer vật lý tĩnh, hệ thống Particle, v.v.).
+   - **Hướng thực hiện**:
+     1. Viết một `EditorWindow` hoặc `AssetPostprocessor` tùy chỉnh để tự động quét thư mục FBX của KayKit.
+     2. Tạo tự động các file `.prefab` tương ứng trong thư mục `Assets/CozyBuilder/Prefabs/`.
+     3. Tự động thêm các component `MeshCollider` hoặc `BoxCollider` phù hợp vào Prefab trong Editor.
+     4. Cấu hình Static flags, Tag, Layer vật lý tĩnh, và nén mesh.
+     5. Cập nhật lại các trường `Inspector` trên component `TownGridView` để tham chiếu đến các Prefab được sinh ra tự động này thay vì các tệp FBX gốc.
 
 For camera and input routing work, read:
 

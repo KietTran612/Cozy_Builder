@@ -10,7 +10,7 @@ namespace CozyBuilder.Town.Debugging
 {
     public sealed class PrototypeTownDebugView : MonoBehaviour, ICameraInputBlocker
     {
-        [SerializeField] private Rect panelRect = new Rect(16f, 208f, 320f, 300f);
+        [SerializeField] private Rect panelRect = new Rect(16f, 208f, 320f, 350f);
         [SerializeField] private int maxDirtyPreview = 8;
 
         public Rect PanelRect => panelRect;
@@ -21,18 +21,21 @@ namespace CozyBuilder.Town.Debugging
         private TownDataStore townDataStore;
         private TownVisualRebuilder townVisualRebuilder;
         private PlacementService placementService;
+        private PrototypeTownDebug3D debug3D;
 
         [Inject]
         public void Construct(
             PrototypeTownDebugState debugState,
             TownDataStore townDataStore,
             TownVisualRebuilder townVisualRebuilder,
-            PlacementService placementService)
+            PlacementService placementService,
+            PrototypeTownDebug3D debug3D)
         {
             this.debugState = debugState;
             this.townDataStore = townDataStore;
             this.townVisualRebuilder = townVisualRebuilder;
             this.placementService = placementService;
+            this.debug3D = debug3D;
         }
 
         public bool IsPointerOverUI(Vector2 screenPosition)
@@ -57,6 +60,34 @@ namespace CozyBuilder.Town.Debugging
             GUILayout.Label("Town Debug");
             DrawSelectedCell();
             DrawDirtyQueue();
+
+            if (debug3D != null)
+            {
+                GUILayout.Space(5);
+                GUILayout.Label("3D Debug Tools");
+                GUILayout.BeginHorizontal();
+                
+                bool gridActive = GUILayout.Toggle(debug3D.IsGridActive, "Grid Lines");
+                if (gridActive != debug3D.IsGridActive)
+                {
+                    debug3D.ToggleGrid(gridActive);
+                }
+
+                bool focusActive = GUILayout.Toggle(debug3D.IsFocusDebugActive, "Focus Info");
+                if (focusActive != debug3D.IsFocusDebugActive)
+                {
+                    debug3D.ToggleFocusDebug(focusActive);
+                }
+
+                bool dirtyActive = GUILayout.Toggle(debug3D.IsDirtyHighlightActive, "Dirty Box");
+                if (dirtyActive != debug3D.IsDirtyHighlightActive)
+                {
+                    debug3D.ToggleDirtyHighlight(dirtyActive);
+                }
+
+                GUILayout.EndHorizontal();
+            }
+
             GUILayout.EndArea();
         }
 

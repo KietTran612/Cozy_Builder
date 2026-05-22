@@ -1,4 +1,5 @@
 using CozyBuilder.Camera;
+using CozyBuilder.Town.Data;
 using CozyBuilder.Town.Debugging;
 using CozyBuilder.Town.Rendering;
 using UnityEngine;
@@ -32,6 +33,10 @@ namespace CozyBuilder.Town.Placement
         private Vector2 touchStartPos;
         private float touchStartTime;
         private bool isPossibleTap;
+        
+        // Quản lý trạng thái vẽ kéo liên tục (Drag-to-Draw)
+        private GridCoord lastAppliedCoord;
+        private bool hasLastAppliedCoord = false;
         
         // Quản lý trạng thái trễ để phân biệt Tap và Double-Tap
         private float lastTapReleaseTime = -999f;
@@ -151,15 +156,13 @@ namespace CozyBuilder.Town.Placement
                 return;
             }
 
-            var ray = inputCamera.ScreenPointToRay(screenPosition);
-            if (gridPlane.Raycast(ray, out var distance))
+            if (TryGetWorldPositionFromScreen(screenPosition, out var worldPosition))
             {
-                var worldPosition = ray.GetPoint(distance);
                 if (townGridView.TryGetCoordFromWorld(worldPosition, out var coord))
                 {
                     // Lấy nét camera vào trung tâm ô đất được nhấp đúp
-                    // KayKit spacing là 2m, nên nhân hệ số 2
-                    Vector3 cellWorldPos = townGridView.transform.position + new Vector3(coord.X * 2.0f, 0f, coord.Y * 2.0f);
+                    float spacing = townGridView.CellSpacing;
+                    Vector3 cellWorldPos = townGridView.transform.position + new Vector3(coord.X * spacing, 0f, coord.Y * spacing);
                     cameraService.FocusOn(cellWorldPos);
                     
                     if (debugState != null)
@@ -170,27 +173,101 @@ namespace CozyBuilder.Town.Placement
             }
         }
 
+        private bool TryGetWorldPositionFromScreen(Vector2 screenPosition, out Vector3 worldPosition)
+        {
+            if (inputCamera == null)
+            {
+                worldPosition = Vector3.zero;
+                return false;
+            }
+
+            var ray = inputCamera.ScreenPointToRay(screenPosition);
+
+            // 1. Ưu tiên dùng Physics Raycast để chạm chính xác vào Collider bề mặt 3D (ô đất lục giác, block nhà)
+            if (Physics.Raycast(ray, out RaycastHit hit, 150f))
+            {
+                worldPosition = hit.point;
+                return true;
+            }
+
+            // 2. Fallback về Raycast toán học nằm ngang Y = 0 nếu click ra ngoài khoảng không
+            if (gridPlane.Raycast(ray, out var distance))
+            {
+                worldPosition = ray.GetPoint(distance);
+                return true;
+            }
+
+            worldPosition = Vector3.zero;
+            return false;
+        }
+
         private void HandleMouseInput(Mouse mouse)
         {
             var screenPos = mouse.position.ReadValue();
             if (IsPointerOverUI(screenPos))
             {
+                hasLastAppliedCoord = false;
                 return;
             }
 
-            if (mouse.leftButton.wasPressedThisFrame)
+            var keyboard = Keyboard.current;
+            var cameraModifierHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
+
+            // 1. Nhấn giữ chuột trái để vẽ liên tục (Drag-to-Draw)
+            if (mouse.leftButton.isPressed && !cameraModifierHeld)
             {
-                var keyboard = Keyboard.current;
-                var cameraModifierHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
-                if (!cameraModifierHeld)
+                if (TryGetWorldPositionFromScreen(screenPos, out var worldPosition))
                 {
-                    TryApplyPointer(screenPos, placementState != null && placementState.IsDeleteMode);
+                    if (townGridView.TryGetCoordFromWorld(worldPosition, out var coord))
+                    {
+                        if (!hasLastAppliedCoord || coord != lastAppliedCoord)
+                        {
+                            bool deleteMode = placementState != null && placementState.IsDeleteMode;
+                            TryApplyPointer(screenPos, deleteMode);
+                            
+                            lastAppliedCoord = coord;
+                            hasLastAppliedCoord = true;
+                        }
+                    }
+                    else
+                    {
+                        hasLastAppliedCoord = false;
+                    }
+                }
+                else
+                {
+                    hasLastAppliedCoord = false;
                 }
             }
-
-            if (mouse.rightButton.wasPressedThisFrame)
+            // 2. Nhấn giữ chuột phải để xóa liên tục (Drag-to-Delete)
+            else if (mouse.rightButton.isPressed)
             {
-                TryApplyPointer(screenPos, true);
+                if (TryGetWorldPositionFromScreen(screenPos, out var worldPosition))
+                {
+                    if (townGridView.TryGetCoordFromWorld(worldPosition, out var coord))
+                    {
+                        if (!hasLastAppliedCoord || coord != lastAppliedCoord)
+                        {
+                            TryApplyPointer(screenPos, true);
+                            
+                            lastAppliedCoord = coord;
+                            hasLastAppliedCoord = true;
+                        }
+                    }
+                    else
+                    {
+                        hasLastAppliedCoord = false;
+                    }
+                }
+                else
+                {
+                    hasLastAppliedCoord = false;
+                }
+            }
+            else
+            {
+                // Nhả các nút chuột hoặc Alt xoay camera -> Reset vết vẽ liên tục
+                hasLastAppliedCoord = false;
             }
         }
 
@@ -260,13 +337,11 @@ namespace CozyBuilder.Town.Placement
                 return false;
             }
 
-            var ray = inputCamera.ScreenPointToRay(screenPosition);
-            if (!gridPlane.Raycast(ray, out var distance))
+            if (!TryGetWorldPositionFromScreen(screenPosition, out var worldPosition))
             {
                 return false;
             }
 
-            var worldPosition = ray.GetPoint(distance);
             if (!townGridView.TryGetCoordFromWorld(worldPosition, out var coord))
             {
                 return false;

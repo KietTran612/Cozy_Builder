@@ -383,3 +383,24 @@ Important commits:
 - Tri?n khai nh?p d�p d? l?y n�t (`ExecuteDoubleTap` -> `FocusOn`), t? d?ng h?y c� ch?m don dang ch? tr? `0.15s` v� d?ch chuy?n camera mu?t m� v�o ch�nh gi?a � d?t du?c nh?p d�p.
 - T?i uu h�a tri?t d? GC allocations trong `Update`/`LateUpdate` c?a c�c driver c?m ?ng v� camera, d?t m?c 0 bytes ho�n h?o.
 - �?ng b? h�a c?u tr�c d? th? m� ngu?n b?ng l?nh `graphify update .` th�nh c�ng.
+
+
+## 2026-05-23 - Drag-to-Draw, Physics Raycast & Runtime Collider Auto-Addition
+
+- Sửa đổi cơ chế Raycast trong `PrototypePlacementInputDriver` sang sử dụng `Physics.Raycast` làm ưu tiên hàng đầu thay vì mặt phẳng toán học `gridPlane.Raycast`. Giải quyết triệt để vấn đề lệch góc nhìn (Perspective tilt offset) do góc nghiêng 32 độ của Camera, đảm bảo click chính xác vào bề mặt 3D của ô đất và các block.
+- Triển khai thành công tính năng vẽ liên tục (Drag-to-Draw - giữ chuột trái kéo rê) và xóa liên tục (Drag-to-Delete - giữ chuột phải kéo rê) bằng cách lắng nghe trạng thái nhấn giữ pointer và lọc tọa độ bằng biến `lastAppliedCoord` (Zero GC Allocations).
+- Triển khai tính năng tự động đính MeshCollider vào các file mô hình FBX gốc tại Runtime bằng cách viết hàm tiện ích `EnsureCollider(GameObject obj)` trong `TownGridView.cs`.
+- Tự động hóa việc gắn MeshCollider cho các ô đất địa hình (Terrain view) khi sinh ra trong `CreateCellView` và các khối nhà (Block view) khi được khởi tạo trong `GetPooledBlock`. Giải quyết triệt để việc thiếu Collider vật lý trên các tệp FBX thô của KayKit mà không cần chỉnh sửa tài nguyên gốc.
+- Đánh giá và so sánh hai phương án xử lý Collider:
+  - *Phương án 1 (Runtime Auto-Add Colliders)*: Chọn làm giải pháp hiện tại cho Prototype nhờ sự nhanh chóng, tự động hoàn toàn và không tạo file rác trong dự án.
+  - *Phương án 3 (Editor Prefab Automation)*: Lập kế hoạch chi tiết để chuyển đổi sang phương án này trong tương lai nhằm tối ưu hóa hiệu năng nạp cảnh (CPU cooking cost) và cho phép tùy biến sâu (thêm VFX, SFX, particle) khi sản xuất thực tế.
+- Đồng bộ hóa đồ thị cấu trúc mã nguồn bằng `graphify update .` thành công tốt đẹp.
+
+## 2026-05-23 - Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets
+
+- Thiết kế và triển khai thành công cấu trúc `PrefabOffsetConfig` cùng danh sách `prefabOffsets` trong `TownGridView.cs` cho phép cấu hình Position Offset, Rotation Offset, và Scale Multiplier cho từng loại prefab tại Runtime mà không làm sửa đổi bất cứ tệp FBX gốc nào.
+- Triển khai thành công cơ chế **GameObject Wrapper** ở Runtime: Mỗi block khi được lấy từ pool hoặc instantiate mới sẽ được bọc bởi một GameObject trống làm Wrapper (đóng vai trò điểm xoay Pivot chuẩn hóa theo ô lưới), còn đối tượng FBX con sẽ áp dụng các offset cục bộ để căn chỉnh tự động.
+- Tách biệt rõ rệt cao độ bắt đầu của lớp đầu tiên (`firstBlockHeightOffset = 0.35f`) và khoảng cách giữa các block tiếp theo (`blockHeightStep = 2.0f`). Cập nhật công thức chuyển đổi `GridToWorld` giúp xếp chồng khít khao các mảng tường và nhà mà không bị lún lọt chiều dọc.
+- Cập nhật đệ quy hàm `ApplyColorAndMaterial` và `EnsureCollider` để tự động dò tìm `BlockColorAdapter` và `MeshCollider` xuyên suốt cấu trúc Wrapper phân cấp cha-con, đảm bảo tương thích ngược 100% và Zero GC Allocations.
+- Khắc phục cao độ hiển thị chữ Debug 3D và Dirty Highlight trong `PrototypeTownDebug3D.cs` và sửa spacing camera double-tap trong `PrototypePlacementInputDriver.cs` để đồng bộ hoàn chỉnh.
+- Dự án C# biên dịch 100% sạch sẽ và đồ thị AST của Graphify cập nhật thành công lên **1981 nodes, 2128 edges, 157 communities**.

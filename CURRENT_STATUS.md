@@ -62,6 +62,8 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Uses zero-allocation `struct BlockViewData` in cell visual state to prevent GC allocations
   - Provides 6 inspector slots for specialized block prefabs with automated fallback logic
   - Correctly maps and applies 4-cardinal rotations to visual elements based on rule results
+  - Utilizes runtime GameObject Wrapper pattern and `PrefabOffsetConfig` to automatically wrap FBX assets, applying customizable local Position, Rotation, and Scale offsets to resolve horizontal overlapping (clashing models) dynamically at runtime
+  - Separates first block stack height offset (`firstBlockHeightOffset = 0.35f`) from consecutive block heights (`blockHeightStep = 2.0f`) to achieve perfectly flush vertical alignment
 - Prototype debug driver:
   - `PrototypePlacementDebugDriver`
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation
@@ -113,6 +115,15 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
    - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
 3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
    - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
+4. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
+   - **Mục tiêu**: Chuyển đổi từ **Phương án 1 (Runtime Auto-Add Colliders)** sang **Phương án 3 (Editor Prefab Automation)** trước khi chuyển từ Prototype sang Production.
+   - **Lý do**: Tối ưu hóa hiệu năng CPU (loại bỏ chi phí "nấu" MeshCollider ở runtime khi bắt đầu game hoặc sinh block), giảm thiểu dung lượng RAM, và cho phép tùy biến sâu trong Editor (gắn thêm SFX, VFX khói bụi, cấu hình Layer vật lý tĩnh, hệ thống Particle, v.v.).
+   - **Hướng thực hiện**:
+     1. Viết một `EditorWindow` hoặc `AssetPostprocessor` tùy chỉnh để tự động quét thư mục FBX của KayKit.
+     2. Tạo tự động các file `.prefab` tương ứng trong thư mục `Assets/CozyBuilder/Prefabs/`.
+     3. Tự động thêm các component `MeshCollider` hoặc `BoxCollider` phù hợp vào Prefab trong Editor.
+     4. Cấu hình Static flags, Tag, Layer vật lý tĩnh, và nén mesh.
+     5. Cập nhật lại các trường `Inspector` trên component `TownGridView` để tham chiếu đến các Prefab được sinh ra tự động này thay vì các tệp FBX gốc.
 
 
 ## Latest Validation Notes
@@ -203,6 +214,17 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Integrated Double-Tap Focus targeting that center camera focus on double-tapped cells using raycasting.
   - Zero GC allocations achieved in both update drivers, verified statically.
   - C# project compiles seamlessly, and the AST graph is fully updated via Graphify.
+- Drag-to-Draw, Physics Raycast & Runtime Collider Auto-Addition validation succeeded:
+  - Upgraded targeting logic to prioritize `Physics.Raycast` against actual 3D collider geometry over the mathematical grid plane, resolving all perspective tilt offsets.
+  - Implemented continuous Drag-to-Draw and Drag-to-Delete with zero GC Allocations in execution loops.
+  - Integrated `EnsureCollider` automatic MeshCollider runtime attachment to allow smooth physics raycasts on raw FBX assets.
+- Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets validation succeeded:
+  - Developed runtime GameObject Wrapper pattern and `PrefabOffsetConfig` to apply local Position, Rotation, and Scale offsets.
+  - Set up default downscaling (0.85) for houses so they align cleanly without horizontal overlapping.
+  - Split height spacing into `firstBlockHeightOffset = 0.35f` and `blockHeightStep = 2.0f` to achieve flush vertical alignment.
+  - Updated color adapters and mesh colliders recursively to ensure 100% backward-compatibility and zero GC Allocations.
+  - Compiles flawlessly with zero compiler errors or warnings in Play Mode.
+  - `graphify update .` successfully updated the AST graph to 1981 nodes, 2128 edges, and 157 communities.
 
 
 ## Latest Code Notes

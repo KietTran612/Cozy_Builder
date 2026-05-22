@@ -29,6 +29,7 @@ namespace CozyBuilder.Bootstrap
             builder.RegisterComponentInHierarchy<PrototypeTownDebugView>()
                 .AsSelf()
                 .As<ICameraInputBlocker>();
+            builder.RegisterComponentInHierarchy<PrototypeTownDebug3D>();
             builder.RegisterComponentInHierarchy<PrototypeCameraInputDriver>();
         }
     }
