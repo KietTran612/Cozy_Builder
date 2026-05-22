@@ -9,6 +9,12 @@ namespace CozyBuilder.Town.Rendering
     {
         [SerializeField] private GameObject cellPrefab;
         [SerializeField] private GameObject blockPrefab;
+        [SerializeField] private GameObject smallHousePrefab;
+        [SerializeField] private GameObject houseRoofPrefab;
+        [SerializeField] private GameObject towerTopPrefab;
+        [SerializeField] private GameObject stiltsPrefab;
+        [SerializeField] private GameObject houseWallPrefab;
+        [SerializeField] private GameObject towerWallPrefab;
         [SerializeField] private Transform generatedRoot;
         [SerializeField] private float cellSpacing = 2.1f;
         [SerializeField] private float blockHeightStep = 0.35f;
@@ -18,23 +24,35 @@ namespace CozyBuilder.Town.Rendering
 
         private readonly Dictionary<GridCoord, GameObject> cellsByCoord = new Dictionary<GridCoord, GameObject>();
         private readonly Dictionary<GridCoord, CellVisualState> visualStatesByCoord = new Dictionary<GridCoord, CellVisualState>();
+        private readonly Dictionary<ushort, Queue<GameObject>> pools = new Dictionary<ushort, Queue<GameObject>>();
         private TownDataStore townDataStore;
         private TownVisualRebuilder townVisualRebuilder;
+        private RuleEvaluator ruleEvaluator;
         private Transform terrainRoot;
         private Transform blockRoot;
         private bool hasBuiltInitialGrid;
 
+        private struct BlockViewData
+        {
+            public GameObject GameObject;
+            public ushort VisualId;
+        }
+
         private sealed class CellVisualState
         {
             public GameObject TerrainView;
-            public readonly List<GameObject> BlockViews = new List<GameObject>();
+            public readonly List<BlockViewData> BlockViews = new List<BlockViewData>();
         }
 
         [Inject]
-        public void Construct(TownDataStore townDataStore, TownVisualRebuilder townVisualRebuilder)
+        public void Construct(
+            TownDataStore townDataStore,
+            TownVisualRebuilder townVisualRebuilder,
+            RuleEvaluator ruleEvaluator)
         {
             this.townDataStore = townDataStore;
             this.townVisualRebuilder = townVisualRebuilder;
+            this.ruleEvaluator = ruleEvaluator;
         }
 
         private void Start()
@@ -127,8 +145,9 @@ namespace CozyBuilder.Town.Rendering
                 {
                     for (var i = 0; i < staleState.BlockViews.Count; i++)
                     {
-                        staleState.BlockViews[i].SetActive(false);
+                        ReturnToPool(staleState.BlockViews[i].VisualId, staleState.BlockViews[i].GameObject);
                     }
+                    staleState.BlockViews.Clear();
                 }
 
                 return false;
@@ -169,6 +188,7 @@ namespace CozyBuilder.Town.Rendering
 
             cellsByCoord.Clear();
             visualStatesByCoord.Clear();
+            pools.Clear();
             terrainRoot = null;
             blockRoot = null;
         }
@@ -202,45 +222,136 @@ namespace CozyBuilder.Town.Rendering
         private void ApplyCellState(CellVisualState state, GridCoord coord, in CellData cell)
         {
             ApplyCellState(state.TerrainView, coord, in cell);
-            ApplyBlockState(state, coord, cell.Height);
+            ApplyBlockState(state, coord, in cell);
         }
 
-        private void ApplyBlockState(CellVisualState state, GridCoord coord, ushort height)
+        private void ApplyBlockState(CellVisualState state, GridCoord coord, in CellData cell)
         {
-            EnsureBlockCapacity(state, coord, height);
+            ushort height = cell.Height;
+            var townData = townDataStore.Current;
 
-            for (var i = 0; i < state.BlockViews.Count; i++)
+            // 1. Process layers up to height
+            for (int i = 0; i < height; i++)
             {
-                var blockView = state.BlockViews[i];
-                var active = i < height;
-                blockView.SetActive(active);
+                int layer = i + 1;
+                var rule = ruleEvaluator.Evaluate(coord, layer, in cell, townData);
+                ushort targetVisualId = rule.VisualId;
 
-                if (!active)
+                if (i < state.BlockViews.Count)
                 {
-                    continue;
-                }
+                    // Existing block layer - check if visual type matches
+                    var existing = state.BlockViews[i];
+                    if (existing.VisualId == targetVisualId)
+                    {
+                        // Same visual type, just update transform & name
+                        var blockView = existing.GameObject;
+                        blockView.name = $"Block {coord.X},{coord.Y} L{layer} V{targetVisualId}";
+                        blockView.transform.localPosition = GridToWorld(coord, (ushort)layer);
+                        blockView.transform.localRotation = Quaternion.Euler(0f, rule.RotationId * 90f, 0f);
+                        blockView.transform.localScale = blockScale;
+                    }
+                    else
+                    {
+                        // Mismatching visual type - recycle and replace
+                        ReturnToPool(existing.VisualId, existing.GameObject);
+                        var newObj = GetPooledBlock(targetVisualId);
+                        newObj.name = $"Block {coord.X},{coord.Y} L{layer} V{targetVisualId}";
+                        newObj.transform.localPosition = GridToWorld(coord, (ushort)layer);
+                        newObj.transform.localRotation = Quaternion.Euler(0f, rule.RotationId * 90f, 0f);
+                        newObj.transform.localScale = blockScale;
 
-                blockView.name = $"Block {coord.X},{coord.Y} L{i + 1}";
-                blockView.transform.localPosition = GridToWorld(coord, (ushort)(i + 1));
-                blockView.transform.localRotation = Quaternion.identity;
-                blockView.transform.localScale = blockScale;
+                        state.BlockViews[i] = new BlockViewData
+                        {
+                            GameObject = newObj,
+                            VisualId = targetVisualId
+                        };
+                    }
+                }
+                else
+                {
+                    // New layer - get pooled block and add to list
+                    var newObj = GetPooledBlock(targetVisualId);
+                    newObj.name = $"Block {coord.X},{coord.Y} L{layer} V{targetVisualId}";
+                    newObj.transform.localPosition = GridToWorld(coord, (ushort)layer);
+                    newObj.transform.localRotation = Quaternion.Euler(0f, rule.RotationId * 90f, 0f);
+                    newObj.transform.localScale = blockScale;
+
+                    state.BlockViews.Add(new BlockViewData
+                    {
+                        GameObject = newObj,
+                        VisualId = targetVisualId
+                    });
+                }
+            }
+
+            // 2. Recycle any excess blocks if height decreased
+            if (height < state.BlockViews.Count)
+            {
+                for (int i = height; i < state.BlockViews.Count; i++)
+                {
+                    ReturnToPool(state.BlockViews[i].VisualId, state.BlockViews[i].GameObject);
+                }
+                state.BlockViews.RemoveRange(height, state.BlockViews.Count - height);
             }
         }
 
-        private void EnsureBlockCapacity(CellVisualState state, GridCoord coord, ushort height)
+        private GameObject GetPooledBlock(ushort visualId)
         {
-            if (blockPrefab == null)
+            if (!pools.TryGetValue(visualId, out var queue))
             {
-                return;
+                queue = new Queue<GameObject>();
+                pools.Add(visualId, queue);
             }
 
-            while (state.BlockViews.Count < height)
+            if (queue.Count > 0)
             {
-                var blockView = Instantiate(blockPrefab, blockRoot);
-                blockView.name = $"Block {coord.X},{coord.Y} Pooled";
-                blockView.SetActive(false);
-                state.BlockViews.Add(blockView);
+                var obj = queue.Dequeue();
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
             }
+
+            GameObject prefab = GetPrefabForVisualId(visualId);
+            var newObj = Instantiate(prefab, blockRoot);
+            newObj.SetActive(true);
+            return newObj;
+        }
+
+        private void ReturnToPool(ushort visualId, GameObject obj)
+        {
+            if (obj == null) return;
+
+            obj.SetActive(false);
+            obj.transform.SetParent(blockRoot, false);
+
+            if (!pools.TryGetValue(visualId, out var queue))
+            {
+                queue = new Queue<GameObject>();
+                pools.Add(visualId, queue);
+            }
+            queue.Enqueue(obj);
+        }
+
+        private GameObject GetPrefabForVisualId(ushort visualId)
+        {
+            GameObject prefab = null;
+            switch (visualId)
+            {
+                case 1: prefab = smallHousePrefab; break;
+                case 2: prefab = houseRoofPrefab; break;
+                case 3: prefab = towerTopPrefab; break;
+                case 4: prefab = stiltsPrefab; break;
+                case 5: prefab = houseWallPrefab; break;
+                case 6: prefab = towerWallPrefab; break;
+            }
+
+            if (prefab == null)
+            {
+                prefab = blockPrefab;
+            }
+            return prefab;
         }
 
         private Vector3 GridToWorld(GridCoord coord, ushort height)
