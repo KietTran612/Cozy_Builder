@@ -79,16 +79,16 @@
       "label": "Vector3",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L15",
+      "source_location": "L21",
       "id": "vector3",
-      "community": 3,
+      "community": 6,
       "norm_label": "vector3"
     },
     {
       "label": "float",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L13",
+      "source_location": "L19",
       "id": "float",
       "community": 6,
       "norm_label": "float"
@@ -144,7 +144,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L1",
       "id": "camera_prototypecamerainputdriver_cs",
-      "community": 3,
+      "community": 2,
       "norm_label": "prototypecamerainputdriver.cs"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L6",
       "id": "camera_prototypecamerainputdriver_cozybuilder_camera",
-      "community": 3,
+      "community": 2,
       "norm_label": "cozybuilder.camera"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L8",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "community": 3,
+      "community": 2,
       "norm_label": "prototypecamerainputdriver"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "",
       "source_location": "",
       "id": "monobehaviour",
-      "community": 1,
+      "community": 2,
       "norm_label": "monobehaviour"
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L12",
       "id": "unitycamera",
-      "community": 3,
+      "community": 2,
       "norm_label": "unitycamera"
     },
     {
@@ -189,7 +189,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L24",
       "id": "cameraservice",
-      "community": 3,
+      "community": 2,
       "norm_label": "cameraservice"
     },
     {
@@ -198,7 +198,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L26",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_construct",
-      "community": 3,
+      "community": 2,
       "norm_label": ".construct()"
     },
     {
@@ -207,7 +207,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L32",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_start",
-      "community": 3,
+      "community": 2,
       "norm_label": ".start()"
     },
     {
@@ -216,7 +216,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L42",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_lateupdate",
-      "community": 3,
+      "community": 2,
       "norm_label": ".lateupdate()"
     },
     {
@@ -225,7 +225,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L54",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera",
-      "community": 3,
+      "community": 2,
       "norm_label": ".resetcamera()"
     },
     {
@@ -234,7 +234,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L72",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse",
-      "community": 3,
+      "community": 2,
       "norm_label": ".handlemouse()"
     },
     {
@@ -243,7 +243,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L105",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch",
-      "community": 3,
+      "community": 2,
       "norm_label": ".handletouch()"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L134",
       "id": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel",
-      "community": 3,
+      "community": 2,
       "norm_label": ".getpanunitsperpixel()"
     },
     {
@@ -333,7 +333,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L1",
       "id": "town_data_gridneighborhood_cs",
-      "community": 2,
+      "community": 3,
       "norm_label": "gridneighborhood.cs"
     },
     {
@@ -342,7 +342,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L1",
       "id": "data_gridneighborhood_cozybuilder_town_data",
-      "community": 2,
+      "community": 3,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -351,7 +351,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L3",
       "id": "data_gridneighborhood_gridneighborhood",
-      "community": 2,
+      "community": 3,
       "norm_label": "gridneighborhood"
     },
     {
@@ -360,7 +360,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L15",
       "id": "gridcoord",
-      "community": 2,
+      "community": 3,
       "norm_label": "gridcoord"
     },
     {
@@ -493,7 +493,7 @@
       "label": "int",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L16",
+      "source_location": "L22",
       "id": "int",
       "community": 4,
       "norm_label": "int"
@@ -502,7 +502,7 @@
       "label": "Dictionary",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L19",
+      "source_location": "L25",
       "id": "dictionary",
       "community": 4,
       "norm_label": "dictionary"
@@ -621,7 +621,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L1",
       "id": "town_debugging_prototypetowndebugview_cs",
-      "community": 2,
+      "community": 3,
       "norm_label": "prototypetowndebugview.cs"
     },
     {
@@ -630,7 +630,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L8",
       "id": "debugging_prototypetowndebugview_cozybuilder_town_debugging",
-      "community": 2,
+      "community": 3,
       "norm_label": "cozybuilder.town.debugging"
     },
     {
@@ -639,7 +639,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L10",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview",
-      "community": 2,
+      "community": 3,
       "norm_label": "prototypetowndebugview"
     },
     {
@@ -648,7 +648,7 @@
       "source_file": "Town/Placement/PrototypePlacementControlsView.cs",
       "source_location": "L8",
       "id": "rect",
-      "community": 7,
+      "community": 3,
       "norm_label": "rect"
     },
     {
@@ -657,7 +657,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L16",
       "id": "stringbuilder",
-      "community": 2,
+      "community": 3,
       "norm_label": "stringbuilder"
     },
     {
@@ -673,16 +673,16 @@
       "label": "TownDataStore",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L21",
+      "source_location": "L28",
       "id": "towndatastore",
-      "community": 2,
+      "community": 5,
       "norm_label": "towndatastore"
     },
     {
       "label": "TownVisualRebuilder",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L22",
+      "source_location": "L29",
       "id": "townvisualrebuilder",
       "community": 5,
       "norm_label": "townvisualrebuilder"
@@ -693,7 +693,7 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L14",
       "id": "placementservice",
-      "community": 2,
+      "community": 1,
       "norm_label": "placementservice"
     },
     {
@@ -702,7 +702,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L22",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_construct",
-      "community": 2,
+      "community": 3,
       "norm_label": ".construct()"
     },
     {
@@ -711,7 +711,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L35",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_ongui",
-      "community": 2,
+      "community": 3,
       "norm_label": ".ongui()"
     },
     {
@@ -720,7 +720,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L49",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_drawselectedcell",
-      "community": 2,
+      "community": 3,
       "norm_label": ".drawselectedcell()"
     },
     {
@@ -729,7 +729,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L97",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_drawneighbor",
-      "community": 2,
+      "community": 3,
       "norm_label": ".drawneighbor()"
     },
     {
@@ -738,7 +738,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L118",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_drawdirtyqueue",
-      "community": 2,
+      "community": 3,
       "norm_label": ".drawdirtyqueue()"
     },
     {
@@ -747,7 +747,7 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L149",
       "id": "debugging_prototypetowndebugview_prototypetowndebugview_appendcoord",
-      "community": 2,
+      "community": 3,
       "norm_label": ".appendcoord()"
     },
     {
@@ -780,8 +780,8 @@
     {
       "label": "RuleEvaluator",
       "file_type": "code",
-      "source_file": "Town/Placement/PlacementService.cs",
-      "source_location": "L10",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L30",
       "id": "ruleevaluator",
       "community": 5,
       "norm_label": "ruleevaluator"
@@ -799,7 +799,7 @@
       "label": ".TryPlaceBlock()",
       "file_type": "code",
       "source_file": "Town/Placement/PlacementService.cs",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "placement_placementservice_placementservice_tryplaceblock",
       "community": 5,
       "norm_label": ".tryplaceblock()"
@@ -808,7 +808,7 @@
       "label": ".TryDeleteBlock()",
       "file_type": "code",
       "source_file": "Town/Placement/PlacementService.cs",
-      "source_location": "L52",
+      "source_location": "L53",
       "id": "placement_placementservice_placementservice_trydeleteblock",
       "community": 5,
       "norm_label": ".trydeleteblock()"
@@ -817,7 +817,7 @@
       "label": ".MarkDirty()",
       "file_type": "code",
       "source_file": "Town/Placement/PlacementService.cs",
-      "source_location": "L71",
+      "source_location": "L72",
       "id": "placement_placementservice_placementservice_markdirty",
       "community": 5,
       "norm_label": ".markdirty()"
@@ -826,7 +826,7 @@
       "label": ".MarkDirtyWithNeighbors()",
       "file_type": "code",
       "source_file": "Town/Placement/PlacementService.cs",
-      "source_location": "L76",
+      "source_location": "L77",
       "id": "placement_placementservice_placementservice_markdirtywithneighbors",
       "community": 5,
       "norm_label": ".markdirtywithneighbors()"
@@ -972,7 +972,7 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L1",
       "id": "town_placement_prototypeplacementinputdriver_cs",
-      "community": 3,
+      "community": 2,
       "norm_label": "prototypeplacementinputdriver.cs"
     },
     {
@@ -981,7 +981,7 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L8",
       "id": "placement_prototypeplacementinputdriver_cozybuilder_town_placement",
-      "community": 3,
+      "community": 2,
       "norm_label": "cozybuilder.town.placement"
     },
     {
@@ -1195,7 +1195,7 @@
       "label": "Transform",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L12",
+      "source_location": "L18",
       "id": "transform",
       "community": 0,
       "norm_label": "transform"
@@ -1204,16 +1204,16 @@
       "label": "bool",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L17",
+      "source_location": "L23",
       "id": "bool",
-      "community": 0,
+      "community": 1,
       "norm_label": "bool"
     },
     {
       "label": "CellVisualState",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L27",
+      "source_location": "L41",
       "id": "rendering_towngridview_cellvisualstate",
       "community": 0,
       "norm_label": "cellvisualstate"
@@ -1222,7 +1222,7 @@
       "label": "List",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L30",
+      "source_location": "L44",
       "id": "list",
       "community": 0,
       "norm_label": "list"
@@ -1231,7 +1231,7 @@
       "label": ".Construct()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L33",
+      "source_location": "L47",
       "id": "rendering_towngridview_towngridview_construct",
       "community": 0,
       "norm_label": ".construct()"
@@ -1240,7 +1240,7 @@
       "label": ".Start()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L40",
+      "source_location": "L58",
       "id": "rendering_towngridview_towngridview_start",
       "community": 0,
       "norm_label": ".start()"
@@ -1249,7 +1249,7 @@
       "label": ".LateUpdate()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L48",
+      "source_location": "L66",
       "id": "rendering_towngridview_towngridview_lateupdate",
       "community": 0,
       "norm_label": ".lateupdate()"
@@ -1258,7 +1258,7 @@
       "label": ".RebuildInitialGrid()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L53",
+      "source_location": "L71",
       "id": "rendering_towngridview_towngridview_rebuildinitialgrid",
       "community": 0,
       "norm_label": ".rebuildinitialgrid()"
@@ -1267,7 +1267,7 @@
       "label": ".ProcessDirtyCells()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L76",
+      "source_location": "L94",
       "id": "rendering_towngridview_towngridview_processdirtycells",
       "community": 0,
       "norm_label": ".processdirtycells()"
@@ -1276,7 +1276,7 @@
       "label": ".TryGetCellView()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L95",
+      "source_location": "L113",
       "id": "rendering_towngridview_towngridview_trygetcellview",
       "community": 0,
       "norm_label": ".trygetcellview()"
@@ -1285,7 +1285,7 @@
       "label": ".TryGetCoordFromWorld()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L100",
+      "source_location": "L118",
       "id": "rendering_towngridview_towngridview_trygetcoordfromworld",
       "community": 0,
       "norm_label": ".trygetcoordfromworld()"
@@ -1294,7 +1294,7 @@
       "label": ".RefreshCell()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L117",
+      "source_location": "L135",
       "id": "rendering_towngridview_towngridview_refreshcell",
       "community": 0,
       "norm_label": ".refreshcell()"
@@ -1303,7 +1303,7 @@
       "label": ".EnsureRoot()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L147",
+      "source_location": "L166",
       "id": "rendering_towngridview_towngridview_ensureroot",
       "community": 0,
       "norm_label": ".ensureroot()"
@@ -1312,7 +1312,7 @@
       "label": ".EnsureVisualRoots()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L157",
+      "source_location": "L176",
       "id": "rendering_towngridview_towngridview_ensurevisualroots",
       "community": 0,
       "norm_label": ".ensurevisualroots()"
@@ -1321,7 +1321,7 @@
       "label": ".ClearGeneratedCells()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L163",
+      "source_location": "L182",
       "id": "rendering_towngridview_towngridview_cleargeneratedcells",
       "community": 0,
       "norm_label": ".cleargeneratedcells()"
@@ -1330,7 +1330,7 @@
       "label": ".CreateCellView()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L176",
+      "source_location": "L196",
       "id": "rendering_towngridview_towngridview_createcellview",
       "community": 0,
       "norm_label": ".createcellview()"
@@ -1339,7 +1339,7 @@
       "label": ".ApplyCellState()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L194",
+      "source_location": "L214",
       "id": "rendering_towngridview_towngridview_applycellstate",
       "community": 0,
       "norm_label": ".applycellstate()"
@@ -1348,25 +1348,43 @@
       "label": ".ApplyBlockState()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L208",
+      "source_location": "L228",
       "id": "rendering_towngridview_towngridview_applyblockstate",
       "community": 0,
       "norm_label": ".applyblockstate()"
     },
     {
-      "label": ".EnsureBlockCapacity()",
+      "label": ".GetPooledBlock()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L230",
-      "id": "rendering_towngridview_towngridview_ensureblockcapacity",
+      "source_location": "L298",
+      "id": "rendering_towngridview_towngridview_getpooledblock",
       "community": 0,
-      "norm_label": ".ensureblockcapacity()"
+      "norm_label": ".getpooledblock()"
+    },
+    {
+      "label": ".ReturnToPool()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L322",
+      "id": "rendering_towngridview_towngridview_returntopool",
+      "community": 0,
+      "norm_label": ".returntopool()"
+    },
+    {
+      "label": ".GetPrefabForVisualId()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L337",
+      "id": "rendering_towngridview_towngridview_getprefabforvisualid",
+      "community": 0,
+      "norm_label": ".getprefabforvisualid()"
     },
     {
       "label": ".GridToWorld()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L246",
+      "source_location": "L357",
       "id": "rendering_towngridview_towngridview_gridtoworld",
       "community": 0,
       "norm_label": ".gridtoworld()"
@@ -1375,7 +1393,7 @@
       "label": ".EnsureChildRoot()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L256",
+      "source_location": "L367",
       "id": "rendering_towngridview_towngridview_ensurechildroot",
       "community": 0,
       "norm_label": ".ensurechildroot()"
@@ -1487,6 +1505,15 @@
       "id": "rules_ruleevaluator_ruleevaluator_evaluate",
       "community": 14,
       "norm_label": ".evaluate()"
+    },
+    {
+      "label": ".EnsureBlockCapacity()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L230",
+      "community": 0,
+      "norm_label": ".ensureblockcapacity()",
+      "id": "rendering_towngridview_towngridview_ensureblockcapacity"
     }
   ],
   "links": [
@@ -1557,9 +1584,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "vector3",
-      "confidence_score": 1.0
+      "target": "vector3"
     },
     {
       "relation": "references",
@@ -1568,9 +1595,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "float",
-      "confidence_score": 1.0
+      "target": "float"
     },
     {
       "relation": "method",
@@ -1578,9 +1605,9 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "camera_cameraservice_cameraservice_reset",
-      "confidence_score": 1.0
+      "target": "camera_cameraservice_cameraservice_reset"
     },
     {
       "relation": "method",
@@ -1588,9 +1615,9 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "camera_cameraservice_cameraservice_orbit",
-      "confidence_score": 1.0
+      "target": "camera_cameraservice_cameraservice_orbit"
     },
     {
       "relation": "method",
@@ -1598,9 +1625,9 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "camera_cameraservice_cameraservice_pan",
-      "confidence_score": 1.0
+      "target": "camera_cameraservice_cameraservice_pan"
     },
     {
       "relation": "method",
@@ -1608,9 +1635,9 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "camera_cameraservice_cameraservice_zoom",
-      "confidence_score": 1.0
+      "target": "camera_cameraservice_cameraservice_zoom"
     },
     {
       "relation": "method",
@@ -1618,9 +1645,9 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_cameraservice_cameraservice",
-      "target": "camera_cameraservice_cameraservice_applyto",
-      "confidence_score": 1.0
+      "target": "camera_cameraservice_cameraservice_applyto"
     },
     {
       "relation": "references",
@@ -1629,9 +1656,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "vector3",
-      "confidence_score": 1.0
+      "target": "vector3"
     },
     {
       "relation": "references",
@@ -1651,9 +1678,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "float",
-      "confidence_score": 1.0
+      "target": "float"
     },
     {
       "relation": "references",
@@ -1673,9 +1700,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_cs",
-      "target": "unitycamera",
-      "confidence_score": 1.0
+      "target": "unitycamera"
     },
     {
       "relation": "contains",
@@ -1683,9 +1710,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_cs",
-      "target": "camera_prototypecamerainputdriver_cozybuilder_camera",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_cozybuilder_camera"
     },
     {
       "relation": "contains",
@@ -1693,9 +1720,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_cs",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver"
     },
     {
       "relation": "inherits",
@@ -1703,9 +1730,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "monobehaviour",
-      "confidence_score": 1.0
+      "target": "monobehaviour"
     },
     {
       "relation": "references",
@@ -1714,9 +1741,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "unitycamera",
-      "confidence_score": 1.0
+      "target": "unitycamera"
     },
     {
       "relation": "references",
@@ -1725,9 +1752,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "cameraservice",
-      "confidence_score": 1.0
+      "target": "cameraservice"
     },
     {
       "relation": "method",
@@ -1735,9 +1762,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_construct",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_construct"
     },
     {
       "relation": "method",
@@ -1745,9 +1772,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_start",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_start"
     },
     {
       "relation": "method",
@@ -1755,9 +1782,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_lateupdate",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_lateupdate"
     },
     {
       "relation": "method",
@@ -1765,9 +1792,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera"
     },
     {
       "relation": "method",
@@ -1775,9 +1802,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse"
     },
     {
       "relation": "method",
@@ -1785,9 +1812,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch"
     },
     {
       "relation": "method",
@@ -1795,9 +1822,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel"
     },
     {
       "relation": "inherits",
@@ -1878,9 +1905,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_start",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera"
     },
     {
       "relation": "calls",
@@ -1889,9 +1916,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_lateupdate",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse"
     },
     {
       "relation": "calls",
@@ -1900,9 +1927,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_lateupdate",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch"
     },
     {
       "relation": "calls",
@@ -1911,9 +1938,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_resetcamera"
     },
     {
       "relation": "calls",
@@ -1922,9 +1949,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handlemouse",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel"
     },
     {
       "relation": "calls",
@@ -1933,9 +1960,9 @@
       "source_file": "Camera/PrototypeCameraInputDriver.cs",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver_handletouch",
-      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel",
-      "confidence_score": 1.0
+      "target": "camera_prototypecamerainputdriver_prototypecamerainputdriver_getpanunitsperpixel"
     },
     {
       "relation": "contains",
@@ -2743,6 +2770,17 @@
       "target": "placement_placementservice_placementservice_markdirtywithneighbors"
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "field",
+      "source": "rendering_towngridview_towngridview",
+      "target": "ruleevaluator",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -3406,11 +3444,31 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L230",
+      "source_location": "L298",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "rendering_towngridview_towngridview_ensureblockcapacity"
+      "target": "rendering_towngridview_towngridview_getpooledblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_returntopool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L337",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_getprefabforvisualid",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3431,6 +3489,16 @@
       "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
       "target": "rendering_towngridview_towngridview_ensurechildroot"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L230",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_ensureblockcapacity"
     },
     {
       "relation": "references",
@@ -3536,6 +3604,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_refreshcell",
+      "target": "rendering_towngridview_towngridview_returntopool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L102",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3635,6 +3714,39 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L224",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rendering_towngridview_towngridview_applyblockstate",
+      "target": "rendering_towngridview_towngridview_gridtoworld"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L256",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_applyblockstate",
+      "target": "rendering_towngridview_towngridview_returntopool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_applyblockstate",
+      "target": "rendering_towngridview_towngridview_getpooledblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L210",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3646,11 +3758,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L224",
+      "source_location": "L316",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "rendering_towngridview_towngridview_applyblockstate",
-      "target": "rendering_towngridview_towngridview_gridtoworld"
+      "source": "rendering_towngridview_towngridview_getpooledblock",
+      "target": "rendering_towngridview_towngridview_getprefabforvisualid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3756,5 +3868,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2a7824d4b1d2c1d163eea6109c4d064058b064b6"
+  "built_at_commit": "9c95296b2b4633b5777b728665040c718d43befa"
 }
