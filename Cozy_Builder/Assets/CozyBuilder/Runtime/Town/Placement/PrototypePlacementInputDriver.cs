@@ -45,7 +45,12 @@ namespace CozyBuilder.Town.Placement
             var mouse = Mouse.current;
             if (mouse != null && mouse.leftButton.wasPressedThisFrame)
             {
-                TryApplyPointer(mouse.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
+                var keyboard = Keyboard.current;
+                var cameraModifierHeld = keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
+                if (!cameraModifierHeld)
+                {
+                    TryApplyPointer(mouse.position.ReadValue(), placementState != null && placementState.IsDeleteMode);
+                }
             }
 
             if (mouse != null && mouse.rightButton.wasPressedThisFrame)

@@ -252,3 +252,19 @@ Important commit:
 Important commit:
 
 - `9b14199 Restructure handover history`
+
+## 2026-05-22 - Minimal Procedural Debug Views
+
+- Added `PrototypeTownDebugState` for selected-cell debug state.
+- Added `PrototypeTownDebugView` as a temporary IMGUI debug panel.
+- Debug panel displays selected cell data, cardinal neighbors, dirty queue preview, and `PlacementService.Preview` rule result.
+- Added `TownVisualRebuilder.CopyDirtyCoords` for bounded dirty queue debug snapshots.
+- Updated `PrototypePlacementInputDriver` and `PrototypePlacementDebugDriver` to select the targeted coord in debug state.
+- Updated `GameLifetimeScope` and `KayKitFbxAssetTest.unity` to wire the debug view.
+- Unity compile/reload completed without C# compile errors.
+- Play Mode validation returned `True` for input place/delete and debug-driver place/delete.
+- `graphify update .` succeeded with 149 nodes, 189 edges, and 20 communities.
+
+Important commit:
+
+- `2a7824d Add prototype town debug view`

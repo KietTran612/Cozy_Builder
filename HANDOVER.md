@@ -24,7 +24,7 @@ When writing a new `Latest Session Update`, first append the previous latest ses
 - Async package: UniTask.
 - Input package: Unity Input System.
 - First imported/test asset pack: KayKit Medieval Builder Pack 1.0.
-- Latest committed baseline before current debug-view work: `9b14199 Restructure handover history`.
+- Latest committed baseline before current camera work: `2a7824d Add prototype town debug view`.
 
 Check the live state before editing:
 
@@ -84,6 +84,8 @@ Current Unity adapters:
   - singleton debug state for the currently selected cell
 - `PrototypeTownDebugView`
   - temporary IMGUI debug panel for selected cell, neighbors, dirty queue, and rule preview
+- `PrototypeCameraInputDriver`
+  - temporary camera adapter for orbit, pan, zoom, and reset input
 
 ## Decisions That Must Not Drift
 
@@ -100,11 +102,11 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Minimal Procedural Debug Views
+## Latest Session Update - 2026-05-22 - Prototype Camera Controls
 
 Baseline before the work:
 
-- `9b14199 Restructure handover history`
+- `2a7824d Add prototype town debug view`
 
 Current commit state:
 
@@ -112,41 +114,41 @@ Current commit state:
 
 Implemented:
 
-- Added `PrototypeTownDebugState` for selected-cell debug state.
-- Added `PrototypeTownDebugView` as a temporary IMGUI debug panel.
-- Debug panel displays:
-  - selected cell coordinate and cell data
-  - cardinal neighbor info
-  - dirty queue count and bounded preview
-  - `PlacementService.Preview` rule result
-- Added `TownVisualRebuilder.CopyDirtyCoords` to expose a bounded dirty queue snapshot without mutating the queue.
-- Updated `PrototypePlacementInputDriver` and `PrototypePlacementDebugDriver` to select the targeted coord in debug state.
+- Expanded `CameraService` from an empty shell into a lightweight camera state service.
+- Added `PrototypeCameraInputDriver` as the Unity Input System adapter for prototype camera controls.
+- Camera controls:
+  - `Alt + left drag`: orbit
+  - middle drag: pan
+  - mouse wheel: zoom
+  - `R`: reset camera
+  - two-finger touch drag: pan
+  - two-finger pinch: zoom
+- Updated `PrototypePlacementInputDriver` so `Alt + left` orbit does not also place a block.
 - Updated `GameLifetimeScope` to register:
-  - `PrototypeTownDebugState`
-  - `PrototypeTownDebugView`
-- Updated `KayKitFbxAssetTest.unity` so `Town Grid View` has `PrototypeTownDebugView`.
+  - `PrototypeCameraInputDriver`
+- Updated `KayKitFbxAssetTest.unity` so `Main Camera` has `PrototypeCameraInputDriver`.
 - Refreshed Graphify output with `graphify update .`.
-- Updated `CURRENT_STATUS.md` and this handover context.
+- Archived the previous debug-view session into `docs/Development_Session_Log.md`.
 
 Validation:
 
 - Unity compile/reload completed without C# compile errors.
 - Play Mode validation:
+  - `PrototypeCameraInputDriver.ResetCamera` returned `void` with status `ok`
+  - `Main Camera` moved to `(0, 6.88895035, -11.0246248)` with rotation `(32, 0, 0)` after reset
   - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
   - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
-  - `PrototypePlacementDebugDriver.PlaceDebugBlock` returned `True`
-  - `PrototypePlacementDebugDriver.DeleteDebugBlock` returned `True`
-  - `Town Grid View` has `PrototypeTownDebugView` wired in the scene
 - Console readback after Play Mode showed no project exceptions.
 - `graphify update .` succeeded:
-  - 149 nodes
-  - 189 edges
+  - 165 nodes
+  - 217 edges
   - 20 communities
 
 UI/EventSystem note:
 
 - Current controls use IMGUI, so no `EventSystem` is required for the prototype panel.
 - A future uGUI/UI Toolkit control surface should add proper UI event routing and block world placement while the pointer is over UI.
+- Current camera/placement conflict handling only covers the desktop `Alt + left` orbit modifier.
 
 Known issue:
 
@@ -156,10 +158,10 @@ Known issue:
 
 ## Next Work
 
-1. Add camera orbit/pan/zoom.
-2. Then iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
+1. Iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
+2. Then improve UI/input routing if camera and placement gestures need stronger separation.
 
-For camera work, read:
+For procedural rule work, read:
 
 - `docs/Architecture_And_Code_Rules.md`
 - `docs/Unity_URP_Performance_Code_Rules.md`
@@ -169,8 +171,8 @@ For camera work, read:
 Use Graphify for code navigation before broad grep:
 
 - `graphify explain "TownGridView"`
-- `graphify explain "CameraService"`
-- `graphify path "CameraService" "TownGridView"`
+- `graphify explain "RuleEvaluator"`
+- `graphify path "PlacementService" "RuleEvaluator"`
 
 ## Docs Map
 

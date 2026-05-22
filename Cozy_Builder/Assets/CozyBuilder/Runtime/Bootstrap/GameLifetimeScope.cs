@@ -25,6 +25,7 @@ namespace CozyBuilder.Bootstrap
             builder.RegisterComponentInHierarchy<PrototypePlacementInputDriver>();
             builder.RegisterComponentInHierarchy<PrototypePlacementControlsView>();
             builder.RegisterComponentInHierarchy<PrototypeTownDebugView>();
+            builder.RegisterComponentInHierarchy<PrototypeCameraInputDriver>();
         }
     }
 }

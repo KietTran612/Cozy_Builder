@@ -24,10 +24,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline before current debug-view work: `9b14199 Restructure handover history`.
+- Latest committed baseline before current camera work: `2a7824d Add prototype town debug view`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
-- Current uncommitted work includes minimal procedural debug views, selected-cell debug state, dirty queue snapshot support, scene wiring, Graphify output refresh, and local screenshot output.
+- Current uncommitted work includes prototype camera orbit/pan/zoom/reset controls, placement input conflict handling for `Alt + left` orbit, scene wiring, Graphify output refresh, and docs handover updates.
 - Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
 - Do not commit `Cozy_Builder/Assets/Packages` asset pack contents unless the user explicitly changes that policy.
 
@@ -74,6 +74,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypeTownDebugState`
   - `PrototypeTownDebugView`
   - Shows selected cell id/data, cardinal neighbor info, dirty queue count/preview, and rule result preview
+- Prototype camera controls:
+  - `CameraService`
+  - `PrototypeCameraInputDriver`
+  - Provides temporary orbit/pan/zoom/reset camera controls through Unity Input System
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -86,17 +90,17 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Intent
 
-- Code is still prototype foundation only, but the first data, placement, visual, input, mode/palette, and debug-view paths exist.
+- Code is still prototype foundation only, but the first data, placement, visual, input, mode/palette, debug-view, and camera-control paths exist.
 - `GameLifetimeScope` should register system-level prototype services only.
 - Data must remain separate from scene GameObjects.
 - No static singleton gameplay services.
 - KayKit should be used as prototype terrain/grid placeholder content, not as the final procedural building foundation.
-- Current prototype direction is data-first island grid, dirty visual updates, simple input, temporary controls, and debug visibility before camera work.
+- Current prototype direction is data-first island grid, dirty visual updates, simple input, temporary controls, debug visibility, and camera feel before deeper procedural rules.
 
 ## Next Work
 
-1. Add camera orbit/pan/zoom.
-2. Then iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
+1. Iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
+2. Then improve UI/input routing if camera and placement gestures need stronger separation.
 
 ## Latest Validation Notes
 
@@ -150,6 +154,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `Town Grid View` has `PrototypeTownDebugView` with panel rect `(16, 208, 320, 300)`
   - Console readback after Play Mode showed no project exceptions
   - `graphify update .` succeeded after code changes with 149 nodes, 189 edges, and 20 communities
+- Prototype camera controls validation succeeded:
+  - Added `PrototypeCameraInputDriver` to `Main Camera`
+  - `PrototypeCameraInputDriver.ResetCamera` returned status `ok`
+  - `Main Camera` reset to position `(0, 6.88895035, -11.0246248)` and rotation `(32, 0, 0)`
+  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
+  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
+  - Console readback after Play Mode showed no project exceptions
+  - `graphify update .` succeeded after code changes with 165 nodes, 217 edges, and 20 communities
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
 ## Latest Code Notes
@@ -182,29 +194,31 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `GameLifetimeScope` now registers `PrototypePlacementInputDriver` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementState` as a singleton and `PrototypePlacementControlsView` from the scene hierarchy.
 - `GameLifetimeScope` now registers `PrototypeTownDebugState` as a singleton and `PrototypeTownDebugView` from the scene hierarchy.
-- Unity compile completed without C# errors after the prototype controls and Input System changes.
-- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 149 nodes, 189 edges, and 20 communities.
+- `CameraService` stores prototype camera pivot, distance, yaw, pitch, and clamp limits.
+- `PrototypeCameraInputDriver` applies camera orbit, pan, zoom, and reset input in `LateUpdate`.
+- Current desktop camera controls are `Alt + left drag` orbit, middle drag pan, mouse wheel zoom, and `R` reset.
+- Current touch camera controls are two-finger pan and pinch zoom.
+- `PrototypePlacementInputDriver` ignores `Alt + left` so orbit does not also place a block.
+- Unity compile completed without C# errors after the prototype camera changes.
+- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 165 nodes, 217 edges, and 20 communities.
 
 ## Current Working Tree Notes
 
 - Always check `git status --short` before editing or committing.
-- After commit `9b14199`, the prototype controls code, handover restructure, and Graphify refresh should already be committed.
-- Current debug-view work is not yet committed unless a later commit is present in `git log`.
-- Expected modified files for the debug-view work:
+- After commit `2a7824d`, the debug-view code, handover/log updates, and Graphify refresh should already be committed.
+- Current camera work is not yet committed unless a later commit is present in `git log`.
+- Expected modified files for the camera work:
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/CameraService.cs`
   - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownVisualRebuilder.cs`
   - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - `docs/Development_Session_Log.md`
   - `graphify-out/GRAPH_REPORT.md`
   - `graphify-out/graph.html`
   - `graphify-out/graph.json`
-- Expected new files for the debug-view work:
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging.meta`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugState.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugState.cs.meta`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugView.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebugView.cs.meta`
+- Expected new files for the camera work:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/PrototypeCameraInputDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/PrototypeCameraInputDriver.cs.meta`
 - Expected local/untracked files that should not be committed by default:
   - `Cozy_Builder/.screenshots/`
   - `Cozy_Builder/Assets/.screenshots/`
