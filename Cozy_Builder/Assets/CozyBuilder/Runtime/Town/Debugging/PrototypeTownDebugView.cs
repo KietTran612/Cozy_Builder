@@ -61,7 +61,7 @@ namespace CozyBuilder.Town.Debugging
                 return;
             }
 
-            var rule = placementService.Preview(in cell);
+            var rule = placementService.Preview(coord, in cell);
             labelBuilder.Length = 0;
             labelBuilder.Append("Selected: ");
             AppendCoord(coord);
