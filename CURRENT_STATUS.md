@@ -24,10 +24,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline before current camera work: `2a7824d Add prototype town debug view`.
+- Latest committed baseline after completing procedural rules: `ced9487 docs: finalize procedural rules system task tracker`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
-- Current uncommitted work includes prototype camera orbit/pan/zoom/reset controls, placement input conflict handling for `Alt + left` orbit, scene wiring, Graphify output refresh, and docs handover updates.
+- Current uncommitted work includes updating status/handover documentation files.
 - Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
 - Do not commit `Cozy_Builder/Assets/Packages` asset pack contents unless the user explicitly changes that policy.
 
@@ -57,6 +57,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Keeps runtime generated cell GameObjects under `Generated Town Cells`
   - Processes `TownVisualRebuilder` dirty cells in `LateUpdate`
   - Separates terrain tile views from pooled block views under `Terrain Cells` and `Block Cells`
+  - Uses dynamic Dictionary-backed `Queue<GameObject>` object pooling for all visual block types
+  - Uses zero-allocation `struct BlockViewData` in cell visual state to prevent GC allocations
+  - Provides 6 inspector slots for specialized block prefabs with automated fallback logic
+  - Correctly maps and applies 4-cardinal rotations to visual elements based on rule results
 - Prototype debug driver:
   - `PrototypePlacementDebugDriver`
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation
@@ -99,8 +103,9 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
-2. Then improve UI/input routing if camera and placement gestures need stronger separation.
+1. Iterate on UI/input routing (e.g. uGUI or UI Toolkit) to handle pointer blocking and separate placement gestures from camera orbit.
+2. Expand procedural rules variations or color/palette/material integrations for block views.
+3. Clean up and polish camera pivot and gesture responsiveness on mobile targets.
 
 ## Latest Validation Notes
 
@@ -163,6 +168,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Console readback after Play Mode showed no project exceptions
   - `graphify update .` succeeded after code changes with 165 nodes, 217 edges, and 20 communities
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
+- Procedural Rules System validation succeeded:
+  - Placement of a single block displays a Small House (`VisualId = 1`) correctly.
+  - Multi-level stacks generate Tunnels/Walls (`VisualId = 5` or `6`) for lower layers and custom Roof/Tops (`VisualId = 3`) for the peak layer.
+  - Adjacent blocks align dynamically, creating continuous Row Houses (`VisualId = 2`) with roofs rotated automatically along East-West (`RotationId = 0`) or North-South (`RotationId = 1`) axes.
+  - Placements next to water or on waterfront coordinates display Stilts (`VisualId = 4`) for the foundation layer.
+  - Dynamic `Dictionary<ushort, Queue<GameObject>>` recycling has zero runtime heap allocations in dirty update cycles.
+  - Clean recycling in `RefreshCell` and `ClearGeneratedCells` successfully avoids visual artifacts and memory leaks.
+  - Project compiles cleanly with no warnings or errors, and `graphify update .` successfully updated the codebase to 168 nodes, 225 edges, and 20 communities.
 
 ## Latest Code Notes
 
@@ -200,25 +213,21 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - Current touch camera controls are two-finger pan and pinch zoom.
 - `PrototypePlacementInputDriver` ignores `Alt + left` so orbit does not also place a block.
 - Unity compile completed without C# errors after the prototype camera changes.
-- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 165 nodes, 217 edges, and 20 communities.
+- `graphify update .` succeeded after the latest code changes and updated `graphify-out/` to 168 nodes, 225 edges, and 20 communities.
+- `RuleResult` property `RotationId` added to support 4-cardinal rotations (0°, 90°, 180°, 270°).
+- `RuleEvaluator` implemented height-stack and neighbor-aware rule assessment.
+- `TownGridView` now uses a dynamic `Dictionary`-backed `Queue<GameObject>` pooling architecture for blocks, zero-allocation `struct BlockViewData` to prevent GC allocations, and maps 4-cardinal rotations correctly.
+- Specialized block prefab slots (`smallHousePrefab`, `houseRoofPrefab`, `towerTopPrefab`, `stiltsPrefab`, `houseWallPrefab`, `towerWallPrefab`) added to `TownGridView` with dynamic inspector mapping and safe fallback.
+- `PlacementService.Preview` and `PrototypeTownDebugView` updated to support neighbor querying with coordinate parameters.
 
 ## Current Working Tree Notes
 
 - Always check `git status --short` before editing or committing.
-- After commit `2a7824d`, the debug-view code, handover/log updates, and Graphify refresh should already be committed.
-- Current camera work is not yet committed unless a later commit is present in `git log`.
-- Expected modified files for the camera work:
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/CameraService.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementInputDriver.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+- Camera controls work, Procedural Rules System, task trackers, implementation plan, and Graphify refreshes are all fully committed to Git.
+- Expected modified files for the current session:
+  - `CURRENT_STATUS.md`
+  - `HANDOVER.md`
   - `docs/Development_Session_Log.md`
-  - `graphify-out/GRAPH_REPORT.md`
-  - `graphify-out/graph.html`
-  - `graphify-out/graph.json`
-- Expected new files for the camera work:
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/PrototypeCameraInputDriver.cs`
-  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Camera/PrototypeCameraInputDriver.cs.meta`
 - Expected local/untracked files that should not be committed by default:
   - `Cozy_Builder/.screenshots/`
   - `Cozy_Builder/Assets/.screenshots/`

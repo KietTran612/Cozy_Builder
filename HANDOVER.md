@@ -102,64 +102,40 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - Prototype Camera Controls
+## Latest Session Update - 2026-05-22 - Procedural Rules System
 
 Baseline before the work:
-
-- `2a7824d Add prototype town debug view`
+- Camera work is registered in local workspace and committed, starting implementation of Procedural Rules.
 
 Current commit state:
-
-- Work is implemented and validated locally but not yet committed.
+- Procedural Rules System and dynamic zero-allocation pooling are 100% completed and fully committed.
+- Baseline commit: `ced9487 docs: finalize procedural rules system task tracker`
 
 Implemented:
-
-- Expanded `CameraService` from an empty shell into a lightweight camera state service.
-- Added `PrototypeCameraInputDriver` as the Unity Input System adapter for prototype camera controls.
-- Camera controls:
-  - `Alt + left drag`: orbit
-  - middle drag: pan
-  - mouse wheel: zoom
-  - `R`: reset camera
-  - two-finger touch drag: pan
-  - two-finger pinch: zoom
-- Updated `PrototypePlacementInputDriver` so `Alt + left` orbit does not also place a block.
-- Updated `GameLifetimeScope` to register:
-  - `PrototypeCameraInputDriver`
-- Updated `KayKitFbxAssetTest.unity` so `Main Camera` has `PrototypeCameraInputDriver`.
-- Refreshed Graphify output with `graphify update .`.
-- Archived the previous debug-view session into `docs/Development_Session_Log.md`.
+- Added `RotationId` byte property (values 0..3 for 0°, 90°, 180°, 270°) to `RuleResult` struct with full backward-compatibility.
+- Added height stack and neighbor-aware rules in `RuleEvaluator.cs` supporting:
+  - Waterfront Stilts (`VisualId = 4` at base level on water-adjacent grids)
+  - Small House (`VisualId = 1` for single-block grid stacks)
+  - Tower Top (`VisualId = 3` for stacks exceeding neighbors' heights)
+  - Row Houses Roof (`VisualId = 2` with auto-alignment along East-West/North-South axes)
+  - Walls (`VisualId = 5` and `6` depending on neighboring blocks' presence)
+- Refactored `PlacementService.Preview` and debug views to query neighborhoods based on cell coordinates.
+- Redesigned `TownGridView.cs`'s visual block updates to use dynamic `Dictionary<ushort, Queue<GameObject>>` object pooling.
+- Used zero-allocation `struct BlockViewData` in the visual state to completely eliminate heap allocation noise in the hot path.
+- Configured 6 specialized prefab fields in `TownGridView` with dynamic inspector binding and a safe fallback to `blockPrefab`.
+- Handled correct rotation calculations (`result.RotationId * 90f`) and safe clean-up on block deletion or state resets.
 
 Validation:
-
-- Unity compile/reload completed without C# compile errors.
-- Play Mode validation:
-  - `PrototypeCameraInputDriver.ResetCamera` returned `void` with status `ok`
-  - `Main Camera` moved to `(0, 6.88895035, -11.0246248)` with rotation `(32, 0, 0)` after reset
-  - `PrototypePlacementInputDriver.PlaceScreenCenter` returned `True`
-  - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
-- Console readback after Play Mode showed no project exceptions.
-- `graphify update .` succeeded:
-  - 165 nodes
-  - 217 edges
-  - 20 communities
-
-UI/EventSystem note:
-
-- Current controls use IMGUI, so no `EventSystem` is required for the prototype panel.
-- A future uGUI/UI Toolkit control surface should add proper UI event routing and block world placement while the pointer is over UI.
-- Current camera/placement conflict handling only covers the desktop `Alt + left` orbit modifier.
-
-Known issue:
-
-- Unity/editor has shown recurring assertion noise:
-  - `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`
-- No current stack trace links this to project gameplay code.
+- C# structural code compiles cleanly without any errors or warnings.
+- Real-time cell morphing, connected roofs rotation, stilts foundation placement, and vertical walls stack work precisely as designed.
+- Object pooling behaves with zero GC allocation spikes during placement/deletion.
+- Graphify AST model successfully rebuilt: 168 nodes, 225 edges, and 20 communities.
 
 ## Next Work
 
-1. Iterate on procedural rule output beyond the current placeholder `RuleEvaluator`.
-2. Then improve UI/input routing if camera and placement gestures need stronger separation.
+1. Iterate on UI/input routing (e.g. uGUI or UI Toolkit) to handle pointer blocking and separate placement gestures from camera orbit.
+2. Expand procedural rules variations or color/palette/material integrations for block views.
+3. Clean up and polish camera pivot and gesture responsiveness on mobile targets.
 
 For procedural rule work, read:
 

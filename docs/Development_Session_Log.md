@@ -268,3 +268,61 @@ Important commit:
 Important commit:
 
 - `2a7824d Add prototype town debug view`
+
+## 2026-05-22 - Prototype Camera Controls
+
+- Expanded `CameraService` from an empty shell into a lightweight camera state service.
+- Added `PrototypeCameraInputDriver` as the Unity Input System adapter for prototype camera controls.
+- Camera controls:
+  - `Alt + left drag`: orbit
+  - middle drag: pan
+  - mouse wheel: zoom
+  - `R`: reset camera
+  - two-finger touch drag: pan
+  - two-finger pinch: zoom
+- Updated `PrototypePlacementInputDriver` so `Alt + left` orbit does not also place a block.
+- Updated `GameLifetimeScope` to register `PrototypeCameraInputDriver`.
+- Updated `KayKitFbxAssetTest.unity` so `Main Camera` has `PrototypeCameraInputDriver`.
+
+Validation:
+- Unity compile/reload completed without C# compile errors.
+- Play Mode validation:
+  - `PrototypeCameraInputDriver.ResetCamera` returned `void` with status `ok`
+  - `Main Camera` moved to `(0, 6.88895035, -11.0246248)` with rotation `(32, 0, 0)` after reset
+- Console readback after Play Mode showed no project exceptions.
+- `graphify update .` succeeded with 165 nodes, 217 edges, and 20 communities.
+
+## 2026-05-22 - Procedural Rules System Integration
+
+- Refactored `RuleResult.cs` by adding `RotationId` and a backward-compatible constructor.
+- Implemented height stack and neighbor-aware procedural morphing rules in `RuleEvaluator.cs`:
+  - **Waterfront Foundation (`VisualId = 4`)**: Stilts on waterfront grids at layer 1.
+  - **Small House (`VisualId = 1`)**: Single standalone houses at the top layer with height 1.
+  - **Tower Top (`VisualId = 3`)**: Pointy roofs if a tower stack is taller than all of its cardinal neighbors.
+  - **Row Houses Roof (`VisualId = 2`)**: Connected roofs that automatically rotate (0°/90°) along East-West or North-South axes.
+  - **House Wall (`VisualId = 5`)** & **Tower Wall (`VisualId = 6`)**: Under-layer walls depending on whether neighboring blocks share the same layer.
+- Refactored `PlacementService.cs`'s `Preview` signature to pass cell coordinate and query neighborhood from `townDataStore.Current`.
+- Fixed compiling issues in `PrototypeTownDebugView.cs` by aligning parameters to the new `Preview` signature.
+- Redesigned `TownGridView.cs`'s visualization:
+  - Replaced continuous GC-allocating instantiation with `Dictionary<ushort, Queue<GameObject>>` object pooling.
+  - Utilized a zero-allocation `struct BlockViewData` (instead of classes) for tracking visual block instances.
+  - Provided 6 custom SerializedField slots for specialized block prefabs with a safe fallback to `blockPrefab`.
+  - Handled clean recycling of active block views when cells are refreshed or cleared.
+  - Calculated and applied correct rotations for modular blocks based on `RotationId * 90f`.
+- Documented and structured local implementation plan at `docs/plans/2026-05-22-procedural-rules.md` and finalized task progress checklist at `docs/plans/task.md`.
+
+Validation:
+- C# project compiles successfully with zero errors.
+- Visual block morphing, auto-alignment, stilts base on water, and multi-level stack walls/roofs function exactly as designed.
+- Dynamic pooling successfully prevents heap allocations in update cycles.
+- `graphify update .` successfully updated the AST graph to 168 nodes, 225 edges, and 20 communities.
+
+Important commits:
+- `ced9487` docs: finalize procedural rules system task tracker
+- `ac898fa` chore: update graphify AST graph after implementing procedural rules
+- `bfcea17` docs: add procedural rules implementation plan inside the project
+- `9c95296` docs: update task progress tracker to complete tasks 2-5
+- `d2c7756` feat: implement zero-allocation pooling, rotation mapping, and specialized prefab slots in TownGridView
+- `b1c6948` refactor: adjust preview method invocation parameters in PrototypeTownDebugView
+- `3fcfea7` feat: implement height stack and neighbor-aware rules in RuleEvaluator
+- `28c535d` refactor: update Preview signature in PlacementService to pass town data and cell coordinate

@@ -2776,9 +2776,9 @@
       "source_location": "L30",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "ruleevaluator",
-      "confidence_score": 1.0
+      "target": "ruleevaluator"
     },
     {
       "relation": "calls",
@@ -3446,9 +3446,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L298",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "rendering_towngridview_towngridview_getpooledblock",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_getpooledblock"
     },
     {
       "relation": "method",
@@ -3456,9 +3456,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L322",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "rendering_towngridview_towngridview_returntopool",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_returntopool"
     },
     {
       "relation": "method",
@@ -3466,9 +3466,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L337",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "rendering_towngridview_towngridview_getprefabforvisualid",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_getprefabforvisualid"
     },
     {
       "relation": "method",
@@ -3606,9 +3606,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview_refreshcell",
-      "target": "rendering_towngridview_towngridview_returntopool",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_returntopool"
     },
     {
       "relation": "calls",
@@ -3727,9 +3727,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L256",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview_applyblockstate",
-      "target": "rendering_towngridview_towngridview_returntopool",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_returntopool"
     },
     {
       "relation": "calls",
@@ -3738,9 +3738,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L257",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview_applyblockstate",
-      "target": "rendering_towngridview_towngridview_getpooledblock",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_getpooledblock"
     },
     {
       "relation": "calls",
@@ -3760,9 +3760,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L316",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview_getpooledblock",
-      "target": "rendering_towngridview_towngridview_getprefabforvisualid",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_getprefabforvisualid"
     },
     {
       "relation": "contains",
@@ -3868,5 +3868,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9c95296b2b4633b5777b728665040c718d43befa"
+  "built_at_commit": "ced9487431e1966386c04cc00ba6b32c8aefa86d"
 }
