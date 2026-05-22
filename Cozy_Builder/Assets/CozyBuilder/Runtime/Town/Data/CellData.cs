@@ -5,7 +5,7 @@ namespace CozyBuilder.Town.Data
         public ushort Height;
         public ushort ColorId;
         public ushort MaterialId;
-        public byte TerrainId;
+        public TerrainType Terrain;
         public CellFlags Flags;
     }
 }

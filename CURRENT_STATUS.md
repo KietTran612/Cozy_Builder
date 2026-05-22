@@ -12,19 +12,23 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Phase
 
-- Phase 0 / early prototype foundation.
+- Phase 0 / early Prototype Core foundation.
 - Unity project exists at `Cozy_Builder`.
 - Unity version: `6000.3.11f1`.
 - Render pipeline: URP.
 - DI: VContainer.
 - Async package: UniTask.
 - First imported/test asset pack: KayKit Medieval Builder Pack 1.0.
+- KayKit validation is complete enough to use it as prototype terrain/grid placeholder content.
+- Prototype Core data foundation has started.
 
 ## Current Commit Baseline
 
-- Latest committed code foundation commit: `124772e Add Unity code foundation and KayKit test scene`.
+- Latest committed baseline observed in this session: `ee1392d Add Unity MCP workflow and startup context`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
+- Current uncommitted work includes KayKit test scene changes, Prototype Core data/service changes, Graphify output refresh, and local screenshot output.
+- Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
 
 ## What Exists
 
@@ -35,6 +39,9 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `GridCoord`
   - `CellFlags`
   - `CellData`
+  - `TerrainType`
+  - `GridNeighborhood`
+  - `OrganicIslandGridGenerator`
   - `RuleResult`
   - `TownData`
   - `TownDataStore`
@@ -43,30 +50,59 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `TownVisualRebuilder`
   - `CameraService`
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
+- KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
+  - 1-cell house
+  - 2-house row
+  - 2-level stack
+  - wall segment row
+  - hex tile sample
 - Graphify output exists at `graphify-out/` and is maintained with `graphify update .`.
 - Unity MCP package/server has been installed locally; Codex user config points to the embedded Python bridge.
 
 ## Current Intent
 
-- Code is foundation only, not gameplay implementation.
+- Code is still foundation only, but Prototype Core data work has begun.
 - `GameLifetimeScope` should register system-level prototype services only.
 - Data must remain separate from scene GameObjects.
 - No static singleton gameplay services.
-- KayKit test scene is for scale/material/URP/modularity inspection before prototype placement work.
+- KayKit should be used as prototype terrain/grid placeholder content, not as the final procedural building foundation.
+- Current prototype direction is data-first island grid and placement/delete services before user input and visual runtime adapters.
 
 ## Next Work
 
-1. Open `KayKitFbxAssetTest.unity` in Unity.
-2. Verify Unity import/compile and Console status.
-3. Inspect KayKit FBX scale, material, URP compatibility, modularity, and procedural suitability.
-4. Only after the asset test scene is stable, begin Prototype Core:
-   - organic island grid
-   - tap/click placement
-   - delete mode
-   - basic palette
-   - minimal procedural wall/roof/tower rules
-   - camera orbit/pan/zoom
-   - debug cell/neighbor/rule view
+1. Build the first visual adapter for Prototype Core:
+   - read `TownDataStore.Current`
+   - instantiate or otherwise display KayKit tile placeholders for initial island cells
+   - keep scene objects as visual output, not source of truth
+2. Add a minimal runtime driver/MonoBehaviour adapter only after the data-to-visual path is clear.
+3. Add tap/click placement and delete mode against `PlacementService`.
+4. Add a basic palette using `ColorId`/`MaterialId`, not runtime material instances.
+5. Add minimal procedural rule/debug views:
+   - cell id/neighbor info
+   - dirty cell queue
+   - rule result preview
+6. Then add camera orbit/pan/zoom.
+
+## Latest Validation Notes
+
+- Unity MCP connected successfully while Unity Editor was open.
+- `KayKitFbxAssetTest.unity` opened and compiled in Unity `6000.3.11f1`.
+- KayKit FBX samples render in URP without magenta/missing-shader materials.
+- KayKit license file confirms CC0 and commercial use.
+- KayKit inventory is strong for terrain/grid tests: hex/square tiles, road, water, water corners/straights, forest/rock/sand variations.
+- KayKit object inventory includes buildings and walls, but mostly as whole objects; it is not yet suitable as a main wall/roof procedural building foundation.
+- Wall segment spacing at 2m aligns cleanly in the scene test.
+- Whole-house objects are useful for scale/mood placeholders but do not behave like clean wall/roof modules.
+
+## Latest Code Notes
+
+- `TownDataStore.Current` now initializes an organic island grid with radius 4.
+- `TownData` now owns coordinates, cell data, and coordinate-to-index lookup.
+- `PlacementService` now has data-first `TryPlaceBlock` and `TryDeleteBlock` APIs.
+- Placement/delete marks the changed cell and cardinal neighbors dirty.
+- `TownVisualRebuilder` now has a deduplicated dirty queue foundation.
+- Unity compile completed without C# errors after these code changes.
+- `graphify update .` succeeded after code changes and updated `graphify-out/`.
 
 ## Rules That Must Not Drift
 

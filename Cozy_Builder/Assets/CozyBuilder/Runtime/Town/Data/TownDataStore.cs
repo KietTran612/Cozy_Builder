@@ -2,8 +2,8 @@ namespace CozyBuilder.Town.Data
 {
     public sealed class TownDataStore
     {
-        private const int InitialCellCount = 0;
+        private const int InitialIslandRadius = 4;
 
-        public TownData Current { get; } = new TownData(InitialCellCount);
+        public TownData Current { get; } = OrganicIslandGridGenerator.Generate(InitialIslandRadius);
     }
 }

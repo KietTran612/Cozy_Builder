@@ -467,3 +467,107 @@ Operational notes:
 - `Assets/.mcp_auth_token` is local/secret and should not be committed.
 - `Assets/StreamingAssets/realvirtual-MCP/` contains embedded Python/runtime files and should remain local unless we explicitly decide to version it.
 - `.gitignore` and `.graphifyignore` were updated to avoid committing/indexing these local MCP files.
+
+## Session Update - 2026-05-22 - KayKit Validation And Prototype Core Data Foundation
+
+This section is the latest handover status and overrides older "next work" notes that still say the Unity project, KayKit test scene, or code foundation have not been started.
+
+Current baseline:
+
+- Latest committed baseline observed in this session: `ee1392d Add Unity MCP workflow and startup context`.
+- Unity Editor was open and Unity MCP connected successfully.
+- Unity version in editor: `6000.3.11f1`.
+- `KayKitFbxAssetTest.unity` opened successfully from `Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
+- Unity compile/import completed without C# compile errors.
+- `graphify update .` was run after code changes and succeeded.
+
+KayKit validation result:
+
+- KayKit Medieval Builder Pack 1.0 remains the first test asset pack.
+- License file confirms CC0; commercial use is allowed and attribution is optional.
+- FBX samples render in URP without magenta/missing-shader materials.
+- KayKit is suitable for prototype terrain/grid placeholder work:
+  - hex/square tiles
+  - forest/rock/sand variants
+  - road tiles
+  - water tiles
+  - water edge/corner/straight pieces
+  - wall and bridge placeholders
+- KayKit is not yet strong enough to treat as the final procedural building foundation:
+  - building assets are mostly whole objects
+  - wall/roof/floor pieces are not clearly separated for cell-based procedural architecture
+  - houses work for scale/mood placeholders, not clean modular wall/roof assembly
+- Decision: use KayKit for Prototype Core terrain/grid placeholders and early validation; continue searching/testing a stronger modular building foundation later.
+
+KayKit scene changes:
+
+- `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity` now has separated asset samples instead of overlapping all at origin.
+- Added simple procedural compatibility cases:
+  - 1-cell house
+  - 2-house row
+  - 2-level stack
+  - 2-wall segment row
+  - hex tile sample
+- Measurement notes:
+  - `wall_straight` aligns cleanly at 2m spacing.
+  - whole `house` objects placed at 2m spacing leave visible gap, so they need their own spacing or should remain placeholders.
+  - stacked house geometry can touch at roughly 0.914m, but this does not prove it is visually suitable for stacked procedural buildings.
+- Screenshot output was written under `Cozy_Builder/.screenshots/`; treat this as local validation output unless intentionally documenting screenshots.
+
+Prototype Core code changes:
+
+- `TownDataStore.Current` now initializes a small organic island grid with radius 4.
+- `TownData` now owns:
+  - `GridCoord[] Coordinates`
+  - `CellData[] Cells`
+  - coordinate-to-index lookup
+  - `Contains`, `TryGetIndex`, `TryGetCell`, and `TrySetCell`
+- Added:
+  - `TerrainType`
+  - `GridNeighborhood`
+  - `OrganicIslandGridGenerator`
+- `CellData` now stores `TerrainType Terrain` instead of a raw `byte TerrainId`.
+- `PlacementService` now includes:
+  - `TryPlaceBlock(GridCoord coord, ushort colorId = 0, ushort materialId = 0)`
+  - `TryDeleteBlock(GridCoord coord)`
+  - dirty marking for changed cell and cardinal neighbors
+- `TownVisualRebuilder` now has a deduplicated dirty queue:
+  - `DirtyCount`
+  - `MarkDirty`
+  - `TryDequeueDirty`
+
+Current intent:
+
+- The project has entered early Prototype Core data foundation work.
+- Runtime town state must remain data-first.
+- Scene objects are visual output only, not the source of truth.
+- Do not build input, UI, or camera features before the data-to-visual path is proven.
+- Do not turn KayKit whole building objects into long-term procedural architecture assumptions.
+
+Next recommended work:
+
+1. Build the first visual adapter:
+   - read `TownDataStore.Current`
+   - display KayKit tile placeholders for initial island cells
+   - keep GameObjects as rebuild output only
+2. Add a minimal MonoBehaviour runtime driver only where needed to bridge Unity lifecycle to services.
+3. Add click/tap placement and delete mode against `PlacementService`.
+4. Add a basic palette using `ColorId`/`MaterialId`; avoid runtime material instances.
+5. Add debug views for:
+   - cell coordinates
+   - neighbor state
+   - dirty queue
+   - rule result preview
+6. Add camera orbit/pan/zoom after placement/visual loop is visible.
+
+Dirty/uncommitted state notes:
+
+- Expected modified files include runtime data/service code, `KayKitFbxAssetTest.unity`, and `graphify-out/`.
+- Expected new code files include:
+  - `GridNeighborhood.cs`
+  - `OrganicIslandGridGenerator.cs`
+  - `TerrainType.cs`
+- Unity generated `.meta` files for new C# files should be included if committing those files.
+- `Cozy_Builder/Packages/io.realvirtual.mcp/` is local MCP tooling and should not be committed unless project policy changes.
+- `Cozy_Builder/.screenshots/` is local validation output unless explicitly chosen for docs.
+- `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json` appeared as untracked after Unity activity; inspect before deciding whether it belongs in version control.
