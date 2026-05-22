@@ -571,3 +571,137 @@ Dirty/uncommitted state notes:
 - `Cozy_Builder/Packages/io.realvirtual.mcp/` is local MCP tooling and should not be committed unless project policy changes.
 - `Cozy_Builder/.screenshots/` is local validation output unless explicitly chosen for docs.
 - `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json` appeared as untracked after Unity activity; inspect before deciding whether it belongs in version control.
+
+## Session Update - 2026-05-22 - First Visual Adapter Validation
+
+This section records the next Prototype Core step after commit `c45f758 Start prototype core data foundation`.
+
+Implemented but not yet committed:
+
+- Added first data-to-visual adapter:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs`
+  - `TownGridView.cs.meta`
+- Updated composition root:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - It now registers `TownGridView` from the scene hierarchy with VContainer.
+- Updated test scene:
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - Added root object `Town Grid View`
+  - Wired `cellPrefab` to KayKit `hex_forest`
+  - Used `cellSpacing` of `2.1`
+  - Enabled `rebuildOnStart`
+- Refreshed Graphify output with `graphify update .`.
+
+Validation:
+
+- Unity Editor was open and MCP connected.
+- Unity compile completed without C# compile errors.
+- Entered Play Mode in `KayKitFbxAssetTest`.
+- `TownGridView` generated an island grid from `TownDataStore.Current`.
+- Runtime generated children appeared under `Town Grid View/Generated Town Cells`.
+- After exiting Play Mode, generated runtime cells did not persist in the scene.
+- Screenshot output:
+  - `Cozy_Builder/.screenshots/scene_20260522_112322.png`
+- `graphify update .` succeeded after the code changes:
+  - 81 nodes
+  - 80 edges
+  - 14 communities
+
+Known open issue:
+
+- Unity/editor console still prints repeated assertion errors:
+  - `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`
+- The assertion currently has no stack trace pointing to project gameplay code.
+- Treat it as unresolved editor/scene-view noise unless later evidence links it to a project script or asset.
+
+Current uncommitted state expected after this update:
+
+- Modified:
+  - `CURRENT_STATUS.md`
+  - `HANDOVER.md`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - `graphify-out/GRAPH_REPORT.md`
+  - `graphify-out/graph.html`
+  - `graphify-out/graph.json`
+- New:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs.meta`
+- Local/untracked, do not commit by default:
+  - `Cozy_Builder/.screenshots/`
+  - `Cozy_Builder/Packages/io.realvirtual.mcp/`
+- Inspect before deciding:
+  - `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json`
+
+Next recommended work:
+
+1. Connect `PlacementService` to `TownGridView` so place/delete updates visual dirty cells.
+2. Avoid whole-town rebuilds for gameplay edits; move toward dirty-cell, pooled, or chunk-friendly updates.
+3. Add click/tap placement and delete mode after the dirty visual update loop works.
+4. Add palette support using `ColorId`/`MaterialId`, not runtime material instances.
+5. Add debug visibility for cell coordinates, neighbor state, dirty queue, and rule results.
+
+Commit policy reminder:
+
+- Do not include `Cozy_Builder/Assets/Packages` in new commits unless the user explicitly changes this policy.
+- Do not commit local MCP runtime or secrets:
+  - `Cozy_Builder/Packages/io.realvirtual.mcp/`
+  - `Cozy_Builder/Assets/.mcp_auth_token`
+
+## Session Update - 2026-05-22 - Dirty Cell Visual Update Loop
+
+This section records the follow-up step after the first `TownGridView` validation.
+
+Implemented but not yet committed:
+
+- Updated `TownGridView`:
+  - injects `TownVisualRebuilder`
+  - drains dirty cells in `LateUpdate`
+  - exposes `ProcessDirtyCells(int maxCells)`
+  - exposes `RefreshCell(GridCoord coord)`
+  - refreshes only affected cell views instead of rebuilding the whole island
+  - uses placeholder height visualization by moving a cell view upward by `blockHeightStep` per cell height
+- Added temporary validation driver:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
+  - calls `PlacementService.TryPlaceBlock` and `PlacementService.TryDeleteBlock`
+  - exists only to validate placement/delete through MCP/manual inspector calls before tap/click input is implemented
+- Updated `GameLifetimeScope`:
+  - registers `TownGridView`
+  - registers `PrototypePlacementDebugDriver`
+- Updated `KayKitFbxAssetTest.unity`:
+  - `Town Grid View` now has `TownGridView` and `PrototypePlacementDebugDriver`
+
+Validation:
+
+- Unity compile/reload completed without C# compile errors.
+- Play Mode was entered in `KayKitFbxAssetTest`.
+- Invoked `PrototypePlacementDebugDriver.PlaceDebugBlock` through Unity MCP:
+  - returned `True`
+  - `Cell 0,0` became `Cell 0,0 H1`
+  - transform local Y became `0.35`
+- Invoked `PrototypePlacementDebugDriver.DeleteDebugBlock` through Unity MCP:
+  - returned `True`
+  - `Cell 0,0` became `Cell 0,0 H0`
+  - transform local Y returned to `0`
+- After exiting Play Mode, runtime generated cell children did not persist in the scene.
+- `Town Grid View` persists with components:
+  - `Transform`
+  - `TownGridView`
+  - `PrototypePlacementDebugDriver`
+- `graphify update .` succeeded:
+  - 93 nodes
+  - 101 edges
+  - 15 communities
+
+Known open issue:
+
+- Unity/editor still logs repeated assertion errors:
+  - `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`
+- No current stack trace links this to project gameplay code.
+
+Next recommended work:
+
+1. Add real tap/click placement and delete input against `PlacementService`.
+2. Replace placeholder height-offset tile visuals with a better pooled/chunk-friendly block visual path.
+3. Add palette support using `ColorId`/`MaterialId`.
+4. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.

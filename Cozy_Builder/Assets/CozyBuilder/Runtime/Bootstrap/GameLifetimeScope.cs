@@ -17,6 +17,8 @@ namespace CozyBuilder.Bootstrap
             builder.Register<TownVisualRebuilder>(Lifetime.Singleton);
             builder.Register<PlacementService>(Lifetime.Singleton);
             builder.Register<CameraService>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<TownGridView>();
+            builder.RegisterComponentInHierarchy<PrototypePlacementDebugDriver>();
         }
     }
 }

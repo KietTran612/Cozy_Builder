@@ -24,11 +24,12 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline observed in this session: `ee1392d Add Unity MCP workflow and startup context`.
+- Latest committed baseline observed in this session: `c45f758 Start prototype core data foundation`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
-- Current uncommitted work includes KayKit test scene changes, Prototype Core data/service changes, Graphify output refresh, and local screenshot output.
+- Current uncommitted work includes the first Prototype Core visual adapter, KayKit test scene wiring, Graphify output refresh, and local screenshot output.
 - Local-only/untracked MCP package files may appear under `Cozy_Builder/Packages/io.realvirtual.mcp/`; do not commit them unless project policy changes.
+- Do not commit `Cozy_Builder/Assets/Packages` asset pack contents unless the user explicitly changes that policy.
 
 ## What Exists
 
@@ -49,6 +50,15 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `RuleEvaluator`
   - `TownVisualRebuilder`
   - `CameraService`
+- First visual adapter:
+  - `TownGridView`
+  - Reads `TownDataStore.Current`
+  - Instantiates KayKit tile placeholder views for initial island cells
+  - Keeps runtime generated cell GameObjects under `Generated Town Cells`
+  - Processes `TownVisualRebuilder` dirty cells in `LateUpdate`
+- Prototype debug driver:
+  - `PrototypePlacementDebugDriver`
+  - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation before input UI exists
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
   - 1-cell house
@@ -70,18 +80,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Build the first visual adapter for Prototype Core:
-   - read `TownDataStore.Current`
-   - instantiate or otherwise display KayKit tile placeholders for initial island cells
-   - keep scene objects as visual output, not source of truth
-2. Add a minimal runtime driver/MonoBehaviour adapter only after the data-to-visual path is clear.
-3. Add tap/click placement and delete mode against `PlacementService`.
-4. Add a basic palette using `ColorId`/`MaterialId`, not runtime material instances.
-5. Add minimal procedural rule/debug views:
+1. Add tap/click placement and delete mode against `PlacementService`.
+2. Replace placeholder height-offset visuals with a pool/chunk-friendly block visual path before repeated gameplay edits.
+3. Add a basic palette using `ColorId`/`MaterialId`, not runtime material instances.
+4. Add minimal procedural rule/debug views:
    - cell id/neighbor info
    - dirty cell queue
    - rule result preview
-6. Then add camera orbit/pan/zoom.
+5. Then add camera orbit/pan/zoom.
 
 ## Latest Validation Notes
 
@@ -93,6 +99,19 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - KayKit object inventory includes buildings and walls, but mostly as whole objects; it is not yet suitable as a main wall/roof procedural building foundation.
 - Wall segment spacing at 2m aligns cleanly in the scene test.
 - Whole-house objects are useful for scale/mood placeholders but do not behave like clean wall/roof modules.
+- First `TownGridView` Play Mode validation succeeded:
+  - `Town Grid View` exists in `KayKitFbxAssetTest.unity`
+  - `cellPrefab` is wired to the KayKit `hex_forest` scene object
+  - Play Mode generated an island grid from `TownDataStore.Current`
+  - generated runtime cells did not persist after exiting Play Mode
+- Dirty-cell visual validation succeeded:
+  - `PrototypePlacementDebugDriver.PlaceDebugBlock` returned `True`
+  - `Cell 0,0` changed to `Cell 0,0 H1` and moved to local Y `0.35`
+  - `PrototypePlacementDebugDriver.DeleteDebugBlock` returned `True`
+  - `Cell 0,0` changed back to `Cell 0,0 H0` and local Y `0`
+  - After exiting Play Mode, generated runtime cells did not persist in the scene
+- Screenshot output for this validation: `Cozy_Builder/.screenshots/scene_20260522_112322.png`.
+- Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
 ## Latest Code Notes
 
@@ -101,8 +120,33 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `PlacementService` now has data-first `TryPlaceBlock` and `TryDeleteBlock` APIs.
 - Placement/delete marks the changed cell and cardinal neighbors dirty.
 - `TownVisualRebuilder` now has a deduplicated dirty queue foundation.
-- Unity compile completed without C# errors after these code changes.
-- `graphify update .` succeeded after code changes and updated `graphify-out/`.
+- `TownGridView` has been added as the first data-to-visual Unity adapter.
+- `TownGridView` now injects `TownVisualRebuilder` and processes dirty cells with `ProcessDirtyCells`.
+- Dirty visual updates refresh only affected cell views instead of rebuilding the whole island.
+- Placeholder block height currently appears by raising the cell view by `blockHeightStep` per height.
+- `PrototypePlacementDebugDriver` has been added for temporary MCP/manual place-delete validation before real input exists.
+- `GameLifetimeScope` now registers `TownGridView` from the scene hierarchy with VContainer.
+- `GameLifetimeScope` now registers `PrototypePlacementDebugDriver` from the scene hierarchy with VContainer.
+- Unity compile completed without C# errors after the visual adapter changes.
+- `graphify update .` succeeded after code changes and updated `graphify-out/` to 93 nodes, 101 edges, and 15 communities.
+
+## Current Uncommitted State Notes
+
+- Expected modified files:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Bootstrap/GameLifetimeScope.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`
+  - `graphify-out/GRAPH_REPORT.md`
+  - `graphify-out/graph.html`
+  - `graphify-out/graph.json`
+- Expected new files:
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs.meta`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs`
+  - `Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Placement/PrototypePlacementDebugDriver.cs.meta`
+- Expected local/untracked files that should not be committed by default:
+  - `Cozy_Builder/.screenshots/`
+  - `Cozy_Builder/Packages/io.realvirtual.mcp/`
+- `Cozy_Builder/ProjectSettings/SceneTemplateSettings.json` appeared as untracked after Unity activity; inspect before deciding whether it belongs in version control.
 
 ## Rules That Must Not Drift
 
