@@ -764,3 +764,67 @@ Next recommended work:
 2. Add a visible delete/place mode and palette control for `ColorId`/`MaterialId`.
 3. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.
 4. Add camera orbit/pan/zoom.
+
+## Session Update - 2026-05-22 - Pooled Prototype Block Visuals
+
+This section records the step after commit `1efc7c3 Add prototype placement input`.
+
+Committed baseline before this step:
+
+- `1efc7c3 Add prototype placement input`
+
+Implemented but not yet committed:
+
+- Updated `TownGridView`:
+  - added optional `blockPrefab`
+  - added separate generated child roots:
+    - `Terrain Cells`
+    - `Block Cells`
+  - keeps terrain tile views at ground level
+  - creates block views separately from terrain tiles
+  - pools block views per cell by keeping deleted blocks inactive
+  - no longer visualizes height by moving the terrain tile itself upward
+- Updated `KayKitFbxAssetTest.unity`:
+  - added inactive scene object `Prototype Block Source`
+  - assigned it to `TownGridView.blockPrefab`
+  - set `blockHeightStep` to `0.38`
+  - set `blockScale` to `(0.75, 0.35, 0.75)`
+- Refreshed Graphify output with `graphify update .`.
+
+Validation:
+
+- Unity compile/reload completed without C# compile errors.
+- Entered Play Mode in `KayKitFbxAssetTest`.
+- Invoked `PrototypePlacementInputDriver.PlaceScreenCenter` through Unity MCP:
+  - returned `True`
+  - created/activated `Block 0,1 L1`
+  - block path was `Town Grid View/Generated Town Cells/Block Cells/Block 0,1 L1`
+  - block local position was `(0, 0.38, 2.1)`
+  - block local scale was `(0.75, 0.35, 0.75)`
+- Verified terrain stayed separate:
+  - `Cell 0,1` path was `Town Grid View/Generated Town Cells/Terrain Cells/Cell 0,1`
+  - terrain local position stayed `(0, 0, 2.1)`
+- Invoked `PrototypePlacementInputDriver.DeleteScreenCenter` through Unity MCP:
+  - returned `True`
+  - `Block 0,1 L1` remained present but inactive
+  - terrain tile stayed active at local Y `0`
+- Exited Play Mode.
+- Runtime generated terrain/block children did not persist in the saved scene.
+- Scene persists only the configured source object:
+  - `Prototype Block Source`, inactive
+- `graphify update .` succeeded:
+  - 115 nodes
+  - 140 edges
+  - 17 communities
+
+Known open issue:
+
+- Unity/editor still logs repeated assertion errors:
+  - `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`
+- No current stack trace links this to project gameplay code.
+
+Next recommended work:
+
+1. Add visible place/delete mode controls and a basic palette using `ColorId`/`MaterialId`.
+2. Add debug overlay for selected cell, neighbors, dirty queue, and rule result.
+3. Add camera orbit/pan/zoom.

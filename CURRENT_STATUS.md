@@ -24,7 +24,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline observed in this session: `4ff5d15 Add prototype town visual update loop`.
+- Latest committed baseline observed in this session: `1efc7c3 Add prototype placement input`.
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
 - Current uncommitted work includes the first Prototype Core visual adapter, KayKit test scene wiring, Graphify output refresh, and local screenshot output.
@@ -56,6 +56,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Instantiates KayKit tile placeholder views for initial island cells
   - Keeps runtime generated cell GameObjects under `Generated Town Cells`
   - Processes `TownVisualRebuilder` dirty cells in `LateUpdate`
+  - Separates terrain tile views from pooled block views under `Terrain Cells` and `Block Cells`
 - Prototype debug driver:
   - `PrototypePlacementDebugDriver`
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation before input UI exists
@@ -84,13 +85,12 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. Replace placeholder height-offset visuals with a pool/chunk-friendly block visual path before repeated gameplay edits.
-2. Add a visible mode/palette control for place/delete and `ColorId`/`MaterialId`.
-3. Add minimal procedural rule/debug views:
+1. Add a visible mode/palette control for place/delete and `ColorId`/`MaterialId`.
+2. Add minimal procedural rule/debug views:
    - cell id/neighbor info
    - dirty cell queue
    - rule result preview
-4. Then add camera orbit/pan/zoom.
+3. Then add camera orbit/pan/zoom.
 
 ## Latest Validation Notes
 
@@ -119,6 +119,12 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypePlacementInputDriver.DeleteScreenCenter` returned `True`
   - searching for `H1` after delete returned zero objects
   - `Town Grid View` now has `TownGridView`, `PrototypePlacementDebugDriver`, and `PrototypePlacementInputDriver`
+- Pooled block visual validation succeeded:
+  - `Prototype Block Source` inactive cube exists in the scene and is assigned to `TownGridView.blockPrefab`
+  - placing at screen center creates/activates `Block 0,1 L1` under `Generated Town Cells/Block Cells`
+  - `Cell 0,1` remains a terrain tile under `Generated Town Cells/Terrain Cells` at local Y `0`
+  - deleting at screen center leaves `Block 0,1 L1` pooled but inactive
+  - generated runtime terrain/block children do not persist after exiting Play Mode
 - Screenshot output for this validation: `Cozy_Builder/.screenshots/scene_20260522_112322.png`.
 - Unity/editor console still shows recurring assertion noise: `Assertion failed on expression: 'IsNormalized(dir, 0.0001f)'`. No stack trace currently points to project gameplay code.
 
@@ -136,11 +142,14 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 - `PrototypePlacementDebugDriver` has been added for temporary MCP/manual place-delete validation before real input exists.
 - `PrototypePlacementInputDriver` has been added as the first mouse/touch input adapter.
 - `TownGridView.TryGetCoordFromWorld` maps world positions back to existing grid coordinates.
+- `TownGridView` now keeps terrain visuals and block visuals separate.
+- Block visuals are pooled per cell: delete disables existing block instances instead of destroying them.
+- Placeholder block source is currently a scene cube named `Prototype Block Source`, not final art.
 - `GameLifetimeScope` now registers `TownGridView` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementDebugDriver` from the scene hierarchy with VContainer.
 - `GameLifetimeScope` now registers `PrototypePlacementInputDriver` from the scene hierarchy with VContainer.
 - Unity compile completed without C# errors after the visual adapter changes.
-- `graphify update .` succeeded after code changes and updated `graphify-out/` to 108 nodes, 125 edges, and 16 communities.
+- `graphify update .` succeeded after code changes and updated `graphify-out/` to 115 nodes, 140 edges, and 17 communities.
 
 ## Current Uncommitted State Notes
 

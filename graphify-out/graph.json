@@ -54,7 +54,7 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L1",
       "id": "camera_cameraservice_cs",
-      "community": 11,
+      "community": 12,
       "norm_label": "cameraservice.cs"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L1",
       "id": "camera_cameraservice_cozybuilder_camera",
-      "community": 11,
+      "community": 12,
       "norm_label": "cozybuilder.camera"
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "Camera/CameraService.cs",
       "source_location": "L3",
       "id": "camera_cameraservice_cameraservice",
-      "community": 11,
+      "community": 12,
       "norm_label": "cameraservice"
     },
     {
@@ -81,7 +81,7 @@
       "source_file": "Town/Data/CellData.cs",
       "source_location": "L1",
       "id": "town_data_celldata_cs",
-      "community": 12,
+      "community": 13,
       "norm_label": "celldata.cs"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "Town/Data/CellData.cs",
       "source_location": "L1",
       "id": "data_celldata_cozybuilder_town_data",
-      "community": 12,
+      "community": 13,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "Town/Data/CellFlags.cs",
       "source_location": "L1",
       "id": "town_data_cellflags_cs",
-      "community": 13,
+      "community": 14,
       "norm_label": "cellflags.cs"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "Town/Data/CellFlags.cs",
       "source_location": "L3",
       "id": "data_cellflags_cozybuilder_town_data",
-      "community": 13,
+      "community": 14,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "Town/Data/GridCoord.cs",
       "source_location": "L1",
       "id": "town_data_gridcoord_cs",
-      "community": 8,
+      "community": 9,
       "norm_label": "gridcoord.cs"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "Town/Data/GridCoord.cs",
       "source_location": "L3",
       "id": "data_gridcoord_cozybuilder_town_data",
-      "community": 8,
+      "community": 9,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "Town/Data/GridCoord.cs",
       "source_location": "L16",
       "id": "data_gridcoord_equals",
-      "community": 8,
+      "community": 9,
       "norm_label": "equals()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "Town/Data/GridCoord.cs",
       "source_location": "L26",
       "id": "data_gridcoord_gethashcode",
-      "community": 8,
+      "community": 9,
       "norm_label": "gethashcode()"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L1",
       "id": "town_data_gridneighborhood_cs",
-      "community": 9,
+      "community": 10,
       "norm_label": "gridneighborhood.cs"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L1",
       "id": "data_gridneighborhood_cozybuilder_town_data",
-      "community": 9,
+      "community": 10,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L3",
       "id": "data_gridneighborhood_gridneighborhood",
-      "community": 9,
+      "community": 10,
       "norm_label": "gridneighborhood"
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "Town/Data/GridNeighborhood.cs",
       "source_location": "L5",
       "id": "gridcoord",
-      "community": 9,
+      "community": 10,
       "norm_label": "gridcoord"
     },
     {
@@ -252,7 +252,7 @@
       "source_file": "Town/Data/RuleResult.cs",
       "source_location": "L1",
       "id": "town_data_ruleresult_cs",
-      "community": 14,
+      "community": 15,
       "norm_label": "ruleresult.cs"
     },
     {
@@ -261,7 +261,7 @@
       "source_file": "Town/Data/RuleResult.cs",
       "source_location": "L1",
       "id": "data_ruleresult_cozybuilder_town_data",
-      "community": 14,
+      "community": 15,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -270,7 +270,7 @@
       "source_file": "Town/Data/TerrainType.cs",
       "source_location": "L1",
       "id": "town_data_terraintype_cs",
-      "community": 15,
+      "community": 16,
       "norm_label": "terraintype.cs"
     },
     {
@@ -279,7 +279,7 @@
       "source_file": "Town/Data/TerrainType.cs",
       "source_location": "L1",
       "id": "data_terraintype_cozybuilder_town_data",
-      "community": 15,
+      "community": 16,
       "norm_label": "cozybuilder.town.data"
     },
     {
@@ -313,7 +313,7 @@
       "label": "int",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L14",
+      "source_location": "L16",
       "id": "int",
       "community": 2,
       "norm_label": "int"
@@ -322,7 +322,7 @@
       "label": "Dictionary",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L17",
+      "source_location": "L19",
       "id": "dictionary",
       "community": 2,
       "norm_label": "dictionary"
@@ -421,7 +421,7 @@
       "label": "TownDataStore",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L18",
+      "source_location": "L21",
       "id": "towndatastore",
       "community": 3,
       "norm_label": "towndatastore"
@@ -439,7 +439,7 @@
       "label": "TownVisualRebuilder",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L19",
+      "source_location": "L22",
       "id": "townvisualrebuilder",
       "community": 3,
       "norm_label": "townvisualrebuilder"
@@ -610,9 +610,9 @@
       "label": "bool",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L15",
+      "source_location": "L17",
       "id": "bool",
-      "community": 0,
+      "community": 1,
       "norm_label": "bool"
     },
     {
@@ -711,7 +711,7 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L1",
       "id": "town_rendering_towngridview_cs",
-      "community": 0,
+      "community": 8,
       "norm_label": "towngridview.cs"
     },
     {
@@ -720,7 +720,7 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L6",
       "id": "rendering_towngridview_cozybuilder_town_rendering",
-      "community": 0,
+      "community": 8,
       "norm_label": "cozybuilder.town.rendering"
     },
     {
@@ -738,14 +738,14 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L10",
       "id": "gameobject",
-      "community": 0,
+      "community": 8,
       "norm_label": "gameobject"
     },
     {
       "label": "Transform",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L11",
+      "source_location": "L12",
       "id": "transform",
       "community": 0,
       "norm_label": "transform"
@@ -754,16 +754,43 @@
       "label": "float",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L12",
+      "source_location": "L13",
       "id": "float",
       "community": 0,
       "norm_label": "float"
     },
     {
+      "label": "Vector3",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L15",
+      "id": "vector3",
+      "community": 0,
+      "norm_label": "vector3"
+    },
+    {
+      "label": "CellVisualState",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L27",
+      "id": "rendering_towngridview_cellvisualstate",
+      "community": 8,
+      "norm_label": "cellvisualstate"
+    },
+    {
+      "label": "List",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L30",
+      "id": "list",
+      "community": 8,
+      "norm_label": "list"
+    },
+    {
       "label": ".Construct()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L22",
+      "source_location": "L33",
       "id": "rendering_towngridview_towngridview_construct",
       "community": 0,
       "norm_label": ".construct()"
@@ -772,7 +799,7 @@
       "label": ".Start()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L29",
+      "source_location": "L40",
       "id": "rendering_towngridview_towngridview_start",
       "community": 0,
       "norm_label": ".start()"
@@ -781,7 +808,7 @@
       "label": ".LateUpdate()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L37",
+      "source_location": "L48",
       "id": "rendering_towngridview_towngridview_lateupdate",
       "community": 0,
       "norm_label": ".lateupdate()"
@@ -790,7 +817,7 @@
       "label": ".RebuildInitialGrid()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L42",
+      "source_location": "L53",
       "id": "rendering_towngridview_towngridview_rebuildinitialgrid",
       "community": 0,
       "norm_label": ".rebuildinitialgrid()"
@@ -799,7 +826,7 @@
       "label": ".ProcessDirtyCells()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L64",
+      "source_location": "L76",
       "id": "rendering_towngridview_towngridview_processdirtycells",
       "community": 0,
       "norm_label": ".processdirtycells()"
@@ -808,7 +835,7 @@
       "label": ".TryGetCellView()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L83",
+      "source_location": "L95",
       "id": "rendering_towngridview_towngridview_trygetcellview",
       "community": 0,
       "norm_label": ".trygetcellview()"
@@ -817,7 +844,7 @@
       "label": ".TryGetCoordFromWorld()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L88",
+      "source_location": "L100",
       "id": "rendering_towngridview_towngridview_trygetcoordfromworld",
       "community": 0,
       "norm_label": ".trygetcoordfromworld()"
@@ -826,7 +853,7 @@
       "label": ".RefreshCell()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L105",
+      "source_location": "L117",
       "id": "rendering_towngridview_towngridview_refreshcell",
       "community": 0,
       "norm_label": ".refreshcell()"
@@ -835,16 +862,25 @@
       "label": ".EnsureRoot()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L127",
+      "source_location": "L147",
       "id": "rendering_towngridview_towngridview_ensureroot",
       "community": 0,
       "norm_label": ".ensureroot()"
     },
     {
+      "label": ".EnsureVisualRoots()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L157",
+      "id": "rendering_towngridview_towngridview_ensurevisualroots",
+      "community": 0,
+      "norm_label": ".ensurevisualroots()"
+    },
+    {
       "label": ".ClearGeneratedCells()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L139",
+      "source_location": "L163",
       "id": "rendering_towngridview_towngridview_cleargeneratedcells",
       "community": 0,
       "norm_label": ".cleargeneratedcells()"
@@ -853,7 +889,7 @@
       "label": ".CreateCellView()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L149",
+      "source_location": "L176",
       "id": "rendering_towngridview_towngridview_createcellview",
       "community": 0,
       "norm_label": ".createcellview()"
@@ -862,19 +898,46 @@
       "label": ".ApplyCellState()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L157",
+      "source_location": "L194",
       "id": "rendering_towngridview_towngridview_applycellstate",
       "community": 0,
       "norm_label": ".applycellstate()"
     },
     {
+      "label": ".ApplyBlockState()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L208",
+      "id": "rendering_towngridview_towngridview_applyblockstate",
+      "community": 0,
+      "norm_label": ".applyblockstate()"
+    },
+    {
+      "label": ".EnsureBlockCapacity()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L230",
+      "id": "rendering_towngridview_towngridview_ensureblockcapacity",
+      "community": 0,
+      "norm_label": ".ensureblockcapacity()"
+    },
+    {
       "label": ".GridToWorld()",
       "file_type": "code",
       "source_file": "Town/Rendering/TownGridView.cs",
-      "source_location": "L165",
+      "source_location": "L246",
       "id": "rendering_towngridview_towngridview_gridtoworld",
       "community": 0,
       "norm_label": ".gridtoworld()"
+    },
+    {
+      "label": ".EnsureChildRoot()",
+      "file_type": "code",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L256",
+      "id": "rendering_towngridview_towngridview_ensurechildroot",
+      "community": 0,
+      "norm_label": ".ensurechildroot()"
     },
     {
       "label": "TownVisualRebuilder.cs",
@@ -945,7 +1008,7 @@
       "source_file": "Town/Rules/RuleEvaluator.cs",
       "source_location": "L1",
       "id": "town_rules_ruleevaluator_cs",
-      "community": 10,
+      "community": 11,
       "norm_label": "ruleevaluator.cs"
     },
     {
@@ -954,7 +1017,7 @@
       "source_file": "Town/Rules/RuleEvaluator.cs",
       "source_location": "L3",
       "id": "rules_ruleevaluator_cozybuilder_town_rules",
-      "community": 10,
+      "community": 11,
       "norm_label": "cozybuilder.town.rules"
     },
     {
@@ -963,7 +1026,7 @@
       "source_file": "Town/Rules/RuleEvaluator.cs",
       "source_location": "L5",
       "id": "rules_ruleevaluator_ruleevaluator",
-      "community": 10,
+      "community": 11,
       "norm_label": "ruleevaluator"
     },
     {
@@ -972,7 +1035,7 @@
       "source_file": "Town/Rules/RuleEvaluator.cs",
       "source_location": "L7",
       "id": "rules_ruleevaluator_ruleevaluator_evaluate",
-      "community": 10,
+      "community": 11,
       "norm_label": ".evaluate()"
     }
   ],
@@ -1623,9 +1686,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "monobehaviour",
-      "confidence_score": 1.0
+      "target": "monobehaviour"
     },
     {
       "relation": "inherits",
@@ -1644,9 +1707,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "ushort",
-      "confidence_score": 1.0
+      "target": "ushort"
     },
     {
       "relation": "references",
@@ -1655,9 +1718,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placementservice",
-      "confidence_score": 1.0
+      "target": "placementservice"
     },
     {
       "relation": "imports",
@@ -1666,9 +1729,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "town_placement_prototypeplacementinputdriver_cs",
-      "target": "unitycamera",
-      "confidence_score": 1.0
+      "target": "unitycamera"
     },
     {
       "relation": "contains",
@@ -1676,9 +1739,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "town_placement_prototypeplacementinputdriver_cs",
-      "target": "placement_prototypeplacementinputdriver_cozybuilder_town_placement",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_cozybuilder_town_placement"
     },
     {
       "relation": "contains",
@@ -1686,9 +1749,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "town_placement_prototypeplacementinputdriver_cs",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver"
     },
     {
       "relation": "references",
@@ -1697,9 +1760,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "unitycamera",
-      "confidence_score": 1.0
+      "target": "unitycamera"
     },
     {
       "relation": "references",
@@ -1708,9 +1771,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "bool",
-      "confidence_score": 1.0
+      "target": "bool"
     },
     {
       "relation": "references",
@@ -1719,9 +1782,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "towngridview",
-      "confidence_score": 1.0
+      "target": "towngridview"
     },
     {
       "relation": "references",
@@ -1730,9 +1793,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "plane",
-      "confidence_score": 1.0
+      "target": "plane"
     },
     {
       "relation": "method",
@@ -1740,9 +1803,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_construct",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_construct"
     },
     {
       "relation": "method",
@@ -1750,9 +1813,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_start",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_start"
     },
     {
       "relation": "method",
@@ -1760,9 +1823,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_update",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_update"
     },
     {
       "relation": "method",
@@ -1770,9 +1833,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryplaceatscreenposition",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryplaceatscreenposition"
     },
     {
       "relation": "method",
@@ -1780,9 +1843,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_trydeleteatscreenposition",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_trydeleteatscreenposition"
     },
     {
       "relation": "method",
@@ -1790,9 +1853,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_placescreencenter",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_placescreencenter"
     },
     {
       "relation": "method",
@@ -1800,9 +1863,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_deletescreencenter",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_deletescreencenter"
     },
     {
       "relation": "method",
@@ -1810,9 +1873,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "references",
@@ -1832,9 +1895,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_update",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "calls",
@@ -1843,9 +1906,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryplaceatscreenposition",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "calls",
@@ -1854,9 +1917,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_trydeleteatscreenposition",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "calls",
@@ -1865,9 +1928,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_placescreencenter",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "calls",
@@ -1876,9 +1939,9 @@
       "source_file": "Town/Placement/PrototypePlacementInputDriver.cs",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_deletescreencenter",
-      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementinputdriver_prototypeplacementinputdriver_tryapplypointer"
     },
     {
       "relation": "contains",
@@ -1899,6 +1962,16 @@
       "confidence_score": 1.0,
       "source": "town_rendering_towngridview_cs",
       "target": "rendering_towngridview_towngridview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "town_rendering_towngridview_cs",
+      "target": "rendering_towngridview_cellvisualstate",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -1932,6 +2005,17 @@
       "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
       "target": "float"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "field",
+      "source": "rendering_towngridview_towngridview",
+      "target": "vector3",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -1999,9 +2083,9 @@
       "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
-      "target": "rendering_towngridview_towngridview_trygetcoordfromworld",
-      "confidence_score": 1.0
+      "target": "rendering_towngridview_towngridview_trygetcoordfromworld"
     },
     {
       "relation": "method",
@@ -2022,6 +2106,16 @@
       "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
       "target": "rendering_towngridview_towngridview_ensureroot"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_ensurevisualroots",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2057,11 +2151,63 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_applyblockstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_ensureblockcapacity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L90",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview",
       "target": "rendering_towngridview_towngridview_gridtoworld"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L256",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview",
+      "target": "rendering_towngridview_towngridview_ensurechildroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L29",
+      "weight": 1.0,
+      "context": "field",
+      "source": "rendering_towngridview_cellvisualstate",
+      "target": "gameobject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "field",
+      "source": "rendering_towngridview_cellvisualstate",
+      "target": "list",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2112,6 +2258,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_rebuildinitialgrid",
+      "target": "rendering_towngridview_towngridview_ensurevisualroots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L48",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -2156,6 +2313,39 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L178",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_createcellview",
+      "target": "rendering_towngridview_towngridview_ensureroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_ensurevisualroots",
+      "target": "rendering_towngridview_towngridview_ensurechildroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_createcellview",
+      "target": "rendering_towngridview_towngridview_ensurevisualroots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
       "source_location": "L136",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -2183,6 +2373,39 @@
       "confidence_score": 1.0,
       "source": "rendering_towngridview_towngridview_applycellstate",
       "target": "rendering_towngridview_towngridview_gridtoworld"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L205",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_applycellstate",
+      "target": "rendering_towngridview_towngridview_applyblockstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L210",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_applyblockstate",
+      "target": "rendering_towngridview_towngridview_ensureblockcapacity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Town/Rendering/TownGridView.cs",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "rendering_towngridview_towngridview_applyblockstate",
+      "target": "rendering_towngridview_towngridview_gridtoworld",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2278,5 +2501,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4ff5d153e46672bf4ff5f29ae4cb52c5e17ed3fe"
+  "built_at_commit": "1efc7c3f481758ab376c387262ab807c219a4726"
 }

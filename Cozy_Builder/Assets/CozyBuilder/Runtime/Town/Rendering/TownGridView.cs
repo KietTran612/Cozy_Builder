@@ -8,16 +8,27 @@ namespace CozyBuilder.Town.Rendering
     public sealed class TownGridView : MonoBehaviour
     {
         [SerializeField] private GameObject cellPrefab;
+        [SerializeField] private GameObject blockPrefab;
         [SerializeField] private Transform generatedRoot;
         [SerializeField] private float cellSpacing = 2.1f;
         [SerializeField] private float blockHeightStep = 0.35f;
+        [SerializeField] private Vector3 blockScale = new Vector3(0.65f, 0.35f, 0.65f);
         [SerializeField] private int maxDirtyCellsPerFrame = 16;
         [SerializeField] private bool rebuildOnStart = true;
 
         private readonly Dictionary<GridCoord, GameObject> cellsByCoord = new Dictionary<GridCoord, GameObject>();
+        private readonly Dictionary<GridCoord, CellVisualState> visualStatesByCoord = new Dictionary<GridCoord, CellVisualState>();
         private TownDataStore townDataStore;
         private TownVisualRebuilder townVisualRebuilder;
+        private Transform terrainRoot;
+        private Transform blockRoot;
         private bool hasBuiltInitialGrid;
+
+        private sealed class CellVisualState
+        {
+            public GameObject TerrainView;
+            public readonly List<GameObject> BlockViews = new List<GameObject>();
+        }
 
         [Inject]
         public void Construct(TownDataStore townDataStore, TownVisualRebuilder townVisualRebuilder)
@@ -49,6 +60,7 @@ namespace CozyBuilder.Town.Rendering
 
             EnsureRoot();
             ClearGeneratedCells();
+            EnsureVisualRoots();
 
             var townData = townDataStore.Current;
             for (var i = 0; i < townData.CellCount; i++)
@@ -111,29 +123,41 @@ namespace CozyBuilder.Town.Rendering
                     staleView.SetActive(false);
                 }
 
+                if (visualStatesByCoord.TryGetValue(coord, out var staleState))
+                {
+                    for (var i = 0; i < staleState.BlockViews.Count; i++)
+                    {
+                        staleState.BlockViews[i].SetActive(false);
+                    }
+                }
+
                 return false;
             }
 
-            if (!cellsByCoord.TryGetValue(coord, out var cellView))
+            if (!visualStatesByCoord.TryGetValue(coord, out var state))
             {
                 CreateCellView(coord, in cell);
                 return true;
             }
 
-            ApplyCellState(cellView, coord, in cell);
+            ApplyCellState(state, coord, in cell);
             return true;
         }
 
         private void EnsureRoot()
         {
-            if (generatedRoot != null)
+            if (generatedRoot == null)
             {
-                return;
+                var root = new GameObject("Generated Town Cells");
+                root.transform.SetParent(transform, false);
+                generatedRoot = root.transform;
             }
+        }
 
-            var root = new GameObject("Generated Town Cells");
-            root.transform.SetParent(transform, false);
-            generatedRoot = root.transform;
+        private void EnsureVisualRoots()
+        {
+            terrainRoot = EnsureChildRoot("Terrain Cells");
+            blockRoot = EnsureChildRoot("Block Cells");
         }
 
         private void ClearGeneratedCells()
@@ -144,22 +168,79 @@ namespace CozyBuilder.Town.Rendering
             }
 
             cellsByCoord.Clear();
+            visualStatesByCoord.Clear();
+            terrainRoot = null;
+            blockRoot = null;
         }
 
         private void CreateCellView(GridCoord coord, in CellData cell)
         {
-            var instance = Instantiate(cellPrefab, generatedRoot);
-            instance.transform.localRotation = Quaternion.identity;
-            ApplyCellState(instance, coord, in cell);
-            cellsByCoord.Add(coord, instance);
+            EnsureRoot();
+            EnsureVisualRoots();
+
+            var terrainView = Instantiate(cellPrefab, terrainRoot);
+            terrainView.transform.localRotation = Quaternion.identity;
+
+            var state = new CellVisualState
+            {
+                TerrainView = terrainView
+            };
+
+            cellsByCoord.Add(coord, terrainView);
+            visualStatesByCoord.Add(coord, state);
+            ApplyCellState(state, coord, in cell);
         }
 
-        private void ApplyCellState(GameObject instance, GridCoord coord, in CellData cell)
+        private void ApplyCellState(GameObject terrainView, GridCoord coord, in CellData cell)
         {
-            instance.name = $"Cell {coord.X},{coord.Y} H{cell.Height}";
-            instance.transform.localPosition = GridToWorld(coord, cell.Height);
-            instance.transform.localScale = Vector3.one;
-            instance.SetActive(cell.Terrain != TerrainType.None);
+            terrainView.name = $"Cell {coord.X},{coord.Y}";
+            terrainView.transform.localPosition = GridToWorld(coord);
+            terrainView.transform.localScale = Vector3.one;
+            terrainView.SetActive(cell.Terrain != TerrainType.None);
+        }
+
+        private void ApplyCellState(CellVisualState state, GridCoord coord, in CellData cell)
+        {
+            ApplyCellState(state.TerrainView, coord, in cell);
+            ApplyBlockState(state, coord, cell.Height);
+        }
+
+        private void ApplyBlockState(CellVisualState state, GridCoord coord, ushort height)
+        {
+            EnsureBlockCapacity(state, coord, height);
+
+            for (var i = 0; i < state.BlockViews.Count; i++)
+            {
+                var blockView = state.BlockViews[i];
+                var active = i < height;
+                blockView.SetActive(active);
+
+                if (!active)
+                {
+                    continue;
+                }
+
+                blockView.name = $"Block {coord.X},{coord.Y} L{i + 1}";
+                blockView.transform.localPosition = GridToWorld(coord, (ushort)(i + 1));
+                blockView.transform.localRotation = Quaternion.identity;
+                blockView.transform.localScale = blockScale;
+            }
+        }
+
+        private void EnsureBlockCapacity(CellVisualState state, GridCoord coord, ushort height)
+        {
+            if (blockPrefab == null)
+            {
+                return;
+            }
+
+            while (state.BlockViews.Count < height)
+            {
+                var blockView = Instantiate(blockPrefab, blockRoot);
+                blockView.name = $"Block {coord.X},{coord.Y} Pooled";
+                blockView.SetActive(false);
+                state.BlockViews.Add(blockView);
+            }
         }
 
         private Vector3 GridToWorld(GridCoord coord, ushort height)
@@ -170,6 +251,19 @@ namespace CozyBuilder.Town.Rendering
         private Vector3 GridToWorld(GridCoord coord)
         {
             return GridToWorld(coord, 0);
+        }
+
+        private Transform EnsureChildRoot(string rootName)
+        {
+            var child = generatedRoot.Find(rootName);
+            if (child != null)
+            {
+                return child;
+            }
+
+            var root = new GameObject(rootName);
+            root.transform.SetParent(generatedRoot, false);
+            return root.transform;
         }
     }
 }
