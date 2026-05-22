@@ -24,7 +24,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Current Commit Baseline
 
-- Latest committed baseline after completing UI Pointer Blocking: `df2297a feat: implement UI pointer blocking and input routing for camera and placement drivers`.
+- Latest committed baseline after completing Camera Assembly Decoupling: `2afd61a docs: update task list to complete camera decoupling implementation`.
 
 - Check `git log -1 --oneline` and `git status --short` for the latest committed/uncommitted state.
 - Some `docs/*.md` files may appear modified from line-ending noise; do not stage them unless their content was intentionally changed.
@@ -77,10 +77,11 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypeTownDebugState` and `PrototypeTownDebugView`
   - Shows selected cell id/data, cardinal neighbor info, dirty queue count/preview, and rule result preview
   - Exposes IMGUI screen boundaries via public `PanelRect` property for pointer blocking checks
-- Prototype camera controls:
-  - `CameraService` and `PrototypeCameraInputDriver`
-  - Provides temporary orbit/pan/zoom/reset camera controls through Unity Input System
-  - Integrates robust pointer blocking via `IsPointerOverUI` to block orbit/pan dragging startup and scroll zoom over UI elements, while maintaining drag continuity if dragging started outside UI bounds
+- Prototype camera controls (Decoupled Module):
+  - Independent Camera assembly: `CozyBuilder.Camera.asmdef` referencing only `VContainer` and `Unity.InputSystem` (absolute isolation).
+  - Decoupled interface: `ICameraInputBlocker` abstraction for pointer interaction bounds.
+  - Camera service: `CameraService` stores pivot, distance, yaw, pitch, and camera projection mathematical state.
+  - Camera driver: `PrototypeCameraInputDriver` accepts dynamic list of `ICameraInputBlocker` via VContainer constructor injection and verifies blocking bounds at runtime with Zero GC Allocation.
 
 - KayKit FBX test scene: `Cozy_Builder/Assets/CozyBuilder/Scenes/KayKitFbxAssetTest.unity`.
 - KayKit test scene now contains separated visual samples plus simple procedural compatibility cases:
@@ -183,6 +184,13 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - `PrototypeCameraInputDriver` tracks `wasDragStartedOverUI`/`wasTouchStartedOverUI` to block starting zoom and orbit/pan dragging over UI, while drag continuity allows camera movements to traverse across UI panels smoothly if started outside.
   - Real-time Play Mode execution compiles cleanly with zero warnings/errors.
   - `graphify update .` successfully updated the codebase to 172 nodes, 235 edges, and 21 communities.
+- Camera Assembly Decoupling & Modularization validation succeeded:
+  - Separate asmdef `CozyBuilder.Camera` holds all camera logic and mathematical state with 0 dependencies on `CozyBuilder.Runtime`.
+  - Dependency Inversion via `ICameraInputBlocker` abstraction enables runtime views to seamlessly register and act as blocking rects.
+  - Zero GC allocation checked and optimized inside driver's blocking iteration.
+  - Compiles flawlessly with 0 compiler errors or warnings in Play Mode.
+  - `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
+
 
 
 ## Latest Code Notes

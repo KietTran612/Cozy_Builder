@@ -1,5 +1,10 @@
 # HANDOVER
 
+> [!WARNING]
+> **TỐI ƯU HÓA CONTEXT WINDOW (DÀNH CHO AI AGENT):**
+> Khi lưu trữ phiên làm việc cũ từ tệp này sang `docs/Development_Session_Log.md`, **nghiêm cấm** sử dụng công cụ đọc toàn bộ tệp log. 
+> Chỉ sử dụng công cụ chỉnh sửa trực tiếp (`replace_file_content`) hoặc lệnh `tail` để đối chiếu cuối tệp log.
+
 This file is the compact handover for continuing project work. Read `CURRENT_STATUS.md` first. Read this file when `CURRENT_STATUS.md` is not enough or when a task needs a broader project map.
 
 Older session history has been moved to `docs/Development_Session_Log.md`. Do not read that log by default; use it only when investigating why an old decision was made, checking old validation details, or reconstructing prior work.
@@ -103,30 +108,28 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-22 - UI Pointer Blocking & Input Routing
+## Latest Session Update - 2026-05-22 - Camera Assembly Decoupling & Modularization
 
 Baseline before the work:
-- Procedural rules and object pooling completed. Input conflicts still existed where clicking IMGUI buttons placed/deleted blocks or rotated camera.
+- EventSystem and IMGUI-based pointer blocking was fully implemented for camera and placement, but camera controls remained directly coupled with specific IMGUI views in the main assembly.
 
 Current commit state:
-- UI/Input Routing and Pointer Blocking are 100% completed and fully committed.
-- Baseline commit: `df2297a feat: implement UI pointer blocking and input routing for camera and placement drivers`
+- Camera Assembly Decoupling & Modularization is 100% completed and fully committed to main branch locally.
+- Latest baseline commit: `2afd61a docs: update task list to complete camera decoupling implementation`
 
 Implemented:
-- Added public `PanelRect` property getter to `PrototypePlacementControlsView` and `PrototypeTownDebugView` to expose IMGUI bounds.
-- Implemented robust `IsPointerOverUI` method inside `PrototypePlacementInputDriver` and `PrototypeCameraInputDriver`:
-  - Checked `EventSystem.current.IsPointerOverGameObject()` to seamlessly support future uGUI/UI Toolkit elements.
-  - Checked IMGUI panel rects by mapping coordinates from Input System's bottom-left origin to IMGUI's top-left origin using screen height.
-- Blocked block placement and deletion in `PrototypePlacementInputDriver` when the cursor is over any active UI panels.
-- Blocked camera orbit/panning dragging and scroll zoom in `PrototypeCameraInputDriver` when pointer interaction starts over active UI panels:
-  - Tracked click/touch start state using `wasDragStartedOverUI`/`wasTouchStartedOverUI` on the first frame of interaction.
-  - Allowed camera orbit/panning dragging to continue smoothly when the cursor crosses active UI panels, provided the interaction started outside the UI (Drag Continuity).
-  - Blocked scroll wheel zoom when the pointer is positioned over active UI panels.
+- Created a separate Assembly Definition `CozyBuilder.Camera.asmdef` for all camera logic, referencing only `VContainer` and `Unity.InputSystem` (absolute isolation from the main assembly).
+- Introduced a modular `ICameraInputBlocker` interface in the camera assembly as a decoupled boundary.
+- Refactored `PrototypeCameraInputDriver.cs` to inject an `IReadOnlyList<ICameraInputBlocker>` dynamically via VContainer constructor injection and verify blocker state dynamically.
+- Implemented `ICameraInputBlocker` on IMGUI views `PrototypePlacementControlsView` and `PrototypeTownDebugView`.
+- Configured Dependency Injection in `GameLifetimeScope.cs` to bind the IMGUI views as `ICameraInputBlocker` component-in-hierarchy registrations.
+- Ensured zero GC allocation in the blocking verification loop by using a standard `for` loop instead of `foreach` enumerations.
 
 Validation:
-- C# project compiles cleanly without any errors or warnings.
-- Real-time interaction verified in Play Mode: buttons, placement, deletion, camera panning, camera orbit, zoom, and touch interactions perform cleanly with robust pointer blocking.
-- `graphify update .` successfully updated the AST graph to 172 nodes, 235 edges, and 21 communities.
+- C# project compiles flawlessly in Unity 6000.3.11f1 without any C# warnings or compiler errors.
+- Hand-tested in Play Mode: Reset (R), drag-orbit (Alt+left click), panning (middle mouse), and scroll zoom works flawlessly, and blocking bounds on IMGUI views work exactly as expected.
+- `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
+
 
 ## Next Work
 

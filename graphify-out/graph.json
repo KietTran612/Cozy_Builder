@@ -1807,9 +1807,9 @@
       "source_file": "Camera/ICameraInputBlocker.cs",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_icamerainputblocker_cs",
-      "target": "camera_icamerainputblocker_cozybuilder_camera",
-      "confidence_score": 1.0
+      "target": "camera_icamerainputblocker_cozybuilder_camera"
     },
     {
       "relation": "contains",
@@ -1817,9 +1817,9 @@
       "source_file": "Camera/ICameraInputBlocker.cs",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_icamerainputblocker_cs",
-      "target": "camera_icamerainputblocker_icamerainputblocker",
-      "confidence_score": 1.0
+      "target": "camera_icamerainputblocker_icamerainputblocker"
     },
     {
       "relation": "method",
@@ -1827,9 +1827,9 @@
       "source_file": "Camera/ICameraInputBlocker.cs",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "camera_icamerainputblocker_icamerainputblocker",
-      "target": "camera_icamerainputblocker_icamerainputblocker_ispointeroverui",
-      "confidence_score": 1.0
+      "target": "camera_icamerainputblocker_icamerainputblocker_ispointeroverui"
     },
     {
       "relation": "imports",
@@ -1901,9 +1901,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "context": "field",
+      "confidence_score": 1.0,
       "source": "camera_prototypecamerainputdriver_prototypecamerainputdriver",
-      "target": "ireadonlylist",
-      "confidence_score": 1.0
+      "target": "ireadonlylist"
     },
     {
       "relation": "references",
@@ -2639,9 +2639,9 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "debugging_prototypetowndebugview_prototypetowndebugview",
-      "target": "icamerainputblocker",
-      "confidence_score": 1.0
+      "target": "icamerainputblocker"
     },
     {
       "relation": "references",
@@ -2725,9 +2725,9 @@
       "source_file": "Town/Debugging/PrototypeTownDebugView.cs",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "debugging_prototypetowndebugview_prototypetowndebugview",
-      "target": "debugging_prototypetowndebugview_prototypetowndebugview_ispointeroverui",
-      "confidence_score": 1.0
+      "target": "debugging_prototypetowndebugview_prototypetowndebugview_ispointeroverui"
     },
     {
       "relation": "method",
@@ -2785,9 +2785,9 @@
       "source_file": "Town/Placement/PrototypePlacementControlsView.cs",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementcontrolsview_prototypeplacementcontrolsview",
-      "target": "icamerainputblocker",
-      "confidence_score": 1.0
+      "target": "icamerainputblocker"
     },
     {
       "relation": "references",
@@ -3126,9 +3126,9 @@
       "source_file": "Town/Placement/PrototypePlacementControlsView.cs",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "placement_prototypeplacementcontrolsview_prototypeplacementcontrolsview",
-      "target": "placement_prototypeplacementcontrolsview_prototypeplacementcontrolsview_ispointeroverui",
-      "confidence_score": 1.0
+      "target": "placement_prototypeplacementcontrolsview_prototypeplacementcontrolsview_ispointeroverui"
     },
     {
       "relation": "method",
@@ -4165,5 +4165,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3e2455ce6b16d4dfa492fc0d75e1844d32f7f5be"
+  "built_at_commit": "2afd61a6009e83f33af62b758aae82dd6ed2390b"
 }

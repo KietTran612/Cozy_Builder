@@ -1,5 +1,10 @@
 # Development Session Log
 
+> [!WARNING]
+> **TỐI ƯU HÓA CONTEXT WINDOW (DÀNH CHO AI AGENT):**
+> Khi nối thêm phiên làm việc cũ vào tệp này, **nghiêm cấm** sử dụng công cụ đọc toàn bộ tệp (như `view_file` không giới hạn dòng). 
+> Chỉ sử dụng công cụ chỉnh sửa trực tiếp (`replace_file_content`) hoặc lệnh `tail` để đối chiếu cuối tệp nếu thực sự cần thiết.
+
 This is the archive for older session updates. Do not read this file during normal startup. Read `CURRENT_STATUS.md` first, then `HANDOVER.md` if needed. Use this log only when old validation details, historical decisions, or commit context must be reconstructed.
 
 ## 2026-05-21 - Unity Project Setup
@@ -348,3 +353,20 @@ Validation:
 Important commits:
 - `df2297a` feat: implement UI pointer blocking and input routing for camera and placement drivers
 
+## 2026-05-22 - Camera Assembly Decoupling & Modularization
+
+- Decoupled and modularized the Camera system by separating all camera logic into an independent, reusable Assembly Definition (`CozyBuilder.Camera.asmdef`) with zero references to the main `CozyBuilder.Runtime` assembly.
+- Introduced a modular `ICameraInputBlocker` interface in the `CozyBuilder.Camera` assembly, allowing any runtime UI view to register itself as an interaction blocker without the camera having direct knowledge of it.
+- Refactored `PrototypeCameraInputDriver.cs` to inject `IReadOnlyList<ICameraInputBlocker>` dynamically via VContainer and dynamically check all registered blockers.
+- Implemented `ICameraInputBlocker` on IMGUI views `PrototypePlacementControlsView` and `PrototypeTownDebugView`.
+- Configured Dependency Injection in `GameLifetimeScope.cs` to bind these views as `ICameraInputBlocker`.
+- Ensured zero GC allocation in the blocker checking loop by using a standard `for` loop to iterate through the blockers list instead of `foreach` queries.
+- Verified that the codebase compiles flawlessly and manual testing in Play Mode confirms that the decoupled camera and placement blocking work seamlessly.
+- `graphify update .` successfully updated the AST graph to 180 nodes, 243 edges, and 21 communities.
+
+Important commits:
+- `2afd61a` docs: update task list to complete camera decoupling implementation
+- `9323507` refactor: update AST code graph and meta files for decoupled camera module
+- `3e2455c` feat: update VContainer registrations for UI views to act as ICameraInputBlocker
+- `6cc839f` feat: implement ICameraInputBlocker on prototype IMGUI views
+- `c8ef8e9` refactor: decouple PrototypeCameraInputDriver from runtime UI panels using ICameraInputBlocker
