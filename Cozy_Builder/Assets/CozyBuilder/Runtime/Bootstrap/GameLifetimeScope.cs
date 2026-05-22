@@ -23,8 +23,12 @@ namespace CozyBuilder.Bootstrap
             builder.RegisterComponentInHierarchy<TownGridView>();
             builder.RegisterComponentInHierarchy<PrototypePlacementDebugDriver>();
             builder.RegisterComponentInHierarchy<PrototypePlacementInputDriver>();
-            builder.RegisterComponentInHierarchy<PrototypePlacementControlsView>();
-            builder.RegisterComponentInHierarchy<PrototypeTownDebugView>();
+            builder.RegisterComponentInHierarchy<PrototypePlacementControlsView>()
+                .AsSelf()
+                .As<ICameraInputBlocker>();
+            builder.RegisterComponentInHierarchy<PrototypeTownDebugView>()
+                .AsSelf()
+                .As<ICameraInputBlocker>();
             builder.RegisterComponentInHierarchy<PrototypeCameraInputDriver>();
         }
     }
