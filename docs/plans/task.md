@@ -1,11 +1,10 @@
-# Bảng Theo Dõi Tiến Độ (Task Tracker) - UI/Input Routing & Pointer Blocking
+# Bảng Theo Dõi Tiến Độ (Task Tracker) - Brainstorming Camera Decoupling & Modularization
 
 | Trạng thái | Nhiệm vụ | File liên quan |
 | :---: | :--- | :--- |
-| `[x]` | **Nhiệm vụ 1**: Thêm PanelRect public getter trong PrototypePlacementControlsView.cs | `PrototypePlacementControlsView.cs` |
-| `[x]` | **Nhiệm vụ 2**: Thêm PanelRect public getter trong PrototypeTownDebugView.cs | `PrototypeTownDebugView.cs` |
-| `[x]` | **Nhiệm vụ 3**: Cập nhật logic chặn đặt/xóa khối trong PrototypePlacementInputDriver.cs | `PrototypePlacementInputDriver.cs` |
-| `[x]` | **Nhiệm vụ 4**: Cập nhật logic chặn xoay/pan/zoom camera trong PrototypeCameraInputDriver.cs | `PrototypeCameraInputDriver.cs` |
-| `[x]` | **Nhiệm vụ 5**: Kiểm thử tương tác nút bấm giao diện và điều khiển camera trong Unity Editor | Play Mode |
-| `[x]` | **Nhiệm vụ 6**: Đồng bộ đồ thị AST Graphify và hoàn tất các tài liệu bàn giao | Graphify, Git |
-
+| `[/]` | **Nhiệm vụ 1**: Tìm hiểu cấu trúc hiện tại của camera và tệp tin liên quan | `CameraService.cs`, `PrototypeCameraInputDriver.cs`, `GameLifetimeScope.cs` |
+| `[ ]` | **Nhiệm vụ 2**: Đặt câu hỏi làm rõ (clarifying questions) từng phần với người dùng | Chat |
+| `[ ]` | **Nhiệm vụ 3**: Đề xuất 2-3 giải pháp thiết kế module hóa Camera độc lập kèm ưu nhược điểm | Chat |
+| `[ ]` | **Nhiệm vụ 4**: Trình bày thiết kế chi tiết (kiến trúc, API, luồng dữ liệu) và lấy phản hồi của người dùng | Chat |
+| `[ ]` | **Nhiệm vụ 5**: Ghi lại tài liệu thiết kế đã thống nhất vào thư mục `docs/plans/` và commit | `docs/plans/` |
+| `[ ]` | **Nhiệm vụ 6**: Chuyển giao sang giai đoạn lập kế hoạch chi tiết (gọi skill `writing-plans`) | `writing-plans` |
