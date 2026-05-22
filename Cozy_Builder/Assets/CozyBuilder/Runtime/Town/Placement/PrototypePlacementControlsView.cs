@@ -1,9 +1,10 @@
 using UnityEngine;
 using VContainer;
+using CozyBuilder.Camera;
 
 namespace CozyBuilder.Town.Placement
 {
-    public sealed class PrototypePlacementControlsView : MonoBehaviour
+    public sealed class PrototypePlacementControlsView : MonoBehaviour, ICameraInputBlocker
     {
         [SerializeField] private Rect panelRect = new Rect(16f, 16f, 240f, 180f);
         [SerializeField] private int colorCount = 4;
@@ -17,6 +18,17 @@ namespace CozyBuilder.Town.Placement
         public void Construct(PrototypePlacementState placementState)
         {
             this.placementState = placementState;
+        }
+
+        public bool IsPointerOverUI(Vector2 screenPosition)
+        {
+            if (!enabled || !gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+
+            Vector2 guiPos = new Vector2(screenPosition.x, Screen.height - screenPosition.y);
+            return panelRect.Contains(guiPos);
         }
 
         private void OnGUI()

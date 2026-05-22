@@ -4,10 +4,11 @@ using CozyBuilder.Town.Placement;
 using CozyBuilder.Town.Rendering;
 using UnityEngine;
 using VContainer;
+using CozyBuilder.Camera;
 
 namespace CozyBuilder.Town.Debugging
 {
-    public sealed class PrototypeTownDebugView : MonoBehaviour
+    public sealed class PrototypeTownDebugView : MonoBehaviour, ICameraInputBlocker
     {
         [SerializeField] private Rect panelRect = new Rect(16f, 208f, 320f, 300f);
         [SerializeField] private int maxDirtyPreview = 8;
@@ -32,6 +33,17 @@ namespace CozyBuilder.Town.Debugging
             this.townDataStore = townDataStore;
             this.townVisualRebuilder = townVisualRebuilder;
             this.placementService = placementService;
+        }
+
+        public bool IsPointerOverUI(Vector2 screenPosition)
+        {
+            if (!enabled || !gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+
+            Vector2 guiPos = new Vector2(screenPosition.x, Screen.height - screenPosition.y);
+            return panelRect.Contains(guiPos);
         }
 
         private void OnGUI()
