@@ -3,8 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using VContainer;
 using UnityCamera = UnityEngine.Camera;
-using CozyBuilder.Town.Placement;
-using CozyBuilder.Town.Debugging;
+using System.Collections.Generic;
 
 namespace CozyBuilder.Camera
 {
@@ -25,8 +24,7 @@ namespace CozyBuilder.Camera
         [SerializeField] private float touchPinchZoomUnits = 0.018f;
 
         private CameraService cameraService;
-        private PrototypePlacementControlsView controlsView;
-        private PrototypeTownDebugView debugView;
+        private IReadOnlyList<ICameraInputBlocker> inputBlockers;
 
         private bool wasDragStartedOverUI = false;
         private bool wasTouchStartedOverUI = false;
@@ -34,12 +32,10 @@ namespace CozyBuilder.Camera
         [Inject]
         public void Construct(
             CameraService cameraService,
-            PrototypePlacementControlsView controlsView,
-            PrototypeTownDebugView debugView)
+            IReadOnlyList<ICameraInputBlocker> inputBlockers = null)
         {
             this.cameraService = cameraService;
-            this.controlsView = controlsView;
-            this.debugView = debugView;
+            this.inputBlockers = inputBlockers;
         }
 
         private void Start()
@@ -193,21 +189,16 @@ namespace CozyBuilder.Camera
                 return true;
             }
 
-            // 2. Check IMGUI panels
-            Vector2 guiPos = new Vector2(screenPosition.x, Screen.height - screenPosition.y);
-            if (controlsView != null && controlsView.enabled && controlsView.gameObject.activeInHierarchy)
+            // 2. Check injected blockers (like IMGUI panels)
+            if (inputBlockers != null)
             {
-                if (controlsView.PanelRect.Contains(guiPos))
+                int count = inputBlockers.Count;
+                for (int i = 0; i < count; i++)
                 {
-                    return true;
-                }
-            }
-
-            if (debugView != null && debugView.enabled && debugView.gameObject.activeInHierarchy)
-            {
-                if (debugView.PanelRect.Contains(guiPos))
-                {
-                    return true;
+                    if (inputBlockers[i].IsPointerOverUI(screenPosition))
+                    {
+                        return true;
+                    }
                 }
             }
 
