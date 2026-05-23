@@ -1,16 +1,16 @@
 # Graph Report - Cozy_Builder  (2026-05-23)
 
 ## Corpus Check
-- 103 files · ~85,704 words
+- 103 files · ~85,608 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1983 nodes · 2130 edges · 174 communities (154 shown, 20 thin omitted)
+- 1984 nodes · 2131 edges · 168 communities (148 shown, 20 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `69fcea55`
+- Built from commit: `9c3efbf0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -172,15 +172,9 @@
 - [[_COMMUNITY_Community 161|Community 161]]
 - [[_COMMUNITY_Community 162|Community 162]]
 - [[_COMMUNITY_Community 163|Community 163]]
-- [[_COMMUNITY_Community 164|Community 164]]
-- [[_COMMUNITY_Community 165|Community 165]]
-- [[_COMMUNITY_Community 166|Community 166]]
-- [[_COMMUNITY_Community 167|Community 167]]
-- [[_COMMUNITY_Community 168|Community 168]]
 - [[_COMMUNITY_Community 169|Community 169]]
 - [[_COMMUNITY_Community 170|Community 170]]
 - [[_COMMUNITY_Community 171|Community 171]]
-- [[_COMMUNITY_Community 172|Community 172]]
 - [[_COMMUNITY_Community 173|Community 173]]
 
 ## God Nodes (most connected - your core abstractions)
@@ -207,7 +201,7 @@
 - `TownGridView` --references--> `RuleEvaluator`  [EXTRACTED]
   Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs → Town/Rendering/TownGridView.cs
 
-## Communities (174 total, 20 thin omitted)
+## Communities (168 total, 20 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.11
@@ -294,16 +288,16 @@ Cohesion: 0.07
 Nodes (28): 1. Xây Dựng Block, 2. Procedural Architecture, 3. Grid Và Terrain, 4. Sự Sống Trong Thị Trấn, 5. Camera Và Khám Phá, 6. Mục Tiêu Mềm, Bắt Buộc Có, Bối Cảnh (+20 more)
 
 ### Community 31 - "Community 31"
-Cohesion: 0.13
-Nodes (15): dependencies, depth, source, version, dependencies, depth, source, version (+7 more)
+Cohesion: 0.07
+Nodes (30): dependencies, depth, source, version, dependencies, depth, source, url (+22 more)
 
 ### Community 32 - "Community 32"
 Cohesion: 0.07
 Nodes (26): code:bash (# Run project's test suite), code:bash (git worktree remove <worktree-path>), code:block2 (Tests failing (<N> failures). Must fix before completing:), code:bash (# Try common base branches), code:block4 (Implementation complete. What would you like to do?), code:bash (# Switch to base branch), code:bash (# Push branch), code:block7 (This will permanently delete:) (+18 more)
 
 ### Community 33 - "Community 33"
-Cohesion: 0.14
-Nodes (14): Avoid deeply nested references, code:yaml (description: Analyze Excel spreadsheets, create pivot tables), code:yaml (description: Generate descriptive commit messages by analyzi), code:yaml (description: Helps with documents), code:yaml (description: Processes data), code:yaml (description: Does stuff with files), code:markdown (# SKILL.md), code:markdown (# SKILL.md) (+6 more)
+Cohesion: 0.29
+Nodes (7): code:yaml (description: Analyze Excel spreadsheets, create pivot tables), code:yaml (description: Generate descriptive commit messages by analyzi), code:yaml (description: Helps with documents), code:yaml (description: Processes data), code:yaml (description: Does stuff with files), code:yaml (description: Extract text and tables from PDF files, fill fo), Writing effective descriptions
 
 ### Community 34 - "Community 34"
 Cohesion: 0.08
@@ -374,8 +368,8 @@ Cohesion: 0.11
 Nodes (18): 1. Tổng Quan Kiến Trúc Tương Tác, 2. Phần 1: Cơ Chế Phân Biệt Tap, Double-Tap và Drag (Không GC), 3. Phần 2: Cơ Chế Cử Chỉ Mobile Đa Chạm (Zero-GC), 4. Phần 3: Nội Suy Làm Mượt & Quán Tính (Smooth Damping), 5. Phần 4: Giới Hạn Biên An Toàn (Camera Boundaries), 6. Kế Hoạch Xác Minh (Verification Plan), code:mermaid (graph TD), code:mermaid (stateDiagram-v2) (+10 more)
 
 ### Community 51 - "Community 51"
-Cohesion: 0.15
-Nodes (14): depth, source, version, dependencies, depth, source, version, dependencies (+6 more)
+Cohesion: 0.09
+Nodes (25): depth, source, version, dependencies, depth, source, version, dependencies (+17 more)
 
 ### Community 52 - "Community 52"
 Cohesion: 0.11
@@ -386,16 +380,16 @@ Cohesion: 0.11
 Nodes (17): Code Examples, code:block1 (skills/), code:block14 (NO SKILL WITHOUT A FAILING TEST FIRST), code:markdown (---), Common Rationalizations for Skipping Testing, Directory Structure, Discovery Workflow, Overview (+9 more)
 
 ### Community 54 - "Community 54"
-Cohesion: 0.20
-Nodes (10): depth, dependencies, depth, source, url, version, source, version (+2 more)
+Cohesion: 0.12
+Nodes (17): dependencies, dependencies, depth, source, url, version, depth, dependencies (+9 more)
 
 ### Community 55 - "Community 55"
 Cohesion: 0.12
 Nodes (15): Applying the Pattern, code:typescript (function createProject(name: string, workingDirectory: strin), code:typescript (function initializeWorkspace(projectDir: string, sessionId: ), code:typescript (async function gitInit(directory: string) {), code:typescript (async function gitInit(directory: string) {), Defense-in-Depth Validation, Example from Session, Key Insight (+7 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, url, version, com.unity.xr.legacyinputhelpers
+Cohesion: 0.14
+Nodes (15): dependencies, depth, source, version, depth, source, version, dependencies (+7 more)
 
 ### Community 57 - "Community 57"
 Cohesion: 0.13
@@ -410,12 +404,12 @@ Cohesion: 0.13
 Nodes (14): 1. Kiến Trúc và Tổ Chức Assembly, 2. Thiết Kế API & Giải Quyết Liên Kết Chặt (Decoupling), 3. Liên Kết Phụ Thuộc Trong VContainer (Dependency Injection), 4. Kế hoạch xác minh (Verification Plan), Chi tiết các Assembly:, code:mermaid (graph TD), code:csharp (using UnityEngine;), code:csharp (namespace CozyBuilder.Camera) (+6 more)
 
 ### Community 60 - "Community 60"
-Cohesion: 0.10
-Nodes (21): dependencies, depth, source, version, dependencies, depth, source, version (+13 more)
+Cohesion: 0.20
+Nodes (11): dependencies, depth, source, version, dependencies, depth, source, version (+3 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.12
-Nodes (17): dependencies, depth, source, version, dependencies, depth, source, version (+9 more)
+Cohesion: 0.10
+Nodes (22): dependencies, depth, source, version, dependencies, depth, source, version (+14 more)
 
 ### Community 62 - "Community 62"
 Cohesion: 0.14
@@ -426,16 +420,16 @@ Cohesion: 0.08
 Nodes (17): bool, Color, float, GameObject, GridCoord, List, PlacementService, PrototypeTownDebugState (+9 more)
 
 ### Community 64 - "Community 64"
-Cohesion: 0.20
-Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
-
-### Community 65 - "Community 65"
 Cohesion: 0.13
 Nodes (15): dependencies, depth, source, version, dependencies, depth, source, version (+7 more)
 
-### Community 66 - "Community 66"
+### Community 65 - "Community 65"
 Cohesion: 0.20
 Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
+
+### Community 66 - "Community 66"
+Cohesion: 0.13
+Nodes (16): dependencies, depth, source, version, dependencies, depth, source, version (+8 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.14
@@ -474,8 +468,8 @@ Cohesion: 0.33
 Nodes (6): jp.hadashikick.vcontainer, dependencies, depth, hash, source, version
 
 ### Community 76 - "Community 76"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, url, version, com.unity.burst
+Cohesion: 0.12
+Nodes (18): dependencies, depth, source, url, version, depth, source, url (+10 more)
 
 ### Community 77 - "Community 77"
 Cohesion: 0.17
@@ -490,8 +484,8 @@ Cohesion: 0.17
 Nodes (12): Address "Spirit vs Letter" Arguments, Build Rationalization Table, Bulletproofing Skills Against Rationalization, Close Every Loophole Explicitly, code:markdown (Write code before test? Delete it.), code:markdown (Write code before test? Delete it. Start over.), code:markdown (**Violating the letter of the rules is violating the spirit ), code:markdown (| Excuse                           | Reality                ) (+4 more)
 
 ### Community 80 - "Community 80"
-Cohesion: 0.14
-Nodes (13): Current Project State, Current Runtime Map, Decisions That Must Not Drift, Docs Map, Graphify, HANDOVER, Latest Session Update - 2026-05-22 - Camera Assembly Decoupling & Modularization, Latest Session Update - 2026-05-22 - Premium Camera Interactions & Mobile Touch Gestures (+5 more)
+Cohesion: 0.13
+Nodes (14): Current Project State, Current Runtime Map, Decisions That Must Not Drift, Docs Map, Graphify, HANDOVER, Latest Session Update - 2026-05-22 - Camera Assembly Decoupling & Modularization, Latest Session Update - 2026-05-22 - Premium Camera Interactions & Mobile Touch Gestures (+6 more)
 
 ### Community 81 - "Community 81"
 Cohesion: 0.18
@@ -546,8 +540,8 @@ Cohesion: 0.31
 Nodes (7): combineGraphs(), { execSync }, extractDotBlocks(), fs, main(), path, renderToSvg()
 
 ### Community 94 - "Community 94"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, version, dependencies, com.unity.modules.terrain
+Cohesion: 0.20
+Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.22
@@ -602,8 +596,8 @@ Cohesion: 0.33
 Nodes (6): dependencies, depth, source, url, version, com.unity.ads
 
 ### Community 108 - "Community 108"
-Cohesion: 0.13
-Nodes (15): dependencies, depth, source, version, dependencies, depth, source, version (+7 more)
+Cohesion: 0.20
+Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
 
 ### Community 109 - "Community 109"
 Cohesion: 0.33
@@ -618,20 +612,20 @@ Cohesion: 0.15
 Nodes (12): Automated Tests, code:csharp (using UnityEngine;), code:csharp (// Thêm khai báo mảng màu mặc định trong TownGridView.cs:), CozyBuilder.Runtime, Kế hoạch tích hợp Bảng màu & Chất liệu trực quan (Color & Material Visual Integration), Manual Verification, [MODIFY] [TownGridView.cs](file:///c:/1.SOURCE/Unity/Source/Cozy_Builder/Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/TownGridView.cs), [NEW] [BlockColorAdapter.cs](file:///c:/1.SOURCE/Unity/Source/Cozy_Builder/Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Rendering/BlockColorAdapter.cs) (+4 more)
 
 ### Community 112 - "Community 112"
-Cohesion: 0.18
-Nodes (11): dependencies, depth, source, url, version, dependencies, depth, source (+3 more)
+Cohesion: 0.29
+Nodes (7): Avoid deeply nested references, code:markdown (# SKILL.md), code:markdown (# SKILL.md), code:markdown (# API Reference), Naming conventions, Skill structure, Structure longer reference files with table of contents
 
 ### Community 114 - "Community 114"
-Cohesion: 0.13
-Nodes (15): dependencies, depth, source, url, version, depth, source, version (+7 more)
+Cohesion: 0.40
+Nodes (5): dependencies, depth, source, version, com.unity.modules.particlesystem
 
 ### Community 115 - "Community 115"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, url, version, com.unity.nuget.mono-cecil
+Cohesion: 0.40
+Nodes (5): dependencies, depth, source, version, com.unity.modules.umbra
 
 ### Community 116 - "Community 116"
-Cohesion: 0.20
-Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
+Cohesion: 0.40
+Nodes (5): dependencies, depth, source, version, com.unity.modules.adaptiveperformance
 
 ### Community 117 - "Community 117"
 Cohesion: 0.29
@@ -718,8 +712,8 @@ Cohesion: 0.50
 Nodes (4): Pattern, Reference, Skill Types, Technique
 
 ### Community 144 - "Community 144"
-Cohesion: 0.25
-Nodes (8): code:block15 (pdf/), code:`markdown (---), code:block17, code:markdown (# DOCX Processing), Pattern 1: High-level guide with references, Pattern 3: Conditional details, Progressive disclosure patterns, Visual overview: From simple to complex
+Cohesion: 0.17
+Nodes (12): code:block15 (pdf/), code:`markdown (---), code:block17, code:block18 (bigquery-skill/), code:`markdown (# BigQuery Data Analysis), code:block20, code:markdown (# DOCX Processing), Pattern 1: High-level guide with references (+4 more)
 
 ### Community 145 - "Community 145"
 Cohesion: 0.67
@@ -738,12 +732,12 @@ Cohesion: 0.20
 Nodes (10): dependencies, depth, source, version, dependencies, depth, source, version (+2 more)
 
 ### Community 159 - "Community 159"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, url, version, com.unity.collections
+Cohesion: 0.40
+Nodes (5): dependencies, depth, source, version, com.unity.modules.vectorgraphics
 
 ### Community 160 - "Community 160"
-Cohesion: 0.33
-Nodes (6): dependencies, depth, source, url, version, com.unity.mathematics
+Cohesion: 0.40
+Nodes (5): depth, source, url, version, com.unity.timeline
 
 ### Community 161 - "Community 161"
 Cohesion: 0.33
@@ -757,26 +751,6 @@ Nodes (6): dependencies, depth, source, url, version, com.unity.services.analyti
 Cohesion: 0.40
 Nodes (5): dependencies, depth, source, version, com.unity.modules.wind
 
-### Community 164 - "Community 164"
-Cohesion: 0.40
-Nodes (5): dependencies, depth, source, version, com.unity.modules.accessibility
-
-### Community 165 - "Community 165"
-Cohesion: 0.40
-Nodes (5): dependencies, depth, source, version, com.unity.modules.cloth
-
-### Community 166 - "Community 166"
-Cohesion: 0.40
-Nodes (5): dependencies, depth, source, version, com.unity.modules.vehicles
-
-### Community 167 - "Community 167"
-Cohesion: 0.40
-Nodes (5): dependencies, depth, source, version, com.unity.modules.vr
-
-### Community 168 - "Community 168"
-Cohesion: 0.40
-Nodes (5): dependencies, depth, source, version, com.unity.modules.xr
-
 ### Community 169 - "Community 169"
 Cohesion: 0.40
 Nodes (5): depth, source, url, version, com.unity.services.core
@@ -789,30 +763,26 @@ Nodes (5): Anti-patterns to avoid, Avoid offering too many options, Avoid Window
 Cohesion: 0.50
 Nodes (4): depth, source, version, com.unity.ugui
 
-### Community 172 - "Community 172"
-Cohesion: 0.50
-Nodes (4): code:block18 (bigquery-skill/), code:`markdown (# BigQuery Data Analysis), code:block20, Pattern 2: Domain-specific organization
-
 ### Community 173 - "Community 173"
 Cohesion: 0.67
 Nodes (3): code:`markdown (## Form layout analysis), code:block55, Use visual analysis
 
 ## Knowledge Gaps
-- **1208 isolated node(s):** `command`, `args`, `find-polluter.sh script`, `fs`, `path` (+1203 more)
+- **1209 isolated node(s):** `command`, `args`, `find-polluter.sh script`, `fs`, `path` (+1204 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `dependencies` connect `Community 122` to `Community 128`, `Community 136`, `Community 157`, `Community 158`, `Community 159`, `Community 160`, `Community 161`, `Community 162`, `Community 31`, `Community 164`, `Community 165`, `Community 166`, `Community 167`, `Community 163`, `Community 169`, `Community 168`, `Community 171`, `Community 51`, `Community 54`, `Community 56`, `Community 60`, `Community 61`, `Community 62`, `Community 64`, `Community 65`, `Community 66`, `Community 75`, `Community 76`, `Community 83`, `Community 85`, `Community 90`, `Community 94`, `Community 106`, `Community 107`, `Community 108`, `Community 109`, `Community 112`, `Community 114`, `Community 115`, `Community 116`, `Community 126`?**
+- **Why does `dependencies` connect `Community 122` to `Community 128`, `Community 136`, `Community 157`, `Community 158`, `Community 31`, `Community 160`, `Community 161`, `Community 162`, `Community 159`, `Community 163`, `Community 169`, `Community 171`, `Community 51`, `Community 54`, `Community 56`, `Community 60`, `Community 61`, `Community 62`, `Community 64`, `Community 65`, `Community 66`, `Community 75`, `Community 76`, `Community 83`, `Community 85`, `Community 90`, `Community 94`, `Community 106`, `Community 107`, `Community 108`, `Community 109`, `Community 114`, `Community 115`, `Community 116`, `Community 126`?**
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `TownGridView` connect `Community 0` to `Community 3`, `Community 4`, `Community 6`, `Community 7`, `Community 104`, `Community 105`, `Community 113`, `Community 127`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `PrototypeTownDebugView` connect `Community 2` to `Community 68`, `Community 5`, `Community 6`, `Community 103`, `Community 104`, `Community 13`, `Community 127`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `command`, `args`, `find-polluter.sh script` to the rest of the system?**
-  _1208 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1209 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.10822510822510822 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

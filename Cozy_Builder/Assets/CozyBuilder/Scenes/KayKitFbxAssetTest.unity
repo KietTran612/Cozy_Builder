@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70d60829d2f842ebaa2630ba7aa54808, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
@@ -182,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &200001
 Transform:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1a16c769afd4ac08d29c83f4606dcb8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Camera.PrototypeCameraInputDriver
   targetCamera: {fileID: 0}
   defaultPivot: {x: 0, y: 0, z: 0}
@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 1574559339}
   - component: {fileID: 1574559340}
   - component: {fileID: 1574559341}
+  - component: {fileID: 1574559342}
   m_Layer: 0
   m_Name: Town Grid View
   m_TagString: Untagged
@@ -1326,12 +1327,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Rendering.TownGridView
   cellPrefab: {fileID: 510002}
   blockPrefab: {fileID: 2082073063}
+  smallHousePrefab: {fileID: 919132149155446097, guid: 7dbeb02c9faf0a34f9820d59bfd48ab8, type: 3}
+  houseRoofPrefab: {fileID: 919132149155446097, guid: 7dbeb02c9faf0a34f9820d59bfd48ab8, type: 3}
+  towerTopPrefab: {fileID: 919132149155446097, guid: 450a82aa2e8451b41ae34dfeb97b86ff, type: 3}
+  stiltsPrefab: {fileID: 919132149155446097, guid: e43747f2549b5b0408f81f03f55fdb34, type: 3}
+  houseWallPrefab: {fileID: 919132149155446097, guid: e43747f2549b5b0408f81f03f55fdb34, type: 3}
+  towerWallPrefab: {fileID: 919132149155446097, guid: e43747f2549b5b0408f81f03f55fdb34, type: 3}
   generatedRoot: {fileID: 0}
   cellSpacing: 2.1
+  firstBlockHeightOffset: 0.35
   blockHeightStep: 0.38
   blockScale: {x: 0.75, y: 0.35, z: 0.75}
   maxDirtyCellsPerFrame: 16
   rebuildOnStart: 1
+  prefabOffsets:
+  - prefab: {fileID: 919132149155446097, guid: 7dbeb02c9faf0a34f9820d59bfd48ab8, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scaleMultiplier: {x: 0.85, y: 0.85, z: 0.85}
+  - prefab: {fileID: 919132149155446097, guid: 450a82aa2e8451b41ae34dfeb97b86ff, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scaleMultiplier: {x: 0.9, y: 0.9, z: 0.9}
+  - prefab: {fileID: 919132149155446097, guid: e43747f2549b5b0408f81f03f55fdb34, type: 3}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scaleMultiplier: {x: 1, y: 1, z: 1}
+  cozyPalette:
+  - {r: 0.878, g: 0.353, b: 0.278, a: 1}
+  - {r: 0.902, g: 0.663, b: 0.333, a: 1}
+  - {r: 0.22, g: 0.478, b: 0.482, a: 1}
+  - {r: 0.455, g: 0.639, b: 0.702, a: 1}
+  - {r: 0.9, g: 0.851, b: 0.761, a: 1}
+  - {r: 0.439, g: 0.545, b: 0.459, a: 1}
 --- !u!4 &1574559337
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,6 +1404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Placement.PrototypePlacementInputDriver
   inputCamera: {fileID: 0}
+  tapDurationThreshold: 0.25
+  tapMoveThreshold: 15
+  doubleTapInterval: 0.25
 --- !u!114 &1574559340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,7 +1417,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6c4f017df724955ad5e5ac4b4d8658d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Placement.PrototypePlacementControlsView
   panelRect:
     serializedVersion: 2
@@ -1406,7 +1437,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414821eb61f6465b8cd5a64a1d2a3725, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Debugging.PrototypeTownDebugView
   panelRect:
     serializedVersion: 2
@@ -1415,6 +1446,21 @@ MonoBehaviour:
     width: 320
     height: 300
   maxDirtyPreview: 8
+--- !u!114 &1574559342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574559335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aadf6e5cbf24c14da77f1b52b53910e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CozyBuilder.Runtime::CozyBuilder.Town.Debugging.PrototypeTownDebug3D
+  gridLineColor: {r: 1, g: 0.73, b: 0.2, a: 0.45}
+  dirtyHighlightColor: {r: 1, g: 0.2, b: 0.2, a: 0.35}
+  debugHeightOffset: 1.2
 --- !u!1 &1987533966
 GameObject:
   m_ObjectHideFlags: 0

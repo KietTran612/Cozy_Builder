@@ -3442,7 +3442,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L22",
       "id": "packages_packages_lock_dependencies_com_unity_modules_uielements",
-      "community": 114,
+      "community": 31,
       "norm_label": "com.unity.modules.uielements"
     },
     {
@@ -3694,7 +3694,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L59",
       "id": "packages_packages_lock_dependencies_com_unity_mathematics",
-      "community": 160,
+      "community": 76,
       "norm_label": "com.unity.mathematics"
     },
     {
@@ -3775,7 +3775,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L71",
       "id": "packages_packages_lock_dependencies_com_unity_collections",
-      "community": 159,
+      "community": 76,
       "norm_label": "com.unity.collections"
     },
     {
@@ -3784,7 +3784,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L72",
       "id": "packages_packages_lock_com_unity_collections_version",
-      "community": 159,
+      "community": 76,
       "norm_label": "version"
     },
     {
@@ -3793,7 +3793,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L73",
       "id": "packages_packages_lock_com_unity_collections_depth",
-      "community": 159,
+      "community": 76,
       "norm_label": "depth"
     },
     {
@@ -3802,7 +3802,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L74",
       "id": "packages_packages_lock_com_unity_collections_source",
-      "community": 159,
+      "community": 76,
       "norm_label": "source"
     },
     {
@@ -3811,7 +3811,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L75",
       "id": "packages_packages_lock_com_unity_collections_dependencies",
-      "community": 159,
+      "community": 54,
       "norm_label": "dependencies"
     },
     {
@@ -3829,7 +3829,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L79",
       "id": "packages_packages_lock_dependencies_com_unity_nuget_mono_cecil",
-      "community": 115,
+      "community": 54,
       "norm_label": "com.unity.nuget.mono-cecil"
     },
     {
@@ -3847,7 +3847,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L82",
       "id": "packages_packages_lock_com_unity_collections_url",
-      "community": 159,
+      "community": 76,
       "norm_label": "url"
     },
     {
@@ -4009,7 +4009,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L108",
       "id": "packages_packages_lock_dependencies_com_unity_inputsystem",
-      "community": 114,
+      "community": 31,
       "norm_label": "com.unity.inputsystem"
     },
     {
@@ -4018,7 +4018,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L109",
       "id": "packages_packages_lock_com_unity_inputsystem_version",
-      "community": 114,
+      "community": 31,
       "norm_label": "version"
     },
     {
@@ -4027,7 +4027,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L110",
       "id": "packages_packages_lock_com_unity_inputsystem_depth",
-      "community": 114,
+      "community": 31,
       "norm_label": "depth"
     },
     {
@@ -4036,7 +4036,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L111",
       "id": "packages_packages_lock_com_unity_inputsystem_source",
-      "community": 114,
+      "community": 31,
       "norm_label": "source"
     },
     {
@@ -4045,7 +4045,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L112",
       "id": "packages_packages_lock_com_unity_inputsystem_dependencies",
-      "community": 114,
+      "community": 31,
       "norm_label": "dependencies"
     },
     {
@@ -4054,7 +4054,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L115",
       "id": "packages_packages_lock_com_unity_inputsystem_url",
-      "community": 114,
+      "community": 31,
       "norm_label": "url"
     },
     {
@@ -4063,7 +4063,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L118",
       "id": "packages_packages_lock_com_unity_mathematics_version",
-      "community": 160,
+      "community": 76,
       "norm_label": "version"
     },
     {
@@ -4072,7 +4072,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L119",
       "id": "packages_packages_lock_com_unity_mathematics_depth",
-      "community": 160,
+      "community": 76,
       "norm_label": "depth"
     },
     {
@@ -4081,7 +4081,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L120",
       "id": "packages_packages_lock_com_unity_mathematics_source",
-      "community": 160,
+      "community": 76,
       "norm_label": "source"
     },
     {
@@ -4090,7 +4090,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L121",
       "id": "packages_packages_lock_com_unity_mathematics_dependencies",
-      "community": 160,
+      "community": 76,
       "norm_label": "dependencies"
     },
     {
@@ -4099,7 +4099,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L122",
       "id": "packages_packages_lock_com_unity_mathematics_url",
-      "community": 160,
+      "community": 76,
       "norm_label": "url"
     },
     {
@@ -4108,7 +4108,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L124",
       "id": "packages_packages_lock_dependencies_com_unity_multiplayer_center",
-      "community": 114,
+      "community": 31,
       "norm_label": "com.unity.multiplayer.center"
     },
     {
@@ -4117,7 +4117,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L125",
       "id": "packages_packages_lock_com_unity_multiplayer_center_version",
-      "community": 114,
+      "community": 31,
       "norm_label": "version"
     },
     {
@@ -4126,7 +4126,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L126",
       "id": "packages_packages_lock_com_unity_multiplayer_center_depth",
-      "community": 114,
+      "community": 31,
       "norm_label": "depth"
     },
     {
@@ -4135,7 +4135,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L127",
       "id": "packages_packages_lock_com_unity_multiplayer_center_source",
-      "community": 114,
+      "community": 31,
       "norm_label": "source"
     },
     {
@@ -4144,7 +4144,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L128",
       "id": "packages_packages_lock_com_unity_multiplayer_center_dependencies",
-      "community": 114,
+      "community": 31,
       "norm_label": "dependencies"
     },
     {
@@ -4153,7 +4153,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L133",
       "id": "packages_packages_lock_com_unity_nuget_mono_cecil_version",
-      "community": 115,
+      "community": 54,
       "norm_label": "version"
     },
     {
@@ -4162,7 +4162,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L134",
       "id": "packages_packages_lock_com_unity_nuget_mono_cecil_depth",
-      "community": 115,
+      "community": 54,
       "norm_label": "depth"
     },
     {
@@ -4171,7 +4171,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L135",
       "id": "packages_packages_lock_com_unity_nuget_mono_cecil_source",
-      "community": 115,
+      "community": 54,
       "norm_label": "source"
     },
     {
@@ -4180,7 +4180,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L136",
       "id": "packages_packages_lock_com_unity_nuget_mono_cecil_dependencies",
-      "community": 115,
+      "community": 54,
       "norm_label": "dependencies"
     },
     {
@@ -4189,7 +4189,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L137",
       "id": "packages_packages_lock_com_unity_nuget_mono_cecil_url",
-      "community": 115,
+      "community": 54,
       "norm_label": "url"
     },
     {
@@ -4360,7 +4360,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L163",
       "id": "packages_packages_lock_com_unity_render_pipelines_core_dependencies",
-      "community": 94,
+      "community": 76,
       "norm_label": "dependencies"
     },
     {
@@ -4432,7 +4432,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L179",
       "id": "packages_packages_lock_dependencies_com_unity_shadergraph",
-      "community": 112,
+      "community": 51,
       "norm_label": "com.unity.shadergraph"
     },
     {
@@ -4486,7 +4486,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L191",
       "id": "packages_packages_lock_dependencies_com_unity_searcher",
-      "community": 112,
+      "community": 51,
       "norm_label": "com.unity.searcher"
     },
     {
@@ -4495,7 +4495,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L192",
       "id": "packages_packages_lock_com_unity_searcher_version",
-      "community": 112,
+      "community": 51,
       "norm_label": "version"
     },
     {
@@ -4504,7 +4504,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L193",
       "id": "packages_packages_lock_com_unity_searcher_depth",
-      "community": 112,
+      "community": 51,
       "norm_label": "depth"
     },
     {
@@ -4513,7 +4513,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L194",
       "id": "packages_packages_lock_com_unity_searcher_source",
-      "community": 112,
+      "community": 51,
       "norm_label": "source"
     },
     {
@@ -4522,7 +4522,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L195",
       "id": "packages_packages_lock_com_unity_searcher_dependencies",
-      "community": 112,
+      "community": 51,
       "norm_label": "dependencies"
     },
     {
@@ -4531,7 +4531,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L196",
       "id": "packages_packages_lock_com_unity_searcher_url",
-      "community": 112,
+      "community": 51,
       "norm_label": "url"
     },
     {
@@ -4630,7 +4630,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L221",
       "id": "packages_packages_lock_com_unity_shadergraph_version",
-      "community": 112,
+      "community": 51,
       "norm_label": "version"
     },
     {
@@ -4639,7 +4639,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L222",
       "id": "packages_packages_lock_com_unity_shadergraph_depth",
-      "community": 112,
+      "community": 51,
       "norm_label": "depth"
     },
     {
@@ -4648,7 +4648,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L223",
       "id": "packages_packages_lock_com_unity_shadergraph_source",
-      "community": 112,
+      "community": 51,
       "norm_label": "source"
     },
     {
@@ -4657,7 +4657,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L224",
       "id": "packages_packages_lock_com_unity_shadergraph_dependencies",
-      "community": 112,
+      "community": 51,
       "norm_label": "dependencies"
     },
     {
@@ -4756,7 +4756,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L249",
       "id": "packages_packages_lock_dependencies_com_unity_timeline",
-      "community": 60,
+      "community": 160,
       "norm_label": "com.unity.timeline"
     },
     {
@@ -4765,7 +4765,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L250",
       "id": "packages_packages_lock_com_unity_timeline_version",
-      "community": 60,
+      "community": 160,
       "norm_label": "version"
     },
     {
@@ -4774,7 +4774,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L251",
       "id": "packages_packages_lock_com_unity_timeline_depth",
-      "community": 60,
+      "community": 160,
       "norm_label": "depth"
     },
     {
@@ -4783,7 +4783,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L252",
       "id": "packages_packages_lock_com_unity_timeline_source",
-      "community": 60,
+      "community": 160,
       "norm_label": "source"
     },
     {
@@ -4828,7 +4828,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L257",
       "id": "packages_packages_lock_dependencies_com_unity_modules_particlesystem",
-      "community": 60,
+      "community": 114,
       "norm_label": "com.unity.modules.particlesystem"
     },
     {
@@ -4837,7 +4837,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L259",
       "id": "packages_packages_lock_com_unity_timeline_url",
-      "community": 60,
+      "community": 160,
       "norm_label": "url"
     },
     {
@@ -4990,7 +4990,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L285",
       "id": "packages_packages_lock_dependencies_com_unity_modules_vr",
-      "community": 167,
+      "community": 56,
       "norm_label": "com.unity.modules.vr"
     },
     {
@@ -4999,7 +4999,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L286",
       "id": "packages_packages_lock_dependencies_com_unity_modules_xr",
-      "community": 168,
+      "community": 56,
       "norm_label": "com.unity.modules.xr"
     },
     {
@@ -5116,7 +5116,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L305",
       "id": "packages_packages_lock_dependencies_com_unity_modules_accessibility",
-      "community": 164,
+      "community": 122,
       "norm_label": "com.unity.modules.accessibility"
     },
     {
@@ -5125,7 +5125,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L306",
       "id": "packages_packages_lock_com_unity_modules_accessibility_version",
-      "community": 164,
+      "community": 122,
       "norm_label": "version"
     },
     {
@@ -5134,7 +5134,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L307",
       "id": "packages_packages_lock_com_unity_modules_accessibility_depth",
-      "community": 164,
+      "community": 122,
       "norm_label": "depth"
     },
     {
@@ -5143,7 +5143,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L308",
       "id": "packages_packages_lock_com_unity_modules_accessibility_source",
-      "community": 164,
+      "community": 122,
       "norm_label": "source"
     },
     {
@@ -5152,7 +5152,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L309",
       "id": "packages_packages_lock_com_unity_modules_accessibility_dependencies",
-      "community": 164,
+      "community": 122,
       "norm_label": "dependencies"
     },
     {
@@ -5206,7 +5206,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L316",
       "id": "packages_packages_lock_dependencies_com_unity_modules_subsystems",
-      "community": 116,
+      "community": 66,
       "norm_label": "com.unity.modules.subsystems"
     },
     {
@@ -5404,7 +5404,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L349",
       "id": "packages_packages_lock_dependencies_com_unity_modules_cloth",
-      "community": 165,
+      "community": 64,
       "norm_label": "com.unity.modules.cloth"
     },
     {
@@ -5413,7 +5413,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L350",
       "id": "packages_packages_lock_com_unity_modules_cloth_version",
-      "community": 165,
+      "community": 64,
       "norm_label": "version"
     },
     {
@@ -5422,7 +5422,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L351",
       "id": "packages_packages_lock_com_unity_modules_cloth_depth",
-      "community": 165,
+      "community": 64,
       "norm_label": "depth"
     },
     {
@@ -5431,7 +5431,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L352",
       "id": "packages_packages_lock_com_unity_modules_cloth_source",
-      "community": 165,
+      "community": 64,
       "norm_label": "source"
     },
     {
@@ -5440,7 +5440,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L353",
       "id": "packages_packages_lock_com_unity_modules_cloth_dependencies",
-      "community": 165,
+      "community": 64,
       "norm_label": "dependencies"
     },
     {
@@ -5647,7 +5647,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L391",
       "id": "packages_packages_lock_com_unity_modules_particlesystem_version",
-      "community": 60,
+      "community": 114,
       "norm_label": "version"
     },
     {
@@ -5656,7 +5656,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L392",
       "id": "packages_packages_lock_com_unity_modules_particlesystem_depth",
-      "community": 60,
+      "community": 114,
       "norm_label": "depth"
     },
     {
@@ -5665,7 +5665,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L393",
       "id": "packages_packages_lock_com_unity_modules_particlesystem_source",
-      "community": 60,
+      "community": 114,
       "norm_label": "source"
     },
     {
@@ -5674,7 +5674,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L394",
       "id": "packages_packages_lock_com_unity_modules_particlesystem_dependencies",
-      "community": 60,
+      "community": 114,
       "norm_label": "dependencies"
     },
     {
@@ -5809,7 +5809,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L417",
       "id": "packages_packages_lock_com_unity_modules_subsystems_version",
-      "community": 116,
+      "community": 66,
       "norm_label": "version"
     },
     {
@@ -5818,7 +5818,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L418",
       "id": "packages_packages_lock_com_unity_modules_subsystems_depth",
-      "community": 116,
+      "community": 66,
       "norm_label": "depth"
     },
     {
@@ -5827,7 +5827,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L419",
       "id": "packages_packages_lock_com_unity_modules_subsystems_source",
-      "community": 116,
+      "community": 66,
       "norm_label": "source"
     },
     {
@@ -5836,7 +5836,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L420",
       "id": "packages_packages_lock_com_unity_modules_subsystems_dependencies",
-      "community": 116,
+      "community": 66,
       "norm_label": "dependencies"
     },
     {
@@ -5881,7 +5881,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L430",
       "id": "packages_packages_lock_dependencies_com_unity_modules_terrainphysics",
-      "community": 64,
+      "community": 94,
       "norm_label": "com.unity.modules.terrainphysics"
     },
     {
@@ -5890,7 +5890,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L431",
       "id": "packages_packages_lock_com_unity_modules_terrainphysics_version",
-      "community": 64,
+      "community": 94,
       "norm_label": "version"
     },
     {
@@ -5899,7 +5899,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L432",
       "id": "packages_packages_lock_com_unity_modules_terrainphysics_depth",
-      "community": 64,
+      "community": 94,
       "norm_label": "depth"
     },
     {
@@ -5908,7 +5908,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L433",
       "id": "packages_packages_lock_com_unity_modules_terrainphysics_source",
-      "community": 64,
+      "community": 94,
       "norm_label": "source"
     },
     {
@@ -5917,7 +5917,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L434",
       "id": "packages_packages_lock_com_unity_modules_terrainphysics_dependencies",
-      "community": 64,
+      "community": 94,
       "norm_label": "dependencies"
     },
     {
@@ -5998,7 +5998,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L454",
       "id": "packages_packages_lock_com_unity_modules_uielements_version",
-      "community": 114,
+      "community": 31,
       "norm_label": "version"
     },
     {
@@ -6007,7 +6007,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L455",
       "id": "packages_packages_lock_com_unity_modules_uielements_depth",
-      "community": 114,
+      "community": 31,
       "norm_label": "depth"
     },
     {
@@ -6016,7 +6016,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L456",
       "id": "packages_packages_lock_com_unity_modules_uielements_source",
-      "community": 114,
+      "community": 31,
       "norm_label": "source"
     },
     {
@@ -6034,7 +6034,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L465",
       "id": "packages_packages_lock_dependencies_com_unity_modules_umbra",
-      "community": 122,
+      "community": 115,
       "norm_label": "com.unity.modules.umbra"
     },
     {
@@ -6043,7 +6043,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L466",
       "id": "packages_packages_lock_com_unity_modules_umbra_version",
-      "community": 122,
+      "community": 115,
       "norm_label": "version"
     },
     {
@@ -6052,7 +6052,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L467",
       "id": "packages_packages_lock_com_unity_modules_umbra_depth",
-      "community": 122,
+      "community": 115,
       "norm_label": "depth"
     },
     {
@@ -6061,7 +6061,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L468",
       "id": "packages_packages_lock_com_unity_modules_umbra_source",
-      "community": 122,
+      "community": 115,
       "norm_label": "source"
     },
     {
@@ -6070,7 +6070,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L469",
       "id": "packages_packages_lock_com_unity_modules_umbra_dependencies",
-      "community": 122,
+      "community": 115,
       "norm_label": "dependencies"
     },
     {
@@ -6340,7 +6340,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L526",
       "id": "packages_packages_lock_dependencies_com_unity_modules_vectorgraphics",
-      "community": 65,
+      "community": 159,
       "norm_label": "com.unity.modules.vectorgraphics"
     },
     {
@@ -6349,7 +6349,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L527",
       "id": "packages_packages_lock_com_unity_modules_vectorgraphics_version",
-      "community": 65,
+      "community": 159,
       "norm_label": "version"
     },
     {
@@ -6358,7 +6358,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L528",
       "id": "packages_packages_lock_com_unity_modules_vectorgraphics_depth",
-      "community": 65,
+      "community": 159,
       "norm_label": "depth"
     },
     {
@@ -6367,7 +6367,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L529",
       "id": "packages_packages_lock_com_unity_modules_vectorgraphics_source",
-      "community": 65,
+      "community": 159,
       "norm_label": "source"
     },
     {
@@ -6376,7 +6376,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L530",
       "id": "packages_packages_lock_com_unity_modules_vectorgraphics_dependencies",
-      "community": 65,
+      "community": 159,
       "norm_label": "dependencies"
     },
     {
@@ -6385,7 +6385,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L536",
       "id": "packages_packages_lock_dependencies_com_unity_modules_vehicles",
-      "community": 166,
+      "community": 64,
       "norm_label": "com.unity.modules.vehicles"
     },
     {
@@ -6394,7 +6394,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L537",
       "id": "packages_packages_lock_com_unity_modules_vehicles_version",
-      "community": 166,
+      "community": 64,
       "norm_label": "version"
     },
     {
@@ -6403,7 +6403,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L538",
       "id": "packages_packages_lock_com_unity_modules_vehicles_depth",
-      "community": 166,
+      "community": 64,
       "norm_label": "depth"
     },
     {
@@ -6412,7 +6412,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L539",
       "id": "packages_packages_lock_com_unity_modules_vehicles_source",
-      "community": 166,
+      "community": 64,
       "norm_label": "source"
     },
     {
@@ -6421,7 +6421,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L540",
       "id": "packages_packages_lock_com_unity_modules_vehicles_dependencies",
-      "community": 166,
+      "community": 64,
       "norm_label": "dependencies"
     },
     {
@@ -6430,7 +6430,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L544",
       "id": "packages_packages_lock_dependencies_com_unity_modules_video",
-      "community": 108,
+      "community": 61,
       "norm_label": "com.unity.modules.video"
     },
     {
@@ -6439,7 +6439,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L545",
       "id": "packages_packages_lock_com_unity_modules_video_version",
-      "community": 108,
+      "community": 61,
       "norm_label": "version"
     },
     {
@@ -6448,7 +6448,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L546",
       "id": "packages_packages_lock_com_unity_modules_video_depth",
-      "community": 108,
+      "community": 61,
       "norm_label": "depth"
     },
     {
@@ -6457,7 +6457,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L547",
       "id": "packages_packages_lock_com_unity_modules_video_source",
-      "community": 108,
+      "community": 61,
       "norm_label": "source"
     },
     {
@@ -6466,7 +6466,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L548",
       "id": "packages_packages_lock_com_unity_modules_video_dependencies",
-      "community": 108,
+      "community": 61,
       "norm_label": "dependencies"
     },
     {
@@ -6475,7 +6475,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L555",
       "id": "packages_packages_lock_com_unity_modules_vr_version",
-      "community": 167,
+      "community": 56,
       "norm_label": "version"
     },
     {
@@ -6484,7 +6484,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L556",
       "id": "packages_packages_lock_com_unity_modules_vr_depth",
-      "community": 167,
+      "community": 56,
       "norm_label": "depth"
     },
     {
@@ -6493,7 +6493,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L557",
       "id": "packages_packages_lock_com_unity_modules_vr_source",
-      "community": 167,
+      "community": 56,
       "norm_label": "source"
     },
     {
@@ -6502,7 +6502,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L558",
       "id": "packages_packages_lock_com_unity_modules_vr_dependencies",
-      "community": 167,
+      "community": 56,
       "norm_label": "dependencies"
     },
     {
@@ -6556,7 +6556,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L571",
       "id": "packages_packages_lock_com_unity_modules_xr_version",
-      "community": 168,
+      "community": 56,
       "norm_label": "version"
     },
     {
@@ -6565,7 +6565,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L572",
       "id": "packages_packages_lock_com_unity_modules_xr_depth",
-      "community": 168,
+      "community": 56,
       "norm_label": "depth"
     },
     {
@@ -6574,7 +6574,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L573",
       "id": "packages_packages_lock_com_unity_modules_xr_source",
-      "community": 168,
+      "community": 56,
       "norm_label": "source"
     },
     {
@@ -6583,7 +6583,7 @@
       "source_file": "Cozy_Builder/Packages/packages-lock.json",
       "source_location": "L574",
       "id": "packages_packages_lock_com_unity_modules_xr_dependencies",
-      "community": 168,
+      "community": 66,
       "norm_label": "dependencies"
     },
     {
@@ -6743,7 +6743,7 @@
       "label": "Current Intent",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L98",
+      "source_location": "L100",
       "id": "cozy_builder_current_status_current_intent",
       "community": 57,
       "norm_label": "current intent"
@@ -6752,7 +6752,7 @@
       "label": "Next Work",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L107",
+      "source_location": "L109",
       "id": "cozy_builder_current_status_next_work",
       "community": 57,
       "norm_label": "next work"
@@ -6761,7 +6761,7 @@
       "label": "Latest Validation Notes",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L129",
+      "source_location": "L124",
       "id": "cozy_builder_current_status_latest_validation_notes",
       "community": 57,
       "norm_label": "latest validation notes"
@@ -6770,7 +6770,7 @@
       "label": "Latest Code Notes",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L230",
+      "source_location": "L225",
       "id": "cozy_builder_current_status_latest_code_notes",
       "community": 57,
       "norm_label": "latest code notes"
@@ -6779,7 +6779,7 @@
       "label": "Current Working Tree Notes",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L276",
+      "source_location": "L271",
       "id": "cozy_builder_current_status_current_working_tree_notes",
       "community": 57,
       "norm_label": "current working tree notes"
@@ -6788,7 +6788,7 @@
       "label": "Rules That Must Not Drift",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L290",
+      "source_location": "L285",
       "id": "cozy_builder_current_status_rules_that_must_not_drift",
       "community": 57,
       "norm_label": "rules that must not drift"
@@ -6797,7 +6797,7 @@
       "label": "Context Reading Rules",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L302",
+      "source_location": "L297",
       "id": "cozy_builder_current_status_context_reading_rules",
       "community": 57,
       "norm_label": "context reading rules"
@@ -6806,7 +6806,7 @@
       "label": "Graphify",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L316",
+      "source_location": "L311",
       "id": "cozy_builder_current_status_graphify",
       "community": 57,
       "norm_label": "graphify"
@@ -6815,7 +6815,7 @@
       "label": "Unity MCP",
       "file_type": "document",
       "source_file": "CURRENT_STATUS.md",
-      "source_location": "L325",
+      "source_location": "L320",
       "id": "cozy_builder_current_status_unity_mcp",
       "community": 57,
       "norm_label": "unity mcp"
@@ -6869,25 +6869,25 @@
       "label": "Decisions That Must Not Drift",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L96",
+      "source_location": "L101",
       "id": "cozy_builder_handover_decisions_that_must_not_drift",
       "community": 80,
       "norm_label": "decisions that must not drift"
     },
     {
-      "label": "Latest Session Update - 2026-05-23 - Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets",
+      "label": "Latest Session Update - 2026-05-23 - Overlapping Blocks Fix, Color Palette, and 3D Visual Debug System",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L111",
-      "id": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets",
+      "source_location": "L116",
+      "id": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_color_palette_and_3d_visual_debug_system",
       "community": 80,
-      "norm_label": "latest session update - 2026-05-23 - overlapping blocks fix & runtime gameobject wrapper offsets"
+      "norm_label": "latest session update - 2026-05-23 - overlapping blocks fix, color palette, and 3d visual debug system"
     },
     {
       "label": "Next Work",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L131",
+      "source_location": "L139",
       "id": "cozy_builder_handover_next_work",
       "community": 80,
       "norm_label": "next work"
@@ -6896,7 +6896,7 @@
       "label": "Docs Map",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L166",
+      "source_location": "L167",
       "id": "cozy_builder_handover_docs_map",
       "community": 80,
       "norm_label": "docs map"
@@ -6905,7 +6905,7 @@
       "label": "Graphify",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L188",
+      "source_location": "L189",
       "id": "cozy_builder_handover_graphify",
       "community": 80,
       "norm_label": "graphify"
@@ -6914,7 +6914,7 @@
       "label": "Unity MCP",
       "file_type": "document",
       "source_file": "HANDOVER.md",
-      "source_location": "L196",
+      "source_location": "L197",
       "id": "cozy_builder_handover_unity_mcp",
       "community": 80,
       "norm_label": "unity mcp"
@@ -10831,7 +10831,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L144",
       "id": "writing_skills_antigravity_best_practices_skill_structure",
-      "community": 33,
+      "community": 112,
       "norm_label": "skill structure"
     },
     {
@@ -10840,7 +10840,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L155",
       "id": "writing_skills_antigravity_best_practices_naming_conventions",
-      "community": 33,
+      "community": 112,
       "norm_label": "naming conventions"
     },
     {
@@ -10966,7 +10966,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L298",
       "id": "writing_skills_antigravity_best_practices_pattern_2_domain_specific_organization",
-      "community": 172,
+      "community": 144,
       "norm_label": "pattern 2: domain-specific organization"
     },
     {
@@ -10975,7 +10975,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L302",
       "id": "writing_skills_antigravity_best_practices_codeblock_18",
-      "community": 172,
+      "community": 144,
       "norm_label": "code:block18 (bigquery-skill/)"
     },
     {
@@ -10984,7 +10984,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L312",
       "id": "writing_skills_antigravity_best_practices_codeblock_19",
-      "community": 172,
+      "community": 144,
       "norm_label": "code:`markdown (# bigquery data analysis)"
     },
     {
@@ -10993,7 +10993,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L330",
       "id": "writing_skills_antigravity_best_practices_codeblock_20",
-      "community": 172,
+      "community": 144,
       "norm_label": "code:block20"
     },
     {
@@ -11020,7 +11020,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L354",
       "id": "writing_skills_antigravity_best_practices_avoid_deeply_nested_references",
-      "community": 33,
+      "community": 112,
       "norm_label": "avoid deeply nested references"
     },
     {
@@ -11029,7 +11029,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L362",
       "id": "writing_skills_antigravity_best_practices_codeblock_22",
-      "community": 33,
+      "community": 112,
       "norm_label": "code:markdown (# skill.md)"
     },
     {
@@ -11038,7 +11038,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L378",
       "id": "writing_skills_antigravity_best_practices_codeblock_23",
-      "community": 33,
+      "community": 112,
       "norm_label": "code:markdown (# skill.md)"
     },
     {
@@ -11047,7 +11047,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L387",
       "id": "writing_skills_antigravity_best_practices_structure_longer_reference_files_with_table_of_contents",
-      "community": 33,
+      "community": 112,
       "norm_label": "structure longer reference files with table of contents"
     },
     {
@@ -11056,7 +11056,7 @@
       "source_file": ".agent/skills/writing-skills/antigravity-best-practices.md",
       "source_location": "L393",
       "id": "writing_skills_antigravity_best_practices_codeblock_24",
-      "community": 33,
+      "community": 112,
       "norm_label": "code:markdown (# api reference)"
     },
     {
@@ -17430,6 +17430,15 @@
       "id": "plans_task_b\u1ea3ng_theo_d\u00f5i_ti\u1ebfn_\u0111\u1ed9_task_tracker_kh\u1eafc_ph\u1ee5c_ch\u1ed3ng_ch\u00e9o_overlapping_blocks_fix",
       "community": 152,
       "norm_label": "bang theo doi tien \u0111o (task tracker) - khac phuc chong cheo (overlapping blocks fix)"
+    },
+    {
+      "label": "Latest Session Update - 2026-05-23 - Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets",
+      "file_type": "document",
+      "source_file": "HANDOVER.md",
+      "source_location": "L111",
+      "community": 80,
+      "norm_label": "latest session update - 2026-05-23 - overlapping blocks fix & runtime gameobject wrapper offsets",
+      "id": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets"
     },
     {
       "label": "Latest Session Update - 2026-05-23 - Drag-to-Draw, Physics Raycast & Runtime Collider Auto-Addition",
@@ -28198,10 +28207,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "HANDOVER.md",
-      "source_location": "L111",
+      "source_location": "L116",
       "weight": 1.0,
       "source": "cozy_builder_handover_handover",
-      "target": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets",
+      "target": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_color_palette_and_3d_visual_debug_system",
       "confidence_score": 1.0
     },
     {
@@ -28243,6 +28252,16 @@
       "confidence_score": 1.0,
       "source": "cozy_builder_handover_handover",
       "target": "cozy_builder_handover_unity_mcp"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HANDOVER.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "cozy_builder_handover_handover",
+      "target": "cozy_builder_handover_latest_session_update_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets"
     },
     {
       "relation": "contains",
@@ -36640,9 +36659,9 @@
       "source_file": "docs/Development_Session_Log.md",
       "source_location": "L399",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_session_log_development_session_log",
-      "target": "docs_development_session_log_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets",
-      "confidence_score": 1.0
+      "target": "docs_development_session_log_2026_05_23_overlapping_blocks_fix_runtime_gameobject_wrapper_offsets"
     },
     {
       "relation": "contains",
@@ -39408,5 +39427,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "69fcea55c667b4ee1fec84b26fbbc3b6187c05d4"
+  "built_at_commit": "9c3efbf0def2d7c4cfff9d2dde95ffbb32b00943"
 }
