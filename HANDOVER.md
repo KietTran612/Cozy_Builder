@@ -76,6 +76,9 @@ Current Unity adapters:
   - generates initial island terrain placeholder cells
   - processes dirty cells in `LateUpdate`
   - separates terrain views under `Terrain Cells` from pooled block views under `Block Cells`
+  - manages material block properties for cozy color palette dynamic colouring
+- `BlockColorAdapter`
+  - serialized renderer cache helper to avoid runtime `GetComponentsInChildren` garbage collection (GC Alloc)
 - `PrototypePlacementDebugDriver`
   - temporary MCP/manual validation adapter for place/delete
 - `PrototypePlacementInputDriver`
@@ -90,6 +93,8 @@ Current Unity adapters:
   - singleton debug state for the currently selected cell
 - `PrototypeTownDebugView`
   - temporary IMGUI debug panel for selected cell, neighbors, dirty queue, and rule preview
+- `PrototypeTownDebug3D`
+  - organic grid lines boundary mesh (1 Draw Call), floating TextMesh UI, and dirty highlight marker pool
 - `PrototypeCameraInputDriver`
   - temporary camera adapter for orbit, pan, zoom, and reset input
 
@@ -108,7 +113,7 @@ Current Unity adapters:
 - Do not add non-prototype features before placement, visual update, debug visibility, and camera feel are proven.
 - KayKit is prototype terrain/grid placeholder content, not the final procedural building foundation.
 
-## Latest Session Update - 2026-05-23 - Overlapping Blocks Fix & Runtime GameObject Wrapper Offsets
+## Latest Session Update - 2026-05-23 - Overlapping Blocks Fix, Color Palette, and 3D Visual Debug System
 
 Baseline before the work:
 - KayKit models faced horizontal overlapping (clashing walls and roofs of adjacent house blocks, especially when rotated 90 degrees) because they exceed cell spacing limits.
@@ -120,26 +125,22 @@ Implemented:
 - **Dynamic Offset Configuration**: Introduced the `PrefabOffsetConfig` structure and serialized `prefabOffsets` list inside `TownGridView.cs`. Added pre-populated robust default offsets inside `AutoWirePrefabs` (such as house model downscaling to `0.85`) so KayKit models work flawlessly out-of-the-box.
 - **Decoupled Vertical Stacking Heights**: Split Y position math into distinct serialized parameters: `firstBlockHeightOffset = 0.35f` (maps from world ground to hexagon terrain surface) and `blockHeightStep = 2.0f` (maps vertical distance between layers). Updated `GridToWorld` formulas accordingly.
 - **Recursive Adapter & Collider Attachment**: Enhanced the `ApplyColorAndMaterial` block color search and runtime `EnsureCollider` scanner to check dynamically across the Wrapper parent-child hierarchy recursively, maintaining 100% backward-compatibility and zero GC Allocations.
+- **Cozy Color Palette & Dynamic Materials (0 GC)**: Integrated a harmonious 6-color pastel palette in `TownGridView.cs`. Used `MaterialPropertyBlock` dynamically to apply Color, Smoothness, and Metallic settings (custom configurations for Wood, Metal, Ceramic, Stone) recursively on all block renderers using the lightweight cache `BlockColorAdapter` (Zero GC Allocations).
+- **Dynamic 1-Draw-Call Grid Line Mesh**: Programmed a single organic grid boundary mesh in [PrototypeTownDebug3D.cs](file:///c:/1.SOURCE/Unity/Source/Cozy_Builder/Cozy_Builder/Assets/CozyBuilder/Runtime/Town/Debugging/PrototypeTownDebug3D.cs) that displays all island boundaries in exactly one draw call. Added toggling via IMGUI panel rect bounds check with zero GC.
+- **Focus-based Floating 3D Text & Dirty Highlights**: Implemented a TextMesh UI that floats dynamically on top of the hovered cell to display neighbor indices and rule results, along with transparent red pool-backed box markers highlighting cells in the rebuild queue.
 - **Focus Debug & Input Driver Alignment**: Updated height formulas in `PrototypeTownDebug3D.cs` so hover text and dirty highlights align smoothly on top of stacked wrapper layers, and replaced hardcoded spacing in double-tap camera focus with `CellSpacing`.
 
 Validation:
 - C# codebase compiles beautifully with zero errors or warnings.
 - Real-time Play Mode execution confirms that walls stack seamlessly with zero vertical clipping and row houses align edge-to-edge without overlapping roofs.
-- `graphify update .` completed successfully, updating the AST graph to 1981 nodes, 2128 edges, and 157 communities.
+- `graphify update .` completed successfully, updating the AST graph to 1983 nodes, 2130 edges, and 174 communities.
 
 
 ## Next Work
 
-1. **Color & Material Visual Integration (Tích hợp bảng màu & chất liệu trực quan)**:
-   - Xây dựng một Palette màu ấm cúng (3-6 màu giống như Townscaper).
-   - Tích hợp thay đổi màu sắc trực quan của block trên Scene dựa trên dữ liệu `ColorId` và `MaterialId` hiện có bằng giải pháp tối ưu hiệu năng `MaterialPropertyBlock` (Zero GC Alloc).
-2. **Visual Debug Tooling System (Hệ thống công cụ Debug 3D trực quan)**:
-   - Triển khai Mesh lưới dòng biên hữu cơ duy nhất (Grid Line Mesh) để vẽ lưới hòn đảo 3D trên Scene với hiệu năng cao (1 Draw Call, Active/Deactive).
-   - Tạo UI 3D lơ lửng bám theo ô đang được chọn/hover (Focus-based Debug) để hiển thị trực quan thông tin hàng xóm (Neighbor Index) và các quy tắc RuleResult được áp dụng.
-   - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
-3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
+1. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
    - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
-4. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
+2. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
    - **Mục tiêu**: Chuyển đổi từ **Phương án 1 (Runtime Auto-Add Colliders)** sang **Phương án 3 (Editor Prefab Automation)** trước khi chuyển từ Prototype sang Production.
    - **Lý do**: Tối ưu hóa hiệu năng CPU (loại bỏ chi phí "nấu" MeshCollider ở runtime khi bắt đầu game hoặc sinh block), giảm thiểu dung lượng RAM, và cho phép tùy biến sâu trong Editor (gắn thêm SFX, VFX khói bụi, cấu hình Layer vật lý tĩnh, hệ thống Particle, v.v.).
    - **Hướng thực hiện**:

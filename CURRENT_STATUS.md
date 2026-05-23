@@ -64,6 +64,7 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Correctly maps and applies 4-cardinal rotations to visual elements based on rule results
   - Utilizes runtime GameObject Wrapper pattern and `PrefabOffsetConfig` to automatically wrap FBX assets, applying customizable local Position, Rotation, and Scale offsets to resolve horizontal overlapping (clashing models) dynamically at runtime
   - Separates first block stack height offset (`firstBlockHeightOffset = 0.35f`) from consecutive block heights (`blockHeightStep = 2.0f`) to achieve perfectly flush vertical alignment
+  - Integrates a 6-color pastel Cozy Palette and dynamic material configs (Wood, Metal, Ceramic, Stone) applied dynamically via `MaterialPropertyBlock` recursively to block renderers using lightweight cache `BlockColorAdapter` (Zero GC Allocations)
 - Prototype debug driver:
   - `PrototypePlacementDebugDriver`
   - Calls `PlacementService.TryPlaceBlock` / `TryDeleteBlock` for MCP/manual validation
@@ -76,9 +77,10 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
   - Provides minimal IMGUI controls for place/delete mode, `ColorId`, and `MaterialId`
   - Exposes IMGUI screen boundaries via public `PanelRect` property for pointer blocking checks
 - Prototype debug views:
-  - `PrototypeTownDebugState` and `PrototypeTownDebugView`
+  - `PrototypeTownDebugState`, `PrototypeTownDebugView`, and `PrototypeTownDebug3D`
   - Shows selected cell id/data, cardinal neighbor info, dirty queue count/preview, and rule result preview
   - Exposes IMGUI screen boundaries via public `PanelRect` property for pointer blocking checks
+  - `PrototypeTownDebug3D` renders organic grid lines boundary mesh (1 Draw Call), floating TextMesh UI baming to hovered cell heights, and transparent red box markers highlighting the dirty queue
 - Prototype camera controls (Decoupled Module):
   - Independent Camera assembly: `CozyBuilder.Camera.asmdef` referencing only `VContainer` and `Unity.InputSystem` (absolute isolation).
   - Decoupled interface: `ICameraInputBlocker` abstraction for pointer interaction bounds.
@@ -106,16 +108,9 @@ This is the short startup context for agents. Read this first, then use `HANDOVE
 
 ## Next Work
 
-1. **Color & Material Visual Integration (Tích hợp bảng màu & chất liệu trực quan)**:
-   - Xây dựng một Palette màu ấm cúng (3-6 màu giống như Townscaper).
-   - Tích hợp thay đổi màu sắc trực quan của block trên Scene dựa trên dữ liệu `ColorId` và `MaterialId` hiện có bằng giải pháp tối ưu hiệu năng `MaterialPropertyBlock` (Zero GC Alloc).
-2. **Visual Debug Tooling System (Hệ thống công cụ Debug 3D trực quan)**:
-   - Triển khai Mesh lưới dòng biên hữu cơ duy nhất (Grid Line Mesh) để vẽ lưới hòn đảo 3D trên Scene với hiệu năng cao (1 Draw Call, Active/Deactive).
-   - Tạo UI 3D lơ lửng bám theo ô đang được chọn/hover (Focus-based Debug) để hiển thị trực quan thông tin hàng xóm (Neighbor Index) và các quy tắc RuleResult được áp dụng.
-   - Thêm highlight 3D (sử dụng box mờ dạng pooling) cho các ô đang nằm trong dirty queue để dễ dàng kiểm thử quy trình rebuild.
-3. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
+1. **Minimal Mobile UI Canvas (Lớp giao diện cảm ứng tối thiểu)**:
    - Chuyển đổi các nút điều khiển IMGUI tạm thời sang một Canvas di động tối giản (Canvas uGUI đơn giản) để dễ dàng thao tác chạm đổi màu, đổi chế độ và bật/tắt công cụ Debug 3D trực tiếp trên thiết bị di động thay vì dùng giao diện IMGUI thô sơ của Unity Editor.
-4. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
+2. **[FUTURE WORK - PREFAB AUTOMATION] Editor Prefab Generation Automation (Tự động hóa sinh Prefab trong Editor)**:
    - **Mục tiêu**: Chuyển đổi từ **Phương án 1 (Runtime Auto-Add Colliders)** sang **Phương án 3 (Editor Prefab Automation)** trước khi chuyển từ Prototype sang Production.
    - **Lý do**: Tối ưu hóa hiệu năng CPU (loại bỏ chi phí "nấu" MeshCollider ở runtime khi bắt đầu game hoặc sinh block), giảm thiểu dung lượng RAM, và cho phép tùy biến sâu trong Editor (gắn thêm SFX, VFX khói bụi, cấu hình Layer vật lý tĩnh, hệ thống Particle, v.v.).
    - **Hướng thực hiện**:
